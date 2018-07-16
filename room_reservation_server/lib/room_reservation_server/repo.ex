@@ -1,6 +1,6 @@
 defmodule RoomReservationServer.Repo do
   use Ecto.Repo, otp_app: :room_reservation_server
-
+  use Scrivener, page_size: 10
   @doc """
   Dynamically loads the repository url from the
   DATABASE_URL environment variable.
