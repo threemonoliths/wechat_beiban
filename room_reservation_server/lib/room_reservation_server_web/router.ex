@@ -28,8 +28,8 @@ defmodule RoomReservationServerWeb.Router do
 
   # 管理后台API
   scope "/admin_api/v1", RoomReservationServerWeb do
-    pipe_through [:api, :api_auth]
-
+    # pipe_through [:api, :api_auth]
+    pipe_through [:api]
     resources "/users", UserController, except: [:new, :edit]
     resources "/dicts", DictController, except: [:new, :edit]
     resources "/layouts", LayoutController, except: [:new, :edit]
