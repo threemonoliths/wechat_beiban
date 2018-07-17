@@ -1,4 +1,4 @@
-defmodule RoomReservationServer.LayoutContext do
+defmodule RoomReservationServer.RoomLayoutContext do
   @moduledoc """
   The LayoutContext context.
   """
@@ -6,20 +6,20 @@ defmodule RoomReservationServer.LayoutContext do
   import Ecto.Query, warn: false
   alias RoomReservationServer.Repo
 
-  alias RoomReservationServer.LayoutContext.Layout
+  alias RoomReservationServer.RoomLayoutContext.RoomLayout
 
   use RoomReservationServer.BaseContext
   
     defmacro __using__(_opts) do
       quote do
-        import RoomReservationServer.LayoutContext
+        import RoomReservationServer.RoomLayoutContext
         use RoomReservationServer.BaseContext
-        alias RoomReservationServer.LayoutContext.Layout
+        alias RoomReservationServer.RoomLayoutContext.RoomLayout
       end
     end
   
     def page(params) do 
-      Layout
+      RoomLayout
       |> query_like(params, "layout")
       |> get_pagination(params)
     end

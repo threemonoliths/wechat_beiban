@@ -5,7 +5,7 @@ defmodule RoomReservationServer.Repo.Migrations.CreateRooms do
     create table(:rooms) do
       add :room_number, :string
       add :desc, :string
-      add :layout_id, references(:layouts)
+      add :layout_id, references(:room_layouts)
       timestamps()
     end
 

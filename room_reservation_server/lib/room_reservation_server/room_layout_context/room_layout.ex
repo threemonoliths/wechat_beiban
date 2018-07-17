@@ -1,11 +1,11 @@
-defmodule RoomReservationServer.LayoutContext.Layout do
+defmodule RoomReservationServer.RoomLayoutContext.RoomLayout do
   use Ecto.Schema
   use Arc.Ecto.Schema
   import Ecto.Changeset
   alias RoomReservationServer.RoomContext.Room
 
 
-  schema "layouts" do
+  schema "room_layouts" do
     field :layout, :string
     field :layout_pic, RoomReservationServer.LayoutPic.Type
     field :price_01, :decimal

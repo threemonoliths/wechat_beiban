@@ -32,7 +32,7 @@ defmodule RoomReservationServerWeb.Router do
     pipe_through [:api]
     resources "/users", UserController, except: [:new, :edit]
     resources "/dicts", DictController, except: [:new, :edit]
-    resources "/layouts", LayoutController, except: [:new, :edit]
+    resources "/room_layouts", RoomLayoutController, except: [:new, :edit]
     resources "/rooms", RoomController, except: [:new, :edit]
     resources "/room_order_info", RoomOrderInfoController, except: [:new, :edit]
     
