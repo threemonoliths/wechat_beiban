@@ -6,6 +6,7 @@ import {
 } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpModule }    from '@angular/http';
 
 import { DelonModule } from './delon.module';
 import { CoreModule } from './core/core.module';
@@ -31,6 +32,8 @@ import { NgxTinymceModule } from 'ngx-tinymce';
 // @delon/form: JSON Schema form
 import { JsonSchemaModule } from '@shared/json-schema/json-schema.module';
 
+import { AuthGuard } from './routes/auth.guard';
+
 // 加载i18n语言文件
 export function I18nHttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, `assets/tmp/i18n/`, '.json');
@@ -47,6 +50,7 @@ export function StartupServiceFactory(
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    HttpModule,
     HttpClientModule,
     DelonModule.forRoot(),
     CoreModule,
@@ -84,6 +88,7 @@ export function StartupServiceFactory(
     { provide: HTTP_INTERCEPTORS, useClass: DefaultInterceptor, multi: true },
     { provide: ALAIN_I18N_TOKEN, useClass: I18NService, multi: false },
     StartupService,
+    AuthGuard,
     {
       provide: APP_INITIALIZER,
       useFactory: StartupServiceFactory,
