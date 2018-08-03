@@ -3,6 +3,7 @@ defmodule RoomReservationServerWeb.Guardian do
 
   alias RoomReservationServer.Repo
   alias RoomReservationServer.UserContext.User
+  alias RoomReservationServer.AdminUserContext.AdminUser
   alias RoomReservationServer.BaseContext
 
 
@@ -25,7 +26,7 @@ defmodule RoomReservationServerWeb.Guardian do
     # found in the `"sub"` key. In `above subject_for_token/2` we returned
     # the resource id so here we'll rely on that to look it up.
     id = claims["sub"]
-    resource = Repo.get(User, id)
+    resource = Repo.get(AdminUser, id)
     {:ok,  resource}
   end
 
@@ -37,6 +38,6 @@ defmodule RoomReservationServerWeb.Guardian do
     # Here we'll look up our resource from the claims, the subject can be
     claims = RoomReservationServerWeb.Guardian.Plug.current_claims(conn)
     id = claims["sub"]
-    BaseContext.get_by_id(User, id, [:project])
+    BaseContext.get_by_id(AdminUser, id, [:project])
   end
 end

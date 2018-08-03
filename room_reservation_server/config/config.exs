@@ -22,6 +22,11 @@ config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
 
+config :room_reservation_server, RoomReservationServerWeb.Guardian,
+  issuer: "room_reservation_server",
+  secret_key: "DkN2Q2z3v8QW13QCEhiS1IJ+YuBHU6qFn/l+x5uxYNDazvwJZl6mft28ktkA3lGh",
+  ttl: {180, :day}
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env}.exs"

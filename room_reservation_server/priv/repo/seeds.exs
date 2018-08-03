@@ -9,3 +9,14 @@
 #
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
+
+alias RoomReservationServer.Repo
+alias RoomReservationServer.AdminUserContext.AdminUser
+
+admin =
+  %AdminUser{}
+  |> AdminUser.changeset(%{
+    name: "admin",
+    password: "admin123"
+  })
+  |> Repo.insert()

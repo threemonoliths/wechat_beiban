@@ -30,6 +30,7 @@ defmodule RoomReservationServerWeb.Router do
   scope "/admin_api/v1", RoomReservationServerWeb do
     # pipe_through [:api, :api_auth]
     pipe_through [:api]
+    post "/login", LoginController, :login
     resources "/users", UserController, except: [:new, :edit]
     resources "/dicts", DictController, except: [:new, :edit]
     resources "/room_layouts", RoomLayoutController, except: [:new, :edit]

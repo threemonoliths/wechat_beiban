@@ -1,4 +1,4 @@
-defmodule RoomReservationServer.CORS do
+defmodule RoomReservationServerWeb.CORS do
   use Corsica.Router,
     origins: ["http://localhost:4200"],
     allow_headers: ["content-type", "application/json", "Authorization"],

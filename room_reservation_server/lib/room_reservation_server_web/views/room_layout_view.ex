@@ -27,7 +27,7 @@ defmodule RoomReservationServerWeb.RoomLayoutView do
       book_price: layout.book_price,
       breakfast: layout.breakfast,
       desc: layout.desc,
-      url: ""
+      image_url: ""
     }
   end
 

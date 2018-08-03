@@ -22,6 +22,8 @@ defmodule RoomReservationServerWeb.Endpoint do
   plug Plug.RequestId
   plug Plug.Logger
 
+  plug RoomReservationServerWeb.CORS
+
   plug Plug.Parsers,
     parsers: [:urlencoded, :multipart, :json],
     pass: ["*/*"],
