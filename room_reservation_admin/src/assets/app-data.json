@@ -1,0 +1,54 @@
+{
+    "app": {
+        "name": "北办客房预订后台管理",
+        "description": "Ng-zorro admin panel front-end framework"
+    },
+    "user": {
+        "name": "Admin",
+        "avatar": "./assets/img/zorro.svg",
+        "email": "cipchk@qq.com"
+    },
+    "menu": [
+        
+
+        {
+            "text": "客房预订后台管理",
+            "translate": "客房预订后台管理",
+            "link": "",
+            "group": true,
+
+            "children": [
+
+                {
+                    "text": "系统设置",
+                    "link": "",
+                    "acl": "admin",
+                    "icon": "icon-settings",
+                    "children": [
+                        {
+                            "text": "用户管理",
+                            "link": "/users/page"
+                        }
+
+                    ]
+                },
+                {
+                  "text": "房型管理",
+                  "icon": "icon-wrench",
+                  "link": "/roomlayout/page"
+                },
+                {
+                  "text": "房间管理",
+                  "icon": "icon-rocket",
+                  "link": "/room/page"
+                },
+                {
+                  "text": "车辆管理",
+                  "icon": "icon-present",
+                  "link": "/motor/page"
+                }
+
+            ]
+        }
+    ]
+}

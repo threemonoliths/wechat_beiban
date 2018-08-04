@@ -1,7 +1,4 @@
 {
-  "extends": [
-    "tslint-config-prettier"
-  ],
   "rulesDirectory": [
     "node_modules/codelyzer"
   ],
@@ -16,7 +13,10 @@
     "curly": false,
     "eofline": true,
     "forin": false,
-    "import-blacklist": [true, "rxjs/Rx"],
+    "import-blacklist": [
+      true,
+      "rxjs"
+    ],
     "import-spacing": true,
     "indent": [
       true,
@@ -115,20 +115,20 @@
       "check-type"
     ],
     "directive-selector": [
-      true,
+      false,
       "attribute",
-      ["app", "passport", "exception", "layout", "header"],
+      "app",
       "camelCase"
     ],
     "component-selector": [
-      true,
+      false,
       "element",
-      ["app", "passport", "exception", "layout", "header"],
+      "app",
       "kebab-case"
     ],
     "use-input-property-decorator": true,
     "use-output-property-decorator": true,
-    "use-host-property-decorator": false,
+    "use-host-property-decorator": true,
     "no-input-rename": false,
     "no-output-rename": false,
     "use-life-cycle-interface": true,

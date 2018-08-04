@@ -2,154 +2,95 @@ import { SettingsService } from '@delon/theme';
 import { Component, OnDestroy, Inject, Optional } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { NzMessageService, NzModalService } from 'ng-zorro-antd';
-import {
-  SocialService,
-  SocialOpenType,
-  TokenService,
-  DA_SERVICE_TOKEN,
-} from '@delon/auth';
-import { ReuseTabService } from '@delon/abc';
+import { NzMessageService } from 'ng-zorro-antd';
+import { SocialService, SocialOpenType, ITokenService, DA_SERVICE_TOKEN } from '@delon/auth';
+import { ReuseTabService, ReuseTabMatchMode } from '@delon/abc';
 import { environment } from '@env/environment';
-import { StartupService } from '@core/startup/startup.service';
-import { AuthenticationService } from './login.service';
+
+import { AuthenticationService } from '../service/login.service';
 
 @Component({
-  selector: 'passport-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.less'],
-  providers: [SocialService],
+    selector: 'passport-login',
+    templateUrl: './login.component.html',
+    styleUrls: [ './login.component.less' ],
+    providers: [ SocialService ]
 })
 export class UserLoginComponent implements OnDestroy {
-  form: FormGroup;
-  error = '';
-  type = 0;
-  loading = false;
-  invalidlogin = false;
 
-  constructor(
-    fb: FormBuilder,
-    private router: Router,
-    public msg: NzMessageService,
-    private modalSrv: NzModalService,
-    private settingsService: SettingsService,
-    private socialService: SocialService,
-    private loginService: AuthenticationService,
-    @Optional()
-    @Inject(ReuseTabService)
-    private reuseTabService: ReuseTabService,
-    @Inject(DA_SERVICE_TOKEN) private tokenService: TokenService,
-    private startupSrv: StartupService,
-  ) {
-    this.form = fb.group({
-      userName: [null, [Validators.required, Validators.minLength(5)]],
-      password: [null, Validators.required],
-      // mobile: [null, [Validators.required, Validators.pattern(/^1\d{10}$/)]],
-      // captcha: [null, [Validators.required]],
-      remember: [true],
-    });
-    modalSrv.closeAll();
-  }
+    form: FormGroup;
+    error = '';
+    type = 0;
+    loading = false;
 
-  // region: fields
-  get userName() {
-    return this.form.controls.userName;
-  }
-  get password() {
-    return this.form.controls.password;
-  }
+    invalidlogin = false;
 
-  submit() {
-    console.log("####submit####");
-    this.error = '';
+    constructor(
+        fb: FormBuilder,
+        private router: Router,
+        public msg: NzMessageService,
+        private settingsService: SettingsService,
+        private socialService: SocialService,
+        private loginService: AuthenticationService,
+        @Optional() @Inject(ReuseTabService) private reuseTabService: ReuseTabService,
+        @Inject(DA_SERVICE_TOKEN) private tokenService: ITokenService) {
+        
+        // 不路由复用
+        // this.reuseTabService.mode = ReuseTabMatchMode.URL
+        // let reg: RegExp = /.*passport.*/
+        // this.reuseTabService.excludes = [reg]
 
-    this.userName.markAsDirty();
-    this.userName.updateValueAndValidity();
-    this.password.markAsDirty();
-    this.password.updateValueAndValidity();
-    if (this.userName.invalid || this.password.invalid) return;
-    
-    // mock http
-    this.loading = true;
-    this.loginService.login(this.form.value)
-    .subscribe(result => {
-        console.log("true_or_false")
-        if (result) {
-            this.loading = false;
-            // this.reuseTabService.clear();
-            // this.reuseTabService.clearTitleCached();
-            this.router.navigate(['dashboard/v1']);
-        } else{
-            this.error = `账户或密码错误`;
-            this.loading = false;
-            this.invalidlogin = true;
-        }
-    }, 
-    err => {
-        this.msg.error(err);
-    });
+        this.form = fb.group({
+            // project: [null, [Validators.required, Validators.minLength(4)]],
+            user_name: [null, [Validators.required]],
+            password: [null, Validators.required],
 
-    // 清空路由复用信息
-    this.reuseTabService.clear();
-      // 设置Token信息
-      // this.tokenService.set({
-      //   token: '123456789',
-      //   name: this.userName.value,
-      //   email: `cipchk@qq.com`,
-      //   id: 10000,
-      //   time: +new Date(),
-      // });
-      // 重新获取 StartupService 内容，若其包括 User 有关的信息的话
-      // this.startupSrv.load().then(() => this.router.navigate(['/']));
-      // 否则直接跳转
-    //   this.router.navigate(['/']);
-    // }, 1000);
-  }
+            remember: [true]
+        });
+    }
 
-  // region: social
-  // open(type: string, openType: SocialOpenType = 'href') {
-  //   let url = ``;
-  //   let callback = ``;
-  //   if (environment.production)
-  //     callback = 'https://cipchk.github.io/ng-alain/callback/' + type;
-  //   else callback = 'http://localhost:4200/callback/' + type;
-  //   switch (type) {
-  //     case 'auth0':
-  //       url = `//cipchk.auth0.com/login?client=8gcNydIDzGBYxzqV0Vm1CX_RXH-wsWo5&redirect_uri=${decodeURIComponent(
-  //         callback,
-  //       )}`;
-  //       break;
-  //     case 'github':
-  //       url = `//github.com/login/oauth/authorize?client_id=9d6baae4b04a23fcafa2&response_type=code&redirect_uri=${decodeURIComponent(
-  //         callback,
-  //       )}`;
-  //       break;
-  //     case 'weibo':
-  //       url = `https://api.weibo.com/oauth2/authorize?client_id=1239507802&response_type=code&redirect_uri=${decodeURIComponent(
-  //         callback,
-  //       )}`;
-  //       break;
-  //   }
-  //   if (openType === 'window') {
-  //     this.socialService
-  //       .login(url, '/', {
-  //         type: 'window',
-  //       })
-  //       .subscribe(res => {
-  //         if (res) {
-  //           this.settingsService.setUser(res);
-  //           this.router.navigateByUrl('/');
-  //         }
-  //       });
-  //   } else {
-  //     this.socialService.login(url, '/', {
-  //       type: 'href',
-  //     });
-  //   }
-  // }
+    // region: fields
+    // get project() { return this.form.controls.project; }
+    get user_name() { return this.form.controls.user_name; }
+    get password() { return this.form.controls.password; }
 
-  // endregion
-  ngOnDestroy(): void {
-    // if (this.interval$) clearInterval(this.interval$);
-  }
+
+
+    // region: get captcha
+
+    count = 0;
+    interval$: any;
+
+    // endregion
+
+    submit() {
+        this.error = '';
+
+        this.user_name.markAsDirty();
+        this.password.markAsDirty();
+        if (this.user_name.invalid || this.password.invalid) return;
+
+        this.loading = true;
+        this.loginService.login(this.form.value)
+            .subscribe(result => {
+                if (result) {
+                    this.loading = false;
+                    this.router.navigate(['dashboard/v1']);
+                } else{
+                    this.loading = false;
+                    this.invalidlogin = true;
+                }
+            }, 
+            err => {
+                this.msg.error(err);
+            });
+    }
+
+    onChange(){
+        this.invalidlogin = false
+    }
+
+    ngOnDestroy(): void {
+        if (this.interval$) clearInterval(this.interval$);
+    }
+
 }

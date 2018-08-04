@@ -1,17 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, Response, RequestOptions, ResponseContentType } from '@angular/http';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import 'rxjs/add/operator/map';
 
 import { ACLService } from '@delon/acl';
 import { MenuService } from '@delon/theme';
 
-import { baseUrl } from '../../../shared/app-config';
+import { baseUrl } from '../../../shared/shared.service';
 
 export function getTokenOptions(paramsobj): RequestOptions{
     let headers = new Headers();
-    // let jwt = 'Bearer ' + localStorage.getItem('currentToken');
-    let jwt = '90sd8g90d7gd7h7dfh7f7j9798j7';
+    let jwt = 'Bearer ' + localStorage.getItem('currentToken');
     headers.append('Authorization', jwt);
     headers.append('Content-Type', 'application/json');
     let options = new RequestOptions({ headers: headers, params: paramsobj });
@@ -42,21 +41,29 @@ export class AuthenticationService {
         headers.append('Content-Type', 'application/json');
         let options = new RequestOptions({ headers: headers });
         return this.http.post(baseUrl + `login`, value, options)
-            .pipe(map((response: Response) => {
+            .map((response: Response) => {
                 let error = response.json() && response.json().error;
                 let token = response.json() && response.json().jwt;
                 let username = response.json() && response.json().user && response.json().user.name;
-                 if (!error && token && username) {
+                let email = response.json() && response.json().user && response.json().user.email;
+                let perms = response.json() && response.json().perms;
+                let avatar = response.json() && response.json().user && response.json().user.avatar;
+
+              
+                 if (!error && token && username && perms) {
                     this.token = token;
                     localStorage.setItem('currentToken', token);
                     localStorage.setItem('currentUsername', username);
-                    // localStorage.setItem('username', username);
-                    // this.setACL(response.json());
+                    localStorage.setItem('currentPerms', perms);
+                    localStorage.setItem('username', username);
+                    localStorage.setItem('email', email)
+                    localStorage.setItem('avatar', avatar)
+                    this.setACL(response.json());
                     return true;
                 } else {
                     return false;
                 }
-            }));
+            });
     }
 
     setACL(obj){
@@ -71,19 +78,19 @@ export class AuthenticationService {
 
 
     checkUsernameAlreadyExists(username) {
-        return this.http.get(baseUrl + `users/username/${username}`).pipe(map(response => response.json())).toPromise();
+        return this.http.get(baseUrl + `users/username/${username}`).map(response => response.json()).toPromise();
 
     }
 
     checkEmailAlreadyExists(email) {
-        return this.http.get(baseUrl + `users/email/${email}`, getTokenOptions(null)).pipe(map(response => response.json())).toPromise();
+        return this.http.get(baseUrl + `users/email/${email}`, getTokenOptions(null)).map(response => response.json()).toPromise();
 
     }
 
     checkPassword(pwd) {
 
             return this.http.get(baseUrl + `users/checkpwd/${pwd}`, getTokenOptions(null))
-                       .pipe(map(response => response.json())).toPromise();
+                       .map(response => response.json()).toPromise();
           }
 
 }
