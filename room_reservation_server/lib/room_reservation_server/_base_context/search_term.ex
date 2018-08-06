@@ -27,11 +27,13 @@ defmodule RoomReservationServer.SearchTerm do
     end
   end
 
+  # 默认升序排列
   def query_order_by(query, params, default_field) do
     sort = [{Map.get(params, "sort_direction", "asc") |> String.to_existing_atom, Map.get(params, "sort_field", default_field) |> String.to_existing_atom}]
     order_by(query, [e], ^sort)
   end
 
+  # 默认降序排列
   def query_order_desc_by(query, params, default_field) do
     sort = [{Map.get(params, "sort_direction", "desc") |> String.to_existing_atom, Map.get(params, "sort_field", default_field) |> String.to_existing_atom}]
     order_by(query, [e], ^sort)

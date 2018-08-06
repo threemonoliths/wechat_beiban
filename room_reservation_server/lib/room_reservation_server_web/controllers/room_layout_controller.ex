@@ -14,11 +14,8 @@ defmodule RoomReservationServerWeb.RoomLayoutController do
 
   def create(conn, %{"room_layout" => layout_params}) do
     layout_changeset = RoomLayout.changeset(%RoomLayout{}, layout_params)
-    IO.puts inspect layout_changeset
     with {:ok, %RoomLayout{} = layout} <- save_create(layout_changeset) do
       conn
-      # |> put_status(:created)
-      # |> put_resp_header("location", layout_path(conn, :show, layout))
       |> render("show.json", room_layout: layout)
     end
   end

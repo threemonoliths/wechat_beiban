@@ -5,14 +5,14 @@
     <nz-alert *ngIf="error" [nzType]="'error'" [nzMessage]="error" [nzShowIcon]="true" class="mb-lg"></nz-alert>
 
     <div nz-form-item>
-        <div nz-form-control [nzValidateStatus]="user_name">
-            <nz-input formControlName="user_name" [nzPlaceHolder]="'用户名'" [nzSize]="'large'" (input)="onChange()">
+        <div nz-form-control [nzValidateStatus]="username">
+            <nz-input formControlName="username" [nzPlaceHolder]="'用户名'" [nzSize]="'large'" (input)="onChange()">
                 <ng-template #prefix>
-                    <i class="anticon anticon-phone"></i>
+                    <i class="anticon anticon-user"></i>
                 </ng-template>
             </nz-input>
-            <ng-container *ngIf="user_name.dirty || user_name.touched">
-                <p nz-form-explain *ngIf="user_name.errors?.required">请输入手机号！</p>
+            <ng-container *ngIf="username.dirty || username.touched">
+                <p nz-form-explain *ngIf="username.errors?.required">请输入用户名！</p>
             </ng-container>
         </div>
     </div>

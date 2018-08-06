@@ -27,7 +27,7 @@
                     "children": [
                         {
                             "text": "用户管理",
-                            "link": "/users/page"
+                            "link": "/user/page"
                         }
 
                     ]

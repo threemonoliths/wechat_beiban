@@ -45,20 +45,20 @@ export class AuthenticationService {
                 let error = response.json() && response.json().error;
                 let token = response.json() && response.json().jwt;
                 let username = response.json() && response.json().user && response.json().user.name;
-                let email = response.json() && response.json().user && response.json().user.email;
-                let perms = response.json() && response.json().perms;
-                let avatar = response.json() && response.json().user && response.json().user.avatar;
+                // let email = response.json() && response.json().user && response.json().user.email;
+                // let perms = response.json() && response.json().perms;
+                // let avatar = response.json() && response.json().user && response.json().user.avatar;
 
               
-                 if (!error && token && username && perms) {
+                 if (!error && token && username) {
                     this.token = token;
                     localStorage.setItem('currentToken', token);
                     localStorage.setItem('currentUsername', username);
-                    localStorage.setItem('currentPerms', perms);
+                    // localStorage.setItem('currentPerms', perms);
                     localStorage.setItem('username', username);
-                    localStorage.setItem('email', email)
-                    localStorage.setItem('avatar', avatar)
-                    this.setACL(response.json());
+                    // localStorage.setItem('email', email)
+                    // localStorage.setItem('avatar', avatar)
+                    // this.setACL(response.json());
                     return true;
                 } else {
                     return false;

@@ -5,48 +5,37 @@ import { NzMessageService } from 'ng-zorro-antd';
 import { _HttpClient } from '@delon/theme';
 import { tap } from 'rxjs/operators';
 
-import { UsersService } from '../service/users.service';
-// import { UserStatusPipe } from '../../../pipes/pipes'; 
+import { RoomLayoutService } from '../service/roomlayout.service';
+import { BreakfastPipe } from '../../../pipes/pipes';
 
 @Component({
-    selector: 'user-list',
+    selector: 'roomlayout-list',
     templateUrl: './list.component.html'
 })
-export class UsersListComponent implements OnInit {
+export class RoomLayoutListComponent implements OnInit {
 
     q: any = {
         page_index: 1,
         page_size: 15,
-        sort_field: "inserted_at",
+        sort_field: "layout",
         sort_direction: "desc",
-        name: null,
-        actived: null,
-        real_name: null,
-        mobile: null,
-        position: null
+        owner_name: null,
     };
-    // 记录总数
+
     total: number;
-    // 用户列表
+
     data: any[] = [];
-    // 机构树
-    tree: any[] = [];
-    // 删除对象
+
     delObj = null;
 
     loading = false;
 
-    actived_status = [
-        { text: '不限定', value: null },
-        { text: '已激活', value: true },
-        { text: '未激活', value: false }
-    ]
     sortMap: any = {};
 
     constructor(
         private http: _HttpClient, 
         public msg: NzMessageService,
-        private usersService: UsersService,
+        private srv: RoomLayoutService,
         private router: Router
         ) {}
 
@@ -61,7 +50,7 @@ export class UsersListComponent implements OnInit {
     getData() {
         this.formatForm()
         this.loading = true;
-        this.usersService.listOnePage(this.q)
+        this.srv.listOnePage(this.q)
                          .then(resp => {
                              if (resp.error) {
                                 this.msg.error(resp.error);
@@ -75,43 +64,31 @@ export class UsersListComponent implements OnInit {
     }
 
     remove(obj) {
-        this.confirmContent = "确定要删除用户: " + obj.name + " ?";
+        this.confirmContent = "确定要删除房型信息：" + obj.layout + "?";
         this.modalVisible = true;
         this.delObj = obj;
     }
 
     delete() {
-        this.usersService.delete(this.delObj.id)
-                         .then(resp => this.msg.success("用户:" + resp.data.name + "已删除！")).then(resp => this.getData() )
+        this.srv.delete(this.delObj.id)
+                         .then(resp => this.msg.success("房型信息:" + resp.data.layout + "已删除！")).then(resp => this.getData() )
                          .catch((error) => {this.msg.error(error); this.loading = false;})
     }
 
     add() {
-        this.usersService.formOperation = 'create';
-        this.usersService.isUpdate=false;
-        this.router.navigateByUrl('/users/form');
+        this.srv.formOperation = 'create';
+        this.srv.isUpdate=false;
+        this.router.navigateByUrl('/roomlayout/form');
     }
 
     update(id) {
-        this.usersService.formOperation='update';
-        this.usersService.initUpdate(id)
-            .then(result => { this.usersService.user = result.data;})
-            .then(() => this.router.navigateByUrl('/users/form')).catch((error)=>
+        this.srv.formOperation='update';
+        this.srv.initUpdate(id)
+            .then(result => { this.srv.roomlayout = result.data;})
+            .then(() => this.router.navigateByUrl('/roomlayout/form')).catch((error)=>
             this.msg.error(error)); 
     }
-
-    activate(id) {
-        this.usersService.activate(id)
-            .then(resp => this.msg.success("用户:" + resp.data.name + "已激活！")).then(resp => this.getData() )
-            .catch((error) => {this.msg.error(error); this.loading = false;})
-    }
-
-    disable(id) {
-        this.usersService.disable(id)
-            .then(resp => this.msg.success("用户:" + resp.data.name + "已禁用！")).then(resp => this.getData() )
-            .catch((error) => {this.msg.error(error); this.loading = false;})
-    }
-
+    
     sort(field: string, value: any) {
         this.q.sort_field = field;
         if (value=="ascend") {this.q.sort_direction = "asc"}
@@ -125,11 +102,19 @@ export class UsersListComponent implements OnInit {
     }
 
     formatForm() {
-        if ((this.q.name == null)||(this.q.name == "")){delete this.q.name}
-        if (this.q.actived == null){delete this.q.actived}
-        if ((this.q.real_name == null)||(this.q.real_name == "")){delete this.q.real_name}
-        if ((this.q.mobile == null)||(this.q.mobile == "")){delete this.q.mobile}
-        if ((this.q.position == null)||(this.q.position == "")){delete this.q.position}
+        if ((this.q.layout == null)||(this.q.layout == "")){delete this.q.layout}
+
+    }
+
+    reset() {
+        this.q = {
+            page_index: 1,
+            page_size: 15,
+            sort_field: "layout",
+            sort_direction: "desc",
+            owner_name: null,
+        };
+        this.getData()
     }
 
     // 删除确认框相关

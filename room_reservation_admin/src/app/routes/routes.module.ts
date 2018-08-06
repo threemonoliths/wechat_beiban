@@ -8,7 +8,7 @@ import { Exception404Component } from './exception/404.component';
 import { Exception500Component } from './exception/500.component';
 
 import { UserLoginComponent } from './passport/login/login.component';
-import { AuthenticationService } from './passport/service/login.service';
+import { AuthenticationService } from './passport/login/login.service';
 
 import { MainPipe } from '../pipes/pipes.module';
 

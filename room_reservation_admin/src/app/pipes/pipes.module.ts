@@ -1,15 +1,12 @@
 import { NgModule } from '@angular/core';
 import {CommonModule} from "@angular/common";
 
-import {UserStatusPipe} from "./pipes";
-import {StaffStatusPipe} from "./pipes";
-import {SexPipe} from "./pipes";
-import {RepairInfoStatusPipe} from "./pipes";
+import { BreakfastPipe } from './pipes';
 
 @NgModule({
-  declarations:[UserStatusPipe,StaffStatusPipe,SexPipe,RepairInfoStatusPipe],
+  declarations:[BreakfastPipe],
   imports:[CommonModule],
-  exports:[UserStatusPipe,StaffStatusPipe,SexPipe,RepairInfoStatusPipe]
+  exports:[BreakfastPipe]
 })
 
 export class MainPipe{}

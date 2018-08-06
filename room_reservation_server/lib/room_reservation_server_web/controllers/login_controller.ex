@@ -8,7 +8,7 @@ defmodule RoomReservationServerWeb.LoginController do
   alias RoomReservationServer.Repo
     
   # 后台管理用户登录
-  def login(conn, %{"password" => pw, "userName" => m} = params) do
+  def login(conn, %{"password" => pw, "username" => m} = params) do
     case checkPassword(m, pw) do
       {:ok, user} ->
         {:ok, token, claims} = Guardian.encode_and_sign(user)
@@ -33,7 +33,6 @@ defmodule RoomReservationServerWeb.LoginController do
 
   # 用户名密码登陆验证
   defp checkPassword(username, password) do
-    IO.puts inspect password
     user = AdminUser
     |> Repo.get_by(%{ name: username })
     cond do

@@ -21,6 +21,7 @@ defmodule RoomReservationServer.RoomLayoutContext do
     def page(params) do 
       RoomLayout
       |> query_like(params, "layout")
+      |> query_order_by(params, "layout")
       |> get_pagination(params)
     end
 end

@@ -30,6 +30,7 @@ const routes: Routes = [
             { path: 'dict', loadChildren: './dictionary/dict.module#DictModule' },
             { path: 'pages', loadChildren: './pages/pages.module#PagesModule' },
             { path: 'users', loadChildren: './users/users.module#UsersModule' },
+            { path: 'roomlayout', loadChildren: './roomlayout/roomlayout.module#RoomLayoutModule' },
            
             
             

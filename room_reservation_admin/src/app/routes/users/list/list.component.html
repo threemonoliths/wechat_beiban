@@ -101,7 +101,7 @@
                     <td nz-td>{{i.mobile}}</td>
                     <td nz-td>{{i.real_name}}</td>
                     <td nz-td>{{i.position}}</td>
-                    <td nz-td>{{i.actived | userStatusPipe}}</td>
+                    <td nz-td>{{i.actived}}</td>
                     <td nz-td>
                         <a (click)="activate(i.id)" *ngIf="!i.actived">激活</a>
                         <span nz-table-divider *ngIf="!i.actived"></span>

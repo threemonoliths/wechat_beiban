@@ -7,7 +7,7 @@ import { SocialService, SocialOpenType, ITokenService, DA_SERVICE_TOKEN } from '
 import { ReuseTabService, ReuseTabMatchMode } from '@delon/abc';
 import { environment } from '@env/environment';
 
-import { AuthenticationService } from '../service/login.service';
+import { AuthenticationService } from './login.service';
 
 @Component({
     selector: 'passport-login',
@@ -41,7 +41,7 @@ export class UserLoginComponent implements OnDestroy {
 
         this.form = fb.group({
             // project: [null, [Validators.required, Validators.minLength(4)]],
-            user_name: [null, [Validators.required]],
+            username: [null, [Validators.required]],
             password: [null, Validators.required],
 
             remember: [true]
@@ -50,7 +50,7 @@ export class UserLoginComponent implements OnDestroy {
 
     // region: fields
     // get project() { return this.form.controls.project; }
-    get user_name() { return this.form.controls.user_name; }
+    get username() { return this.form.controls.username; }
     get password() { return this.form.controls.password; }
 
 
@@ -65,16 +65,16 @@ export class UserLoginComponent implements OnDestroy {
     submit() {
         this.error = '';
 
-        this.user_name.markAsDirty();
+        this.username.markAsDirty();
         this.password.markAsDirty();
-        if (this.user_name.invalid || this.password.invalid) return;
+        if (this.username.invalid || this.password.invalid) return;
 
         this.loading = true;
         this.loginService.login(this.form.value)
             .subscribe(result => {
                 if (result) {
                     this.loading = false;
-                    this.router.navigate(['dashboard/v1']);
+                    this.router.navigate(['roomlayout/page']);
                 } else{
                     this.loading = false;
                     this.invalidlogin = true;

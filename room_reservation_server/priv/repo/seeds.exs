@@ -13,10 +13,9 @@
 alias RoomReservationServer.Repo
 alias RoomReservationServer.AdminUserContext.AdminUser
 
-admin =
-  %AdminUser{}
-  |> AdminUser.changeset(%{
-    name: "admin",
-    password: "admin123"
-  })
-  |> Repo.insert()
+
+%AdminUser{}
+|> AdminUser.changeset(%{
+  name: "admin"
+})
+|> Repo.insert()
