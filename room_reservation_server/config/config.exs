@@ -27,6 +27,10 @@ config :room_reservation_server, RoomReservationServerWeb.Guardian,
   secret_key: "DkN2Q2z3v8QW13QCEhiS1IJ+YuBHU6qFn/l+x5uxYNDazvwJZl6mft28ktkA3lGh",
   ttl: {180, :day}
 
+# Store uploaded file in local storage
+config :arc,
+  storage: Arc.Storage.Local
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env}.exs"

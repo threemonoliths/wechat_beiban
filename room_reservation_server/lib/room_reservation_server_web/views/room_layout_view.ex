@@ -3,7 +3,6 @@ defmodule RoomReservationServerWeb.RoomLayoutView do
   alias RoomReservationServerWeb.RoomLayoutView
 
   def render("index.json", %{page: page}) do
-    IO.puts("in index.json###########")
     %{
       data: render_many(page.entries, RoomLayoutView, "room_layout.json"),
       page_number: page.page_number,
@@ -14,7 +13,6 @@ defmodule RoomReservationServerWeb.RoomLayoutView do
   end
 
   def render("show.json", %{room_layout: layout}) do
-    IO.puts("in show.json###########")
     %{data: render_one(layout, RoomLayoutView, "room_layout.json")}
   end
 

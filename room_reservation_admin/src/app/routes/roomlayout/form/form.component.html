@@ -6,7 +6,7 @@
                     <div nz-form-item nz-row>
                         <div nz-form-label nz-col><label>房型名称:</label></div>
                         <div nz-form-control nz-col nzHasFeedback [nzValidateStatus]="layout">
-                            <nz-input formControlName="layout" nzPlaceHolder="请输入颜色" nzSize="large"></nz-input>
+                            <nz-input formControlName="layout" nzPlaceHolder="请输入房型" nzSize="large"></nz-input>
                         </div>
                     </div>
                 </div>
@@ -59,8 +59,19 @@
                     </div>
                 </div>
 
+                <div nz-col nzMd="6" nzSm="12" nzXs="24" style="text-align: left;">
+                    <div nz-form-item nz-row>
+                        <div nz-form-label nz-col><label>上传图片:</label></div>
+                        <div nz-form-control nz-col nzHasFeedback [nzValidateStatus]="desc">
+                            <input  type="file" name="pic" accept="image/*" (change)="onchange($event)">
+                        </div>
+                    </div>
+                </div>
+    
+
             </div>
         </nz-card> 
+        
 
         <div>
             <error-collect></error-collect>
@@ -69,3 +80,4 @@
         </div>
     </form>
 </div>
+
