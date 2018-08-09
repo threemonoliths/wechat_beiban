@@ -24,6 +24,9 @@ defmodule RoomReservationServerWeb.RoomLayoutController do
 
   def show(conn, %{"id" => id}) do
     with {:ok, layout} <- get_by_id(RoomLayout, id) do
+      url = RoomReservationServer.LayoutPic.url({layout.layout_pic, layout}, :original)
+      IO.puts("getting url..............")
+      IO.puts inspect url
       render(conn, "show.json", room_layout: layout)
     end
   end
