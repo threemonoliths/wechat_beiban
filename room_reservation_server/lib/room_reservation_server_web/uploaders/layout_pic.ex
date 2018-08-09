@@ -7,7 +7,7 @@ defmodule RoomReservationServer.LayoutPic do
   
   
 
-  @versions [:original]
+  # @versions [:original]
 
   # To add a thumbnail version:
   # @versions [:original, :thumb]
@@ -24,14 +24,14 @@ defmodule RoomReservationServer.LayoutPic do
   # end
 
   # Define a thumbnail transformation:
-  def transform(:thumb, _) do
+  # def transform(:thumb, _) do
   
     # {:convert, fn(input, output) -> "inline:#{input} -format png #{output}" end, :png}
-  end
+  # end
 
   # Override the persisted filenames:
-  def filename(version, _) do
-    version
+  def filename(_, _) do
+    Ecto.UUID.generate
   end
 
   # Override the storage directory:
