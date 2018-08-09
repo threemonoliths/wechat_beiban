@@ -7,7 +7,7 @@ defmodule RoomReservationServer.LayoutPic do
   
   
 
-  # @versions [:original]
+  @versions [:original]
 
   # To add a thumbnail version:
   # @versions [:original, :thumb]
@@ -30,16 +30,16 @@ defmodule RoomReservationServer.LayoutPic do
   # end
 
   # Override the persisted filenames:
-  def filename(_, _) do
-    Ecto.UUID.generate
+  def filename(version, _) do
+    version
   end
 
   # Override the storage directory:
   def storage_dir(_version, {_file, scope}) do
-    IO.puts("##########################")
-    IO.puts inspect scope
-    uuid = Ecto.UUID.generate
-    "priv/static/files/layouts/layout_pics/#{uuid}"
+    # IO.puts("##########################")
+    # IO.puts inspect scope
+    # uuid = Ecto.UUID.generate
+    "priv/static/files/room_layout/#{scope.uuid}"
   end
 
   # Provide a default URL if there hasn't been a file uploaded
