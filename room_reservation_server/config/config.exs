@@ -18,7 +18,7 @@ config :room_reservation_server, RoomReservationServerWeb.Endpoint,
            adapter: Phoenix.PubSub.PG2],
   # 自定义配置baseurl,生成静态资源url时使用
   ## baseurl: "http://localhost:4000"
-  baseurl: "http://localhost:4000"
+  baseurl: "http://172.27.37.71:4000"
 
 # Configures Elixir's Logger
 config :logger, :console,
