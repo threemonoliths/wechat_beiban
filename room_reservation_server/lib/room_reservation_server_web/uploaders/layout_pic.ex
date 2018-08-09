@@ -7,7 +7,7 @@ defmodule RoomReservationServer.LayoutPic do
   @versions [:original]
 
   # To add a thumbnail version:
-  @versions [:original, :thumb]
+  # @versions [:original, :thumb]
   # def acl(:thumb, _), do: :public_read
 
   # Whitelist file extensions:
@@ -22,9 +22,8 @@ defmodule RoomReservationServer.LayoutPic do
 
   # Define a thumbnail transformation:
   def transform(:thumb, _) do
-  #   # example: System.cmd "convert", ["inline:input.base64"," output.jpeg"]
-  #   # {:convert, "-strip -thumbnail 250x250^ -gravity center -extent 250x250 -format png", :png}
-    {:convert, fn(input, output) -> "inline:#{input} -format png #{output}" end, :png}
+  
+    # {:convert, fn(input, output) -> "inline:#{input} -format png #{output}" end, :png}
   end
 
   # Override the persisted filenames:
@@ -34,6 +33,7 @@ defmodule RoomReservationServer.LayoutPic do
 
   # Override the storage directory:
   def storage_dir(_version, {_file, scope}) do
+    IO.puts inspect scope
     "priv/static/files/layouts/layout_pics/#{scope.id}"
   end
 
