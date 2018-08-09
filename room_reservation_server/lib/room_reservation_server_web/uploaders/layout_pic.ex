@@ -3,6 +3,9 @@ defmodule RoomReservationServer.LayoutPic do
 
   # Include ecto support (requires package arc_ecto installed):
   use Arc.Ecto.Definition
+  import Ecto
+  
+  
 
   @versions [:original]
 
@@ -35,7 +38,8 @@ defmodule RoomReservationServer.LayoutPic do
   def storage_dir(_version, {_file, scope}) do
     IO.puts("##########################")
     IO.puts inspect scope
-    "priv/static/files/layouts/layout_pics/#{scope.id}"
+    uuid = Ecto.UUID.generate
+    "priv/static/files/layouts/layout_pics/#{uuid}"
   end
 
   # Provide a default URL if there hasn't been a file uploaded
