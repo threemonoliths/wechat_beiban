@@ -53,6 +53,7 @@ defmodule RoomReservationServer.BaseContext do
     end
   
     def save_create(changeset) do
+      IO.puts inspect changeset
       Repo.insert(changeset)
     end
   
