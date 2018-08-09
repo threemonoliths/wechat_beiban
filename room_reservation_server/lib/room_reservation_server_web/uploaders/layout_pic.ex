@@ -33,6 +33,7 @@ defmodule RoomReservationServer.LayoutPic do
 
   # Override the storage directory:
   def storage_dir(_version, {_file, scope}) do
+    IO.puts("##########################")
     IO.puts inspect scope
     "priv/static/files/layouts/layout_pics/#{scope.id}"
   end
