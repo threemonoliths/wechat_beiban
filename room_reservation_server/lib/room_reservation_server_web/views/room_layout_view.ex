@@ -25,8 +25,19 @@ defmodule RoomReservationServerWeb.RoomLayoutView do
       book_price: layout.book_price,
       breakfast: layout.breakfast,
       desc: layout.desc,
-      image_url: ""
+      image_url: getPicUrl(layout)
     }
+  end
+
+  # 获图片url
+  defp getPicUrl(layout) do
+    case layout.layout_pic do
+      nil -> ""
+      layout_pic -> 
+        url = RoomReservationServerWeb.StringHandler.take_prefix(RoomReservationServer.LayoutPic.url({layout.layout_pic, layout}, :original),"/priv/static")  
+        base = Application.get_env(:room_reservation_server, RoomReservationServerWeb.Endpoint)[:baseurl]
+        base<>url
+    end
   end
 
 end
