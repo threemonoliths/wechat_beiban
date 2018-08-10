@@ -5,13 +5,34 @@
 </ion-header>
 
 <ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+  <img src = "../../assets/imgs/home.png">
+  <ion-list>
+
+    <ion-item>
+        <ion-label>入住日期:</ion-label>
+        <ion-datetime displayFormat="YYYY MMM DD" [(ngModel)]="date"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label>房间类型:</ion-label>
+      <ion-select [(ngModel)]="type">
+        <ion-option value="type01">标准间</ion-option>
+        <ion-option value="type02">单人间</ion-option>
+        <ion-option value="type03">家庭套房</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>预订天数:</ion-label>
+      <ion-select [(ngModel)]="days">
+        <ion-option value="1">1</ion-option>
+        <ion-option value="2">2</ion-option>
+        <ion-option value="3">3</ion-option>
+        <ion-option value="4">更多</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <button ion-button full>确定提交</button>
+    </ion-item>
+  </ion-list>
 </ion-content>
