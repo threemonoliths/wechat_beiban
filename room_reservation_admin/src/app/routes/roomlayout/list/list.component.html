@@ -38,6 +38,9 @@
                         <nz-table-sort [(nzValue)]="sortMap.layout" (nzValueChange)="sort('layout',$event)"></nz-table-sort>
                     </th>
                     <th nz-th>
+                        <span>预览图</span>
+                    </th>
+                    <th nz-th>
                         <span>价格</span>
                         <nz-table-sort [(nzValue)]="sortMap.price_01" (nzValueChange)="sort('vin',$event)"></nz-table-sort>
                     </th>
@@ -54,6 +57,9 @@
                 <tr nz-tbody-tr *ngFor="let i of nzTable.data">
                     
                     <td nz-td>{{i.layout}}</td>
+                    <td nz-td>
+                        <nz-avatar [nzSrc]="i.image_url" [nzSize]="'large'"></nz-avatar>
+                    </td>
                     <td nz-td>{{i.price_01}}</td>
                     <td nz-td>{{i.breakfast | breakfastPipe }}</td>
                     <td nz-td>

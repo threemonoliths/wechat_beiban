@@ -12,7 +12,9 @@ defmodule RoomReservationServerWeb.RoomLayoutController do
     render(conn, "index.json", page: page)
   end
 
-  def create(conn, %{"room_layout" => layout_params}) do
+  # 参数中包含文件，这里参数写法相比其它稍有区别
+  def create(conn, layout_params) do
+    IO.puts inspect layout_params
     layout_changeset = RoomLayout.changeset(%RoomLayout{}, layout_params)
     with {:ok, %RoomLayout{} = layout} <- save_create(layout_changeset) do
       conn
@@ -22,6 +24,9 @@ defmodule RoomReservationServerWeb.RoomLayoutController do
 
   def show(conn, %{"id" => id}) do
     with {:ok, layout} <- get_by_id(RoomLayout, id) do
+      url = RoomReservationServer.LayoutPic.url({layout.layout_pic, layout}, :original)
+      IO.puts("getting url..............")
+      IO.puts inspect url
       render(conn, "show.json", room_layout: layout)
     end
   end

@@ -3,11 +3,14 @@ defmodule RoomReservationServer.LayoutPic do
 
   # Include ecto support (requires package arc_ecto installed):
   use Arc.Ecto.Definition
+  import Ecto
+  
+  
 
   @versions [:original]
 
   # To add a thumbnail version:
-  @versions [:original, :thumb]
+  # @versions [:original, :thumb]
   # def acl(:thumb, _), do: :public_read
 
   # Whitelist file extensions:
@@ -21,11 +24,10 @@ defmodule RoomReservationServer.LayoutPic do
   # end
 
   # Define a thumbnail transformation:
-  def transform(:thumb, _) do
-  #   # example: System.cmd "convert", ["inline:input.base64"," output.jpeg"]
-  #   # {:convert, "-strip -thumbnail 250x250^ -gravity center -extent 250x250 -format png", :png}
-    {:convert, fn(input, output) -> "inline:#{input} -format png #{output}" end, :png}
-  end
+  # def transform(:thumb, _) do
+  
+    # {:convert, fn(input, output) -> "inline:#{input} -format png #{output}" end, :png}
+  # end
 
   # Override the persisted filenames:
   def filename(version, _) do
@@ -34,7 +36,10 @@ defmodule RoomReservationServer.LayoutPic do
 
   # Override the storage directory:
   def storage_dir(_version, {_file, scope}) do
-    "priv/static/files/layouts/layout_pics/#{scope.id}"
+    # IO.puts("##########################")
+    # IO.puts inspect scope
+    # uuid = Ecto.UUID.generate
+    "priv/static/files/room_layout/#{scope.uuid}"
   end
 
   # Provide a default URL if there hasn't been a file uploaded

@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      房型预览
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    
+  <ion-card *ngFor="let i of data">
+    
+    <img [src]="i.image_url">
+    <ion-item>
+      <h1>{{i.layout}}</h1>
+    </ion-item>
+
+    <ion-item>
+      <ion-icon name="logo-yen" item-start large></ion-icon>
+      <h2>价格</h2>
+      <p>{{ i.price_01 + "元"}}</p>
+      <!-- <span >|</span>
+      <span >{{i.book_price}}</span> -->
+    </ion-item>
+  
+    <ion-item>
+      <ion-icon name="wine" item-start large ></ion-icon>
+      <h2>早餐</h2>
+      <p>{{ i.breakfast? "包含":"不包含"}}</p>
+    </ion-item>
+  
+    <ion-item>
+      
+      <button ion-button icon-start clear item-end>
+        <ion-icon name="create"></ion-icon>
+        预订
+      </button>
+    </ion-item>
+    
+  </ion-card>
+    
+     
+</ion-content>
