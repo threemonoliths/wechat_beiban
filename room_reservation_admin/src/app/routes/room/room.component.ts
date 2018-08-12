@@ -1,9 +1,9 @@
 import {Component,OnInit} from '@angular/core';
 
 @Component({
-    templateUrl: './dict.component.html'
+    templateUrl: './room.component.html'
 })
-export class DictComponent implements OnInit {
+export class RoomComponent implements OnInit {
 
     constructor() { }
     

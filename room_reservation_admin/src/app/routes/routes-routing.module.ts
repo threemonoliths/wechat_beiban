@@ -31,6 +31,7 @@ const routes: Routes = [
             { path: 'pages', loadChildren: './pages/pages.module#PagesModule' },
             { path: 'users', loadChildren: './users/users.module#UsersModule' },
             { path: 'roomlayout', loadChildren: './roomlayout/roomlayout.module#RoomLayoutModule' },
+            { path: 'room', loadChildren: './room/room.module#RoomModule' },
            
             
             

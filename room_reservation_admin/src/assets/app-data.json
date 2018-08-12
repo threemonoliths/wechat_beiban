@@ -33,6 +33,11 @@
                     ]
                 },
                 {
+                    "text": "数据字典",
+                    "icon": "icon-plane",
+                    "link": "/dict/page"
+                },
+                {
                   "text": "房型管理",
                   "icon": "icon-wrench",
                   "link": "/roomlayout/page"
@@ -47,7 +52,7 @@
                   "icon": "icon-present",
                   "link": "/motor/page"
                 }
-
+                
             ]
         }
     ]

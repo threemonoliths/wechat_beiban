@@ -5,19 +5,19 @@ import { NzMessageService } from 'ng-zorro-antd';
 import { _HttpClient } from '@delon/theme';
 import { tap } from 'rxjs/operators';
 
-import { DictService } from '../service/dict.service';
+import { RoomService } from '../service/room.service';
 
 @Component({
-    selector: 'dict-list',
+    selector: 'room-list',
     templateUrl: './list.component.html'
 })
-export class DictListComponent implements OnInit {
+export class RoomListComponent implements OnInit {
 
     q: any = {
         page_index: 1,
         page_size: 15,
-        sort_field: "type",
-        //sort_direction: "desc",
+        sort_field: "layout_id",
+        sort_direction: "desc",
         owner_name: null,
     };
 
@@ -34,7 +34,7 @@ export class DictListComponent implements OnInit {
     constructor(
         private http: _HttpClient, 
         public msg: NzMessageService,
-        private srv: DictService,
+        private srv: RoomService,
         private router: Router
         ) {}
 
@@ -63,28 +63,28 @@ export class DictListComponent implements OnInit {
     }
 
     remove(obj) {
-        this.confirmContent = "确定要删除此数据字典?";
+        this.confirmContent = "确定要删除房间信息：" + obj.layout_id + "?";
         this.modalVisible = true;
         this.delObj = obj;
     }
 
     delete() {
         this.srv.delete(this.delObj.id)
-                         .then(resp => this.msg.success("数据字典已删除！")).then(resp => this.getData() )
+                         .then(resp => this.msg.success("房间信息:" + resp.data.layout_id + "已删除！")).then(resp => this.getData() )
                          .catch((error) => {this.msg.error(error); this.loading = false;})
     }
 
     add() {
         this.srv.formOperation = 'create';
         this.srv.isUpdate=false;
-        this.router.navigateByUrl('/dict/form');
+        this.router.navigateByUrl('/room/form');
     }
 
     update(id) {
         this.srv.formOperation='update';
         this.srv.initUpdate(id)
-            .then(result => { this.srv.dict = result.data;})
-            .then(() => this.router.navigateByUrl('/dict/form')).catch((error)=>
+            .then(result => { this.srv.room = result.data;})
+            .then(() => this.router.navigateByUrl('/room/form')).catch((error)=>
             this.msg.error(error)); 
     }
     
@@ -101,20 +101,20 @@ export class DictListComponent implements OnInit {
     }
 
     formatForm() {
-        if ((this.q.type == null)||(this.q.type == "")){delete this.q.type}
+        if ((this.q.layout_id == null)||(this.q.layout_id == "")){delete this.q.layout_id}
 
     }
 
-    // reset() {
-    //     this.q = {
-    //         page_index: 1,
-    //         page_size: 15,
-    //         sort_field: "layout",
-    //         sort_direction: "desc",
-    //         owner_name: null,
-    //     };
-    //     this.getData()
-    // }
+    reset() {
+        this.q = {
+            page_index: 1,
+            page_size: 15,
+            sort_field: "layout_id",
+            sort_direction: "desc",
+            owner_name: null,
+        };
+        this.getData()
+    }
 
     // 删除确认框相关
     confirmContent = ""

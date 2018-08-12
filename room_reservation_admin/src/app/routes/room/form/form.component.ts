@@ -8,23 +8,23 @@ import { map, delay, debounceTime } from 'rxjs/operators';
 
 import { NzMessageService } from 'ng-zorro-antd';
 
-import { DictService } from '../service/dict.service';
-import { Dict } from '../domain/dict.domain'; 
+import { RoomService } from '../service/room.service';
+import { Room } from '../domain/room.domain'; 
 
 @Component({
-    selector: 'dict-form',
+    selector: 'room-form',
     templateUrl: './form.component.html'
 })
-export class DictFormComponent implements OnInit {
+export class RoomFormComponent implements OnInit {
 
     form: FormGroup;
-    dict: Dict;
+    room: Room;
     card_title = "";
     
     constructor(
         private fb: FormBuilder,
         private router: Router,
-        private srv: DictService,
+        private srv: RoomService,
         private msg: NzMessageService
         ) {
     }
@@ -34,18 +34,18 @@ export class DictFormComponent implements OnInit {
         if (this.srv.formOperation == 'create') {this.initCreate();}
         if (this.srv.formOperation == 'update') {this.initUpdate();}
         this.form = this.fb.group({
-          type : [this.dict? this.dict.type : null, Validators.required ],
-          key : [this.dict? this.dict.key : null, Validators.required],
-          value : [this.dict? this.dict.value : null, Validators.required],
+            layout_id : [this.room? this.room.layout_id : null, Validators.required ],
+            room_number : [this.room? this.room.room_number : null, Validators.required],
+            desc: [this.room? this.room.desc : null]
         });
     }
 
     setTitle() {
         if (this.srv.formOperation == "create") { 
-            this.card_title = "创建数据字典";
+            this.card_title = "创建房间信息";
         }
         if (this.srv.formOperation == "update") { 
-            this.card_title = "修改数据字典";
+            this.card_title = "修改房间信息";
         }
     }
 
@@ -59,15 +59,15 @@ export class DictFormComponent implements OnInit {
             if (resp.error) { 
                 this.msg.error(resp.error);
             } else {
-                this.msg.success('数据字典已创建！');
+                this.msg.success('房间信息 ' + resp.data.layout + ' 已创建！');
                 this.goBack();
             }
             }).catch(error => this.msg.error(error));
-        if (op == 'update') this.srv.update(this.dict.id, this.form.value).then(resp => {
+        if (op == 'update') this.srv.update(this.room.id, this.form.value).then(resp => {
             if (resp.error) { 
                 this.msg.error(resp.error);
             } else {
-                this.msg.success('数据字典已更新！');
+                this.msg.success('房间信息 ' + resp.data.layout + ' 已更新！');
                 this.goBack();
             }
             }).catch(error => this.msg.error(error));
@@ -75,15 +75,15 @@ export class DictFormComponent implements OnInit {
     }
 
     goBack() {
-        this.router.navigateByUrl('/dict/page');
+        this.router.navigateByUrl('/room/page');
     }
 
     initUpdate() {
-        this.dict = this.srv.dict;
+        this.room = this.srv.room;
     }
 
     initCreate() {
-        this.srv.dict = null;
+        this.srv.room = null;
     }
 
 }
