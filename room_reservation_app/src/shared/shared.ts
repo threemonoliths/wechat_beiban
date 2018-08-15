@@ -2,6 +2,8 @@ import { Http, Headers, Response, RequestOptions, ResponseContentType } from '@a
 
 export const baseUrl = "http://172.27.37.71:4000/admin_api/v1/"
 
+export const userId = "weixin000001";
+
 export function getTokenOptions(paramsobj): RequestOptions{
   let headers = new Headers();
   let jwt = 'Bearer ' + localStorage.getItem('currentToken');

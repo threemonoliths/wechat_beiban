@@ -5,6 +5,7 @@ import { Http, URLSearchParams, RequestOptions, Headers, ResponseContentType } f
 import 'rxjs/add/operator/toPromise';
 
 import { baseUrl, getTokenOptions } from '../../shared/shared';
+import { userId } from '../../shared/shared';
 
 @Injectable()
 export class HomeService {
@@ -12,7 +13,7 @@ export class HomeService {
   constructor(private http: Http) {}
   
   url = baseUrl + "room_order_info";
-  layout_url = baseUrl + "room_layout";
+  layout_url = baseUrl + "room_layouts";
 
   listOnePage(q) {
     return this.http.get(this.url, getTokenOptions(q))

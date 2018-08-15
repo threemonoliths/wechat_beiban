@@ -52,7 +52,7 @@ config :phoenix, :stacktrace_depth, 20
 config :room_reservation_server, RoomReservationServer.Repo,
   adapter: Ecto.Adapters.Postgres,
   username: "postgres",
-  password: "123456",
+  password: "postgres",
   database: "room_reservation_server_dev",
   hostname: "localhost",
   pool_size: 10
