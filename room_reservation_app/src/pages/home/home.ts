@@ -37,34 +37,38 @@ export class HomePage implements OnInit {
   }
 
   ngOnInit() {
-    console.log("ng initing...");
     
     this.minDate = getDate();
     this.maxDate = getDateAfterThreeMonth();
-    console.log(getDate() + getDateAfterThreeMonth());
     this.srv.getAllRoomLayouts()
       .then(resp => {
         this.roomLayouts = resp.data;
-        console.log(this.roomLayouts);
       });
-  }
-
-  logForm(){
-    console.log(this.form.value)
   }
 
   _submitForm(){
     if (this.form.invalid) {
-      this.showAlert();
+      this.showError();
       return
     }
-    console.log(this.form.value)
+    this.srv.createOrderInfo(this.form.value).then(resp => {
+      if (resp.data) { this.showOK() }
+    })
   }
 
-  showAlert() {
+  showError() {
     const alert = this.alertCtrl.create({
       title: '无法预订',
       subTitle: '请将预订信息补充完整 ^-^',
+      buttons: ['OK']
+    });
+    alert.present();
+  }
+
+  showOK() {
+    const alert = this.alertCtrl.create({
+      title: '预订成功',
+      subTitle: '预订成功，您可以在\'我的预订\'菜单下查看！',
       buttons: ['OK']
     });
     alert.present();

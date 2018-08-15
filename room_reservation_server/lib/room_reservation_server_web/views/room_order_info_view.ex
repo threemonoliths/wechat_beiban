@@ -11,7 +11,8 @@ defmodule RoomReservationServerWeb.RoomOrderInfoView do
   end
 
   def render("room_order_info.json", %{room_order_info: room_order_info}) do
-    %{id: room_order_info.id,
-      room_id: room_order_info.room_id}
+    %{
+      id: room_order_info.id
+    }
   end
 end
