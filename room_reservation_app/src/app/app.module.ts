@@ -6,6 +6,7 @@ import { MyApp } from './app.component';
 
 import { PreviewPage } from '../pages/preview/preview';
 import { ContactPage } from '../pages/contact/contact';
+import { CarPage } from '../pages/car/car';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 
@@ -13,12 +14,14 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { RoomLayoutService } from '../pages/preview/service';
+import { HomeService } from '../pages/home/service';
 
 @NgModule({
   declarations: [
     MyApp,
     PreviewPage,
     ContactPage,
+    CarPage,
     HomePage,
     TabsPage
   ],
@@ -32,6 +35,7 @@ import { RoomLayoutService } from '../pages/preview/service';
     MyApp,
     PreviewPage,
     ContactPage,
+    CarPage,
     HomePage,
     TabsPage
   ],
@@ -39,7 +43,7 @@ import { RoomLayoutService } from '../pages/preview/service';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    RoomLayoutService
+    RoomLayoutService, HomeService
   ]
 })
 export class AppModule {}
