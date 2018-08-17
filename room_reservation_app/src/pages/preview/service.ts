@@ -13,7 +13,7 @@ export class RoomLayoutService {
 
     listOnePage(q) {
         return this.http.get(this.url, getTokenOptions(q))
-                   .toPromise().then(res => {return res.json()})           
+         .toPromise().then(res => {return res.json()})           
     }
 
 }

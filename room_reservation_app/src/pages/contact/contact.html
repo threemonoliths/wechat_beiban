@@ -15,20 +15,19 @@
     </ion-item>
   </ion-list>
 
-  <ion-card *ngFor="let page of pages" >
-      <img src="../../assets/imgs/home.png"/>
+  <ion-card *ngFor="let i of pages" >
       <ion-card-content>
         <ion-card-title>
           预定信息
           </ion-card-title>
         
-            <p><span>开始时间：</span>{{page.start_time}}</p>
-            <p><span>预定天数：</span>{{page.days}}</p>
-            <p><span>房间数：</span>{{page.rooms}}</p>
-            <p><span>房型：</span>{{page.layout}}</p>
+            <p><span>开始时间：</span>{{i.start_time}}</p>
+            <p><span>预定天数：</span>{{i.days}}</p>
+            <p><span>房间数：</span>{{i.rooms}}</p>
+            <p><span>房型：</span>{{i.layout}}</p>
         
         <ion-item>
-            <button ion-button icon-start clear item-end>
+            <button ion-button icon-start clear item-end block (click)="cancelOrder(i)">
               取消预订
             </button>
             </ion-item>

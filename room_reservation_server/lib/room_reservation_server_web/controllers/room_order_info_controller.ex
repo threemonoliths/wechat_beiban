@@ -37,7 +37,7 @@ defmodule RoomReservationServerWeb.RoomOrderInfoController do
   end
 
   def update(conn, %{"id" => id, "room_order_info" => room_order_info_params}) do
-    room_order_info = RoomOrderInfoContext.get_room_order_info!(id)
+    room_order_info = get_by_id(RoomOrderInfo, id)
 
     with {:ok, %RoomOrderInfo{} = room_order_info} <- RoomOrderInfoContext.update_room_order_info(room_order_info, room_order_info_params) do
       render(conn, "show.json", room_order_info: room_order_info)
