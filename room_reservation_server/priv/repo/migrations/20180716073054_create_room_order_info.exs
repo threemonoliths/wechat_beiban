@@ -3,13 +3,15 @@ defmodule RoomReservationServer.Repo.Migrations.CreateRoomOrderInfo do
 
   def change do
     create table(:room_order_info) do
-      add :user_id, :string
+      
       add :start_time, :date
-      add :end_time, :date
+      add :days, :integer
+      add :rooms, :integer
       add :comment, :text
       add :status, :boolean
 
-      add :room_id, references(:rooms)
+      add :user_id, references(:users)
+      add :layout_id, references(:room_layouts)
       timestamps()
     end
 

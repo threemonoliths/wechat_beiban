@@ -1,15 +1,19 @@
 defmodule RoomReservationServer.RoomOrderInfoContext.RoomOrderInfo do
   use Ecto.Schema
   import Ecto.Changeset
-  alias RoomReservationServer.RoomContext.Room
+  alias RoomReservationServer.RoomLayoutContext.RoomLayout
+  alias RoomReservationServer.Accounts.User
 
   schema "room_order_info" do
-    field :user_id, :string
+
     field :start_time, :date
-    field :end_time, :date
+    field :days, :integer
+    field :rooms, :integer
     field :comment, :string
     field :status, :boolean, default: true
-    belongs_to :room, Room, on_replace: :nilify
+
+    belongs_to :layout, RoomLayout, on_replace: :nilify
+    belongs_to :user, User, on_replace: :nilify
     
     timestamps()
   end
@@ -17,7 +21,7 @@ defmodule RoomReservationServer.RoomOrderInfoContext.RoomOrderInfo do
   @doc false
   def changeset(room_order_info, attrs) do
     room_order_info
-    |> cast(attrs, [:user_id, :start_time, :end_time, :status])
-    |> validate_required([:user_id, :start_time, :end_time, :status])
+    |> cast(attrs, [:start_time, :days, :rooms, :comment, :status])
+    |> validate_required([:start_time, :status])
   end
 end

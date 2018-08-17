@@ -1,17 +1,38 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Contact
+      关于我们
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
   <ion-list>
-    <ion-list-header>Follow us on Twitter</ion-list-header>
+    <ion-list-header>联系方式</ion-list-header>
     <ion-item>
-      <ion-icon name="ionic" item-start></ion-icon>
-      @ionicframework
+      <ion-icon name="call" item-start></ion-icon>
+      8888-8888888
     </ion-item>
   </ion-list>
+
+  <ion-card *ngFor="let page of pages" >
+      <img src="../../assets/imgs/home.png"/>
+      <ion-card-content>
+        <ion-card-title>
+          预定信息
+          </ion-card-title>
+        
+            <p><span>开始时间：</span>{{page.start_time}}</p>
+            <p><span>预定天数：</span>{{page.days}}</p>
+            <p><span>房间数：</span>{{page.rooms}}</p>
+            <p><span>房型：</span>{{page.layout}}</p>
+        
+        <ion-item>
+            <button ion-button icon-start clear item-end>
+              取消预订
+            </button>
+            </ion-item>
+      </ion-card-content>
+    </ion-card>
+
 </ion-content>

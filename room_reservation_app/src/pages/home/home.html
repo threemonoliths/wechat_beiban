@@ -1,17 +1,50 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Home</ion-title>
+    <ion-title>预订信息</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
-</ion-content>
+
+
+  <ion-content padding>
+    <img src = "../../assets/imgs/home.png">
+    <form nz-form [formGroup]="form" (ngSubmit)="_submitForm()">
+    <ion-list>
+
+      <ion-item>
+          <ion-label>入住日期:</ion-label>
+          <ion-datetime displayFormat="YYYY MM DD" formControlName="start_time"  [cancelText]="'取消'" [doneText]="'确定'" [min]="minDate" [max]="maxDate"></ion-datetime>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>房间类型:</ion-label>
+        <ion-select formControlName="layout_id" [cancelText]="'取消'" [okText]="'确定'">
+          <ion-option *ngFor="let r of roomLayouts" [value]="r.id">{{ r.layout }}</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>房间数:</ion-label>
+        <ion-select formControlName="rooms" [cancelText]="'取消'" [okText]="'确定'">
+          <ion-option value="1">1</ion-option>
+          <ion-option value="2">2</ion-option>
+          <ion-option value="3">3</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>预订天数:</ion-label>
+        <ion-select formControlName="days" [cancelText]="'取消'" [okText]="'确定'">
+          <ion-option value="1">1</ion-option>
+          <ion-option value="2">2</ion-option>
+          <ion-option value="3">3</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <button ion-button full>确定提交</button>
+      </ion-item>
+    </ion-list>
+    </form>
+  </ion-content>
+

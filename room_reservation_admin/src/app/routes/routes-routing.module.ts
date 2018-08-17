@@ -32,6 +32,8 @@ const routes: Routes = [
             { path: 'users', loadChildren: './users/users.module#UsersModule' },
             { path: 'roomlayout', loadChildren: './roomlayout/roomlayout.module#RoomLayoutModule' },
             { path: 'car', loadChildren: './car/car.module#CarModule' },
+            { path: 'room', loadChildren: './room/room.module#RoomModule' },
+           
             
             
 

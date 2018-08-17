@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>预订信息</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <img src = "../../assets/imgs/home.png">
+  <ion-list>
+
+    <ion-item>
+        <ion-label>开始使用时间:</ion-label>
+        <ion-datetime displayFormat="YYYY MMM DD" [(ngModel)]="start_time"></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>租用方式:</ion-label>
+      <ion-select [(ngModel)]="type">
+        <ion-option value="type01">单次</ion-option>
+        <ion-option value="type02">多次</ion-option>
+        <ion-option value="type03">包天</ion-option>
+        
+      </ion-select>
+    </ion-item>
+
+
+    <ion-item>
+      <button ion-button full>确定提交</button>
+    </ion-item>
+  </ion-list>
+</ion-content>

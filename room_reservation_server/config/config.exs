@@ -15,7 +15,10 @@ config :room_reservation_server, RoomReservationServerWeb.Endpoint,
   secret_key_base: "S5bEsRjqPE+A1alQkVLIGQD+qmHUHQmp3iuS3Jt3i8hBno721r/ixqYy1EuzZuia",
   render_errors: [view: RoomReservationServerWeb.ErrorView, accepts: ~w(html json)],
   pubsub: [name: RoomReservationServer.PubSub,
-           adapter: Phoenix.PubSub.PG2]
+           adapter: Phoenix.PubSub.PG2],
+  # 自定义配置baseurl,生成静态资源url时使用
+  ## baseurl: "http://localhost:4000"
+  baseurl: "http://172.27.37.71:4000"
 
 # Configures Elixir's Logger
 config :logger, :console,
@@ -26,6 +29,12 @@ config :room_reservation_server, RoomReservationServerWeb.Guardian,
   issuer: "room_reservation_server",
   secret_key: "DkN2Q2z3v8QW13QCEhiS1IJ+YuBHU6qFn/l+x5uxYNDazvwJZl6mft28ktkA3lGh",
   ttl: {180, :day}
+
+# Store uploaded file in local storage
+config :arc,
+  storage: Arc.Storage.Local
+
+
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

@@ -1,18 +1,29 @@
 defmodule RoomReservationServerWeb.RoomOrderInfoController do
   use RoomReservationServerWeb, :controller
 
-  alias RoomReservationServer.RoomOrderInfoContext
-  alias RoomReservationServer.RoomOrderInfoContext.RoomOrderInfo
+  use RoomReservationServer.RoomOrderInfoContext
+  alias RoomReservationServer.Accounts.User
+  alias RoomReservationServer.RoomLayoutContext.RoomLayout
 
   action_fallback RoomReservationServerWeb.FallbackController
 
-  def index(conn, _params) do
-    room_order_info = RoomOrderInfoContext.list_room_order_info()
-    render(conn, "index.json", room_order_info: room_order_info)
+  def index(conn, params) do
+    page = page(params)
+    render(conn, "index.json", page: page)
   end
 
   def create(conn, %{"room_order_info" => room_order_info_params}) do
-    with {:ok, %RoomOrderInfo{} = room_order_info} <- RoomOrderInfoContext.create_room_order_info(room_order_info_params) do
+    IO.puts("get user and layout changeset!!!######################################")
+    user_changeset = get_user_changeset(room_order_info_params)
+    IO.puts inspect user_changeset
+    layout_changeset = get_layout_changeset(room_order_info_params)
+    IO.puts inspect layout_changeset
+    info_changeset = RoomOrderInfo.changeset(%RoomOrderInfo{}, room_order_info_params)
+    |> Ecto.Changeset.put_assoc(:user, user_changeset)
+    |> Ecto.Changeset.put_assoc(:layout, layout_changeset)
+    IO.puts("get info changeset!!!######################################")
+    IO.puts inspect info_changeset
+    with {:ok, %RoomOrderInfo{} = room_order_info} <- save_create(info_changeset) do
       conn
       |> put_status(:created)
       |> put_resp_header("location", room_order_info_path(conn, :show, room_order_info))
@@ -37,6 +48,34 @@ defmodule RoomReservationServerWeb.RoomOrderInfoController do
     room_order_info = RoomOrderInfoContext.get_room_order_info!(id)
     with {:ok, %RoomOrderInfo{}} <- RoomOrderInfoContext.delete_room_order_info(room_order_info) do
       send_resp(conn, :no_content, "")
+    end
+  end
+
+  defp get_user_changeset(params) do
+    params
+    |> Map.get("user", %{})
+    |> Map.get("open_id")
+    |> case do
+      nil -> nil
+      open_id ->
+        case get_by_name(User, open_id: open_id) do
+          {:error, _} -> nil
+          {:ok, user} -> change(User, user)
+        end
+    end
+  end
+
+  defp get_layout_changeset(params) do
+    params
+    |> Map.get("room_layout", %{})
+    |> Map.get("id")
+    |> case do
+      nil -> nil
+      id ->
+        case get_by_id(RoomLayout, id) do
+          {:error, _} -> nil
+          {:ok, layout} -> change(RoomLayout, layout)
+        end
     end
   end
 end

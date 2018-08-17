@@ -1,12 +1,13 @@
-import { NzMessageService } from 'ng-zorro-antd';
-import { Component } from '@angular/core';
-import { _HttpClient } from '@delon/theme';
+import {Component,OnInit} from '@angular/core';
 
 @Component({
     templateUrl: './dict.component.html'
 })
-export class DictComponent {
+export class DictComponent implements OnInit {
 
-    constructor() {
+    constructor() { }
+    
+    ngOnInit() {
+        
     }
 }

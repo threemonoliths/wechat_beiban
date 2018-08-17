@@ -1,4 +1,4 @@
-import {Component,OnInit} from '@angular/core';
+import {Component,OnInit, ViewChild} from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators, FormArray, EmailValidator } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -16,17 +16,20 @@ import { RoomLayout } from '../domain/roomlayout.domain';
     templateUrl: './form.component.html'
 })
 export class RoomLayoutFormComponent implements OnInit {
-
+    
     form: FormGroup;
     roomlayout: RoomLayout;
     card_title = "";
+
+    file: any;
 
     constructor(
         private fb: FormBuilder,
         private router: Router,
         private srv: RoomLayoutService,
         private msg: NzMessageService
-        ) {
+        ) 
+    {
     }
     
     ngOnInit() {
@@ -58,7 +61,7 @@ export class RoomLayoutFormComponent implements OnInit {
         }
         if (this.form.invalid) return ;
         let op = this.srv.formOperation;
-        if (op == 'create') this.srv.add(this.form.value).then(resp => {
+        if (op == 'create') this.srv.add_with_file(this.form.value, this.file).then(resp => {
             if (resp.error) { 
                 this.msg.error(resp.error);
             } else {
@@ -78,7 +81,8 @@ export class RoomLayoutFormComponent implements OnInit {
     }
 
     goBack() {
-        this.router.navigateByUrl('/roomlayout/page');
+        console.log(this.file)
+        // this.router.navigateByUrl('/roomlayout/page');
     }
 
     initUpdate() {
@@ -88,5 +92,10 @@ export class RoomLayoutFormComponent implements OnInit {
     initCreate() {
         this.srv.roomlayout = null;
     }
+
+    onchange(e){
+        this.file = e.target.files[0];
+    }
+
 
 }
