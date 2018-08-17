@@ -19,7 +19,7 @@ defmodule RoomReservationServer.RoomOrderInfoContext do
   end
 
   def page(params) do 
-    RoomLayout
+    RoomOrderInfo
     |> query_equal(params, "layout_id")
     |> query_equal(params, "user_id")
     # |> query_order_by(params, "inserted_at")
