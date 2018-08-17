@@ -22,7 +22,7 @@ defmodule RoomReservationServer.RoomOrderInfoContext do
     RoomLayout
     |> query_equal(params, "layout_id")
     |> query_equal(params, "user_id")
-    |> query_order_by(params, "inserted_at")
+    # |> query_order_by(params, "inserted_at")
     |> get_pagination(params)
   end
   
