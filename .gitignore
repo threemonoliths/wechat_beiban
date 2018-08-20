@@ -5,10 +5,10 @@
 /room_reservation_server/*.ez
 
 # Generated on crash by the VM
-/room_reservation_servererl_crash.dump
+/room_reservation_server/erl_crash.dump
 
 # Generated on crash by NPM
-/room_reservation_servernpm-debug.log
+/room_reservation_server/npm-debug.log
 
 # Static artifacts
 /room_reservation_server/assets/node_modules
