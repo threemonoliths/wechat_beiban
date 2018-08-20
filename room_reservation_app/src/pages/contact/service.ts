@@ -26,7 +26,7 @@ export class ContactService {
       let v = {room_order_info: null};
       // v.id = i.id;
       v.room_order_info = { status: false}
-      return this.http.put(this.url + `/id=1`, v, getTokenOptions(null))
+      return this.http.put(this.url + `/${i.id}`, v, getTokenOptions(null))
         .map(response => response.json()).toPromise(); 
 
 

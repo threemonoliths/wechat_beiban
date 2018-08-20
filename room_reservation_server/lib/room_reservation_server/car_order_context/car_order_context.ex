@@ -1,8 +1,8 @@
-defmodule RoomReservationServer.CarOrderController do
+defmodule RoomReservationServer.CarOrderContext do
   import Ecto.Query, warn: false
   alias RoomReservationServer.Repo
 
-  alias RoomReservationServer.CarOrderContext.Car
+  alias RoomReservationServer.CarContext.Car
 
   use RoomReservationServer.BaseContext
   
