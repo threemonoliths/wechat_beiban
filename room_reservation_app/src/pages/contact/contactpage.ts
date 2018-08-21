@@ -3,7 +3,7 @@ export class contactpages {
     days : number;
     rooms : number;
     layout : string;
-    
+    id:number;
   }
 
  
