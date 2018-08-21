@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, URLSearchParams, RequestOptions, Headers, ResponseContentType } from '@angular/http';
 // import { Subject } from 'rxjs/Subject';
-// import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 
 import { baseUrl, getTokenOptions } from '../../shared/shared';
@@ -23,6 +23,16 @@ export class HomeService {
   getAllRoomLayouts() {
     return this.http.get(this.layout_url, getTokenOptions(null))
       .toPromise().then(res => {return res.json()})   
+  }
+
+  createOrderInfo(v) {
+    v.user = {open_id: userId}
+    v.room_layout = {id: v.layout_id}
+    let param = { room_order_info: v} 
+    console.log("in createorderinfo")
+    console.log(param)
+    return this.http.post(this.url, param, getTokenOptions(null))
+      .map(response => response.json()).toPromise(); 
   }
 
 }

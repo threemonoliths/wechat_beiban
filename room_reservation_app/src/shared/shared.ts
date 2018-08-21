@@ -1,6 +1,7 @@
 import { Http, Headers, Response, RequestOptions, ResponseContentType } from '@angular/http';
 
-export const baseUrl = "http://172.27.37.71:4000/admin_api/v1/"
+// export const baseUrl = "http://172.27.37.71:4000/admin_api/v1/"
+export const baseUrl = "http://localhost:4000/admin_api/v1/"
 
 export const userId = "weixin000001";
 

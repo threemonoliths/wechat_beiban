@@ -14,7 +14,6 @@ defmodule RoomReservationServerWeb.RoomLayoutController do
 
   # 参数中包含文件，这里参数写法相比其它稍有区别
   def create(conn, layout_params) do
-    IO.puts inspect layout_params
     layout_changeset = RoomLayout.changeset(%RoomLayout{}, layout_params)
     with {:ok, %RoomLayout{} = layout} <- save_create(layout_changeset) do
       conn

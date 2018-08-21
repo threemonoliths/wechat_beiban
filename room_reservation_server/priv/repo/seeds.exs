@@ -12,10 +12,19 @@
 
 alias RoomReservationServer.Repo
 alias RoomReservationServer.AdminUserContext.AdminUser
+alias RoomReservationServer.Accounts.User
 
 
 %AdminUser{}
 |> AdminUser.changeset(%{
   name: "admin"
+})
+|> Repo.insert()
+
+%User{}
+|> User.changeset(%{
+  open_id: "weixin000001",
+  name: "wanglei",
+  mobile: "15156709660"
 })
 |> Repo.insert()

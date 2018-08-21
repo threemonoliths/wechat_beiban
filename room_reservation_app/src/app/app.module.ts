@@ -15,7 +15,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { RoomLayoutService } from '../pages/preview/service';
 import { HomeService } from '../pages/home/service';
-
+import { ContactService } from '../pages/contact/service';
 @NgModule({
   declarations: [
     MyApp,
@@ -43,7 +43,7 @@ import { HomeService } from '../pages/home/service';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    RoomLayoutService, HomeService
+    RoomLayoutService, HomeService,ContactService
   ]
 })
 export class AppModule {}
