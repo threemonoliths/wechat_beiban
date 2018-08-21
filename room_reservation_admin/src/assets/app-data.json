@@ -48,6 +48,11 @@
                   "link": "/room/page"
                 },
                 {
+                    "text": "客房预订",
+                    "icon": "icon-heart",
+                    "link": "/order/page"
+                  },
+                {
                   "text": "车辆管理",
                   "icon": "icon-present",
                   "link": "/car/page"
