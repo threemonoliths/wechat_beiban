@@ -1,37 +1,92 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      关于我们
+      全部订单
     </ion-title>
   </ion-navbar>
+  <!-- 搜索栏 -->
+<ion-toolbar>
+  <ion-searchbar [(ngModel)]="searchInput"
+    (ionInput)="getItems($event)"
+    placeholder="请输入查询日期" autocomplete="on" mode='ios'
+    showCancelButton='true' cancelButtonText="取消"
+    (ionCancel)="onCancelSearch($event)"></ion-searchbar>
+</ion-toolbar>
+<!-- 导航 -->
+  <ion-toolbar no-border-top>
+    <ion-segment [(ngModel)]="order">
+      <ion-segment-button value="rooms">
+        房间订单
+      </ion-segment-button>
+      <ion-segment-button value="cars">
+        用车订单
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-list>
-    <ion-list-header>联系方式</ion-list-header>
-    <ion-item>
-      <ion-icon name="call" item-start></ion-icon>
-      8888-8888888
-    </ion-item>
-  </ion-list>
+<ion-content ng-controller="myCtrl">
+  <div [ngSwitch]="order">
 
-  <ion-card *ngFor="let i of pages" >
+<!-- 房间订单页面 -->
+    <div *ngSwitchCase="'rooms'" >
+<!-- 搜索后显示 -->
+<div *ngIf="isSearching">
+<ion-card *ngFor="let i of searchingItems" >
       <ion-card-content>
         <ion-card-title>
           预定信息
           </ion-card-title>
-        
             <p><span>开始时间：</span>{{i.start_time}}</p>
-            <p><span>预定天数：</span>{{i.days}}</p>
-            <p><span>房间数：</span>{{i.rooms}}</p>
-            <p><span>房型：</span>{{i.layout}}</p>
-        
+            <p><span>预定天数：</span>{{i.days+ "天"}}</p>
+            <p><span>房间数：</span>{{i.rooms+ "间"}}</p>
+            <p ><span>房型：</span>{{i.layout}}</p>
+            <p ><span>状态：</span>{{i.status}}</p>
         <ion-item>
-            <button ion-button icon-start clear item-end block (click)="cancelOrder(i)">
+            <button ion-button icon-start clear item-end block 
+            (click)="cancelOrder(i)" [disabled]="!i.status">
               取消预订
             </button>
             </ion-item>
       </ion-card-content>
     </ion-card>
+  </div>
+<!-- 不搜索显示 -->
+<div *ngIf="!isSearching">
+  <ion-card *ngFor="let i of pages" >
+      <ion-card-content>
+        <ion-card-title>
+          预定信息
+          </ion-card-title>
+            <p><span>开始时间：</span>{{i.start_time}}</p>
+            <p><span>预定天数：</span>{{i.days+ "天"}}</p>
+            <p><span>房间数：</span>{{i.rooms+ "间"}}</p>
+            <p ><span>房型：</span>{{i.layout}}</p>
+            <p ><span>状态：</span>{{i.status}}</p>
+        <ion-item>
+            <button ion-button icon-start clear item-end block 
+            (click)="cancelOrder(i)" [disabled]="!i.status" >
+              取消预订
+            </button>
+            </ion-item>
+      </ion-card-content>
+    </ion-card>
+  </div>
+     </div>
 
+<!-- 用车订单页面 -->
+     <div *ngSwitchCase="'cars'">
+
+    </div>
+
+<!-- <div ng-if="">没有更多了</div>
+    <ion-infinite-scroll
+      icon="ion-loading-c"
+      ng-if="moreDataCanBeLoaded()"
+      immediate-check="false"
+      on-infinite="loadMore()"
+      distance="1%">
+    </ion-infinite-scroll> -->
+
+  </div>
 </ion-content>

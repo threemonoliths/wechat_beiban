@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
 import { RoomLayoutService } from './service';
+import { TabService } from '../tabs/service';
 
 @Component({
   selector: 'page-preview',
@@ -18,7 +19,10 @@ export class PreviewPage implements OnInit {
     sort_direction: "asc"
   };
 
-  constructor(public navCtrl: NavController, private srv: RoomLayoutService) {
+  constructor(
+    public navCtrl: NavController, 
+    private srv: RoomLayoutService,
+    private tabSrv: TabService) {
 
   }
 
@@ -37,6 +41,10 @@ export class PreviewPage implements OnInit {
         }
       })
       .catch((error) => {error => console.log(error)})
+  }
+
+  book(id) {
+    this.tabSrv.tabIndex = 0;
   }
 
 }
