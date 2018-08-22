@@ -4,7 +4,7 @@ import { AlertController } from 'ionic-angular';
 import{ contactpages}from'./contactpage';
 import { ContactService } from './service';
 import { Platform } from 'ionic-angular';
-
+import { RestApiProvider } from '../../providers/rest-api/rest-api';
 @Component({
   selector: 'page-contact',
   templateUrl: 'contact.html'
@@ -14,7 +14,7 @@ export class ContactPage implements OnInit {
   pages:contactpages[];//房间订单
   // cancelOrderInfo : any = null;
   roomLayouts: any[] = [];//房型
-
+  valid:boolean=false;//有效订单
   q: any = {             //排序
     page_index: 1,
     page_size: 15,
@@ -26,16 +26,30 @@ export class ContactPage implements OnInit {
   isAndroid: boolean = false;
   searchInput:number;
 
-  //public Status:any;//按钮
+  data: any;//上拉加载
+  users: string[];
+  errorMessage: string;
+  page = 1;
+  perPage = 0;
+  totalData = 0;
+  totalPage = 0;
 
   constructor(public navCtrl: NavController,
     private contactService: ContactService,
     public alertCtrl: AlertController,
     platform: Platform,
-  ) {
+     public restApi: RestApiProvider) {
     this.isAndroid = platform.is('android');
     this.getPages();
+    this.getUsers();
   }
+
+//有效订单
+  updateValid() {
+    console.log('Valid new state:' + this.valid);
+  }
+
+
 
    //搜索后的显示列表
   isSearching=false;
@@ -81,7 +95,6 @@ export class ContactPage implements OnInit {
   }
   
 //取消预定
-
   cancelOrder(i) {
     let alert = this.alertCtrl.create({
       title: '取消预订',
@@ -101,9 +114,7 @@ export class ContactPage implements OnInit {
             this.contactService.cancelOrder(i).then(resp => console.log(resp))
             this.contactService.cancelOrder(i).then(resp => {    //显示取消成功
               if (resp.data) { this.showOK() }
-            })
-           
-            
+            }) 
           }
         },
       ]
@@ -119,5 +130,37 @@ export class ContactPage implements OnInit {
     alert.present();
   }
   
- 
+
+  getUsers() {
+    this.restApi.getUsers(this.page)
+       .subscribe(
+         res => {
+           this.data = res;
+           this.users = this.data.data;
+           this.perPage = this.data.per_page;
+           this.totalData = this.data.total;
+           this.totalPage = this.data.total_pages;
+         },
+         error =>  this.errorMessage = <any>error);
+  }
+  doInfinite(infiniteScroll) {
+    this.page = this.page+1;
+    setTimeout(() => {
+      this.restApi.getUsers(this.page)
+         .subscribe(
+           res => {
+             this.data = res;
+             this.perPage = this.data.per_page;
+             this.totalData = this.data.total;
+             this.totalPage = this.data.total_pages;
+             for(let i=0; i<this.data.data.length; i++) {
+               this.users.push(this.data.data[i]);
+             }
+           },
+           error =>  this.errorMessage = <any>error);
+  
+      console.log('Async operation has ended');
+      infiniteScroll.complete();
+    }, 1000);
+  }
 }

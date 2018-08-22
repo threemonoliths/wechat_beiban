@@ -9,9 +9,7 @@ import 'rxjs/add/operator/toPromise';
 export class ContactService {
 
   constructor(private http: Http) { }
-  // getPages() {
-  //   return pages;
-  // } 
+
   url = baseUrl + "room_order_info";
     listOnePage(q) {
         return this.http.get(this.url, getTokenOptions(q))
