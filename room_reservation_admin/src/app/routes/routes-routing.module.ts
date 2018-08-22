@@ -31,9 +31,9 @@ const routes: Routes = [
             { path: 'pages', loadChildren: './pages/pages.module#PagesModule' },
             { path: 'users', loadChildren: './users/users.module#UsersModule' },
             { path: 'roomlayout', loadChildren: './roomlayout/roomlayout.module#RoomLayoutModule' },
-            { path: 'car', loadChildren: './car/car.module#CarModule' },
+           { path: 'car', loadChildren: './car/car.module#CarModule' },
             { path: 'room', loadChildren: './room/room.module#RoomModule' },
-            { path: 'car_order', loadChildren: './car_order/car_order.module#RoomModule' },           
+            { path: 'carorder', loadChildren: './carorder/carorder.module#CarOrderModule' },           
             { path: 'order', loadChildren: './roomorder/roomorder.module#RoomOrderModule' },
             
             
