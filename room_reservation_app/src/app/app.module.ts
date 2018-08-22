@@ -17,6 +17,8 @@ import { HomeService } from '../pages/home/service';
 import { ContactService } from '../pages/contact/service';
 import { RestApiProvider } from '../providers/rest-api/rest-api';
 import { HttpClientModule } from '@angular/common/http';
+import { TabService } from '../pages/tabs/service';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -45,8 +47,12 @@ import { HttpClientModule } from '@angular/common/http';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
+<<<<<<< HEAD
     RoomLayoutService, HomeService,ContactService,
     RestApiProvider
+=======
+    RoomLayoutService, HomeService,ContactService, TabService
+>>>>>>> 9a2c0bacae648a40dc85e385fbefb58af7d418ca
   ]
 })
 export class AppModule {}

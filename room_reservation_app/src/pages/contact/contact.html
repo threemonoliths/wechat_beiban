@@ -46,6 +46,7 @@
             <p><span>预定天数：</span>{{i.days+ "天"}}</p>
             <p><span>房间数：</span>{{i.rooms+ "间"}}</p>
             <p ><span>房型：</span>{{i.layout}}</p>
+            <p ><span>状态：</span>{{i.status}}</p>
         <ion-item>
             <button ion-button icon-start clear item-end block 
             (click)="cancelOrder(i)" [disabled]="i.status">
@@ -66,6 +67,7 @@
             <p><span>预定天数：</span>{{i.days+ "天"}}</p>
             <p><span>房间数：</span>{{i.rooms+ "间"}}</p>
             <p ><span>房型：</span>{{i.layout}}</p>
+            <p ><span>状态：</span>{{i.status}}</p>
         <ion-item>
             <button ion-button icon-start clear item-end block 
             (click)="cancelOrder(i)" [disabled]="!i.status" outline >
