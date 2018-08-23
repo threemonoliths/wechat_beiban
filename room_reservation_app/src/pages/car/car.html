@@ -6,16 +6,18 @@
 
 <ion-content padding>
   <img src = "../../assets/imgs/home.png">
+  <form nz-form [formGroup]="form" (ngSubmit)="_submitForm()">
   <ion-list>
 
     <ion-item>
         <ion-label>开始使用时间:</ion-label>
-        <ion-datetime displayFormat="YYYY MMM DD" [(ngModel)]="start_time"></ion-datetime>
+        <ion-datetime displayFormat="YYYY MMM DD" [(ngModel)]="orderDate" formControlName="orderDate"  
+        [cancelText]="'取消'" [doneText]="'确定'" [min]="minDate" [max]="maxDate"></ion-datetime>
     </ion-item>
 
     <ion-item>
       <ion-label>租用方式:</ion-label>
-      <ion-select [(ngModel)]="type">
+      <ion-select [(ngModel)]="kind" formControlName="kind" [cancelText]="'取消'" [okText]="'确定'">
         <ion-option value="type01">单次</ion-option>
         <ion-option value="type02">多次</ion-option>
         <ion-option value="type03">包天</ion-option>
@@ -28,4 +30,5 @@
       <button ion-button full>确定提交</button>
     </ion-item>
   </ion-list>
+</form>
 </ion-content>

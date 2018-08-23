@@ -30,7 +30,7 @@ export class HomePage implements OnInit {
     public alertCtrl: AlertController,
     private srv: HomeService,
     private tabSrv: TabService,
-    public navParams: NavParams
+    public params: NavParams
   ) {
     this.form = this.formBuilder.group({
       start_time: [null, Validators.required],
@@ -38,10 +38,11 @@ export class HomePage implements OnInit {
       rooms: [null, Validators.required],
       days: [null, Validators.required]
     });
+
+  
+    this.type=this.params.get('roomtype');
+    //this.type= params.data.roomtype;//获得数据
     
-    this.type = navParams.data.roomtype;//获得数据
-    // this.type=this.roomtypes;
-    //this.type=2;
   }
 
   ngOnInit() {

@@ -7,7 +7,7 @@
   <!-- 搜索栏 -->
 <ion-toolbar>
     <ion-searchbar [(ngModel)]="searchInput"
-    (ionInput)="getItems($event)" placeholder="请输入关键字" 
+    (ionInput)="getItems($event)" placeholder="请输入日期" 
     autocomplete="on" mode='ios' showCancelButton='true' 
     cancelButtonText="取消" (ionCancel)="onCancelSearch($event)" >
     </ion-searchbar>
@@ -79,6 +79,7 @@
     </ion-card>
   </div>
      </div>
+     <div *ngIf="noSearching"><h2 style=text-align:center>没有更多订单了</h2></div>
 
 <!-- 用车订单页面 -->
      <div *ngSwitchCase="'cars'">

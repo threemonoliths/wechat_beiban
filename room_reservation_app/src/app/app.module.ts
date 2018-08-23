@@ -15,6 +15,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { RoomLayoutService } from '../pages/preview/service';
 import { HomeService } from '../pages/home/service';
 import { ContactService } from '../pages/contact/service';
+import { CarService } from '../pages/car/service'; 
 import { RestApiProvider } from '../providers/rest-api/rest-api';
 import { HttpClientModule } from '@angular/common/http';
 import { TabService } from '../pages/tabs/service';
@@ -48,7 +49,7 @@ import { TabService } from '../pages/tabs/service';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     RoomLayoutService, HomeService,ContactService,
-    RestApiProvider,
+    RestApiProvider,CarService,
     TabService
   ]
 })

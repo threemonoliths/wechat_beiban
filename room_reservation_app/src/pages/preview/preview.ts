@@ -4,14 +4,19 @@ import { NavController } from 'ionic-angular';
 import { RoomLayoutService } from './service';
 import { TabService } from '../tabs/service';
 import { HomePage } from '../home/home';
+import { TabsPage } from '../tabs/tabs';
 @Component({
   selector: 'page-preview',
   templateUrl: 'preview.html'
 })
 export class PreviewPage implements OnInit {
 
-  data: any[];
+   public rootPage: any = TabsPage;
 
+  data: any[];
+roomtype:any;
+params;
+pushPage;
   q: any = {
     page_index: 1,
     page_size: 15,
@@ -45,16 +50,13 @@ export class PreviewPage implements OnInit {
 
   book(i) {
     console.log("代码方式跳转");
-    this.tabSrv.tabIndex = 0;
-    //跳转到指定页面
-    //this.navCtrl.parent.select(1);
-    this.navCtrl.setRoot(HomePage,{
+    this.navCtrl.parent.select(0);
+    this.pushPage=HomePage;
+    this.params={
       roomtype:i.id
-    });
-
+    };
+  //this.navCtrl.push({roomtype:i.id});
+      }
   
-  
-    
-  }
 
 }

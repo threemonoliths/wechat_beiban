@@ -26,7 +26,7 @@ export class ContactPage implements OnInit {
 
   order: string = "rooms";//导航
   isAndroid: boolean ;
-  searchInput:string;
+  searchInput:any;
 
   data: any;//上拉加载
   users: string[];
@@ -35,8 +35,6 @@ export class ContactPage implements OnInit {
   perPage = 0;
   totalData = 0;
   totalPage = 0;
-
-  
 
   constructor(public navCtrl: NavController,
     private contactService: ContactService,
@@ -47,9 +45,10 @@ export class ContactPage implements OnInit {
     this.getPages();
     this.getUsers();
   }
-isSearching=false;
-   searchingItems=[];
 
+isSearching=false;
+searchingItems=[];
+noSearching=false;
 //有效订单
   updateValid(){
     console.log('Valid new state:' + this.valid);
@@ -57,10 +56,11 @@ isSearching=false;
   this.initializeItems();
   if (this.valid==true) {
       this.searchingItems = this.searchingItems.filter((i) => {
-      return (i.status);
+      return (i.status==true);
     })
+    
   } else{
-    this.isSearching=false;
+    this.noSearching=true;
   }
 }
 
@@ -82,7 +82,7 @@ isSearching=false;
         return (i.start_time.indexOf(val) > -1);
       })
     } else{
-      this.isSearching=false;
+      this.noSearching=true;
     }
   }
   initializeItems(){
@@ -125,8 +125,9 @@ isSearching=false;
             console.log('Cancle clicked');
             console.log(i)
             this.contactService.cancelOrder(i).then(resp => console.log(resp))
-             this.showOK() ;
-            //this.getPages();
+            i.status=false;
+            this.showOK() ;
+            
           }
         },
       ]
