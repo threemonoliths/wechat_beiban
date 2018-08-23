@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController,NavParams } from 'ionic-angular';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
 import { AlertController } from 'ionic-angular';
 
 import { HomeService } from './service'; 
 import { getDate, getDateAfterThreeMonth } from '../../utils/datetime';
-
+import { TabService } from '../tabs/service';
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -14,9 +14,11 @@ import { getDate, getDateAfterThreeMonth } from '../../utils/datetime';
 export class HomePage implements OnInit {
   
   private form : FormGroup;
-
+  selected:boolean;
   //房型列表数据
   roomLayouts: any[] = [];
+  type:any="";
+  roomtypes:any;
 
   //日期空间时间范围
   minDate: string = "";
@@ -26,7 +28,9 @@ export class HomePage implements OnInit {
     public navCtrl: NavController, 
     private formBuilder: FormBuilder,
     public alertCtrl: AlertController,
-    private srv: HomeService
+    private srv: HomeService,
+    private tabSrv: TabService,
+    public navParams: NavParams
   ) {
     this.form = this.formBuilder.group({
       start_time: [null, Validators.required],
@@ -34,6 +38,10 @@ export class HomePage implements OnInit {
       rooms: [null, Validators.required],
       days: [null, Validators.required]
     });
+    
+    this.type = navParams.data.roomtype;//获得数据
+    // this.type=this.roomtypes;
+    //this.type=2;
   }
 
   ngOnInit() {

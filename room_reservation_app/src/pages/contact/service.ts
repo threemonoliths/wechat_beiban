@@ -10,13 +10,17 @@ export class ContactService {
 
   constructor(private http: Http) { }
 
+  layout_url = baseUrl + "room_layouts";
   url = baseUrl + "room_order_info";
     listOnePage(q) {
         return this.http.get(this.url, getTokenOptions(q))
                    .toPromise().then(res => {return res.json()})           
     }
 
-
+getAllRoomLayouts() {
+    return this.http.get(this.layout_url, getTokenOptions(null))
+      .toPromise().then(res => {return res.json()})   
+  }
 
     cancelOrder(i) {
       let v = {room_order_info: null};

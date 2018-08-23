@@ -14,17 +14,19 @@ export class ContactPage implements OnInit {
   pages:contactpages[];//房间订单
   // cancelOrderInfo : any = null;
   roomLayouts: any[] = [];//房型
+
   valid:boolean=false;//有效订单
+
   q: any = {             //排序
     page_index: 1,
-    page_size: 15,
-    sort_field: "start_time",
+    page_size: 99,
+    sort_field: "id",
     sort_direction: "asc"
   };
 
   order: string = "rooms";//导航
-  isAndroid: boolean = false;
-  searchInput:number;
+  isAndroid: boolean ;
+  searchInput:string;
 
   data: any;//上拉加载
   users: string[];
@@ -33,6 +35,8 @@ export class ContactPage implements OnInit {
   perPage = 0;
   totalData = 0;
   totalPage = 0;
+
+  
 
   constructor(public navCtrl: NavController,
     private contactService: ContactService,
@@ -43,17 +47,26 @@ export class ContactPage implements OnInit {
     this.getPages();
     this.getUsers();
   }
+isSearching=false;
+   searchingItems=[];
 
 //有效订单
-  updateValid() {
+  updateValid(){
     console.log('Valid new state:' + this.valid);
+    this.isSearching=true;
+  this.initializeItems();
+  if (this.valid==true) {
+      this.searchingItems = this.searchingItems.filter((i) => {
+      return (i.status);
+    })
+  } else{
+    this.isSearching=false;
   }
-
+}
 
 
    //搜索后的显示列表
-  isSearching=false;
-  searchingItems=[];
+   
   onCancelSearch(event){
     this.isSearching=false;
     this.searchingItems=[];
@@ -112,9 +125,8 @@ export class ContactPage implements OnInit {
             console.log('Cancle clicked');
             console.log(i)
             this.contactService.cancelOrder(i).then(resp => console.log(resp))
-            this.contactService.cancelOrder(i).then(resp => {    //显示取消成功
-              if (resp.data) { this.showOK() }
-            }) 
+             this.showOK() ;
+            //this.getPages();
           }
         },
       ]

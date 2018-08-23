@@ -18,8 +18,8 @@
 
       <ion-item>
         <ion-label>房间类型:</ion-label>
-        <ion-select formControlName="layout_id" [cancelText]="'取消'" [okText]="'确定'">
-          <ion-option *ngFor="let r of roomLayouts" [value]="r.id">{{ r.layout }}</ion-option>
+        <ion-select formControlName="layout_id" [cancelText]="'取消'" [okText]="'确定'" [(ngModel)]="type">
+          <ion-option *ngFor="let r of roomLayouts" [value]="r.id"  >{{ r.layout }}</ion-option>
         </ion-select>
       </ion-item>
 

@@ -47,12 +47,9 @@ import { TabService } from '../pages/tabs/service';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-<<<<<<< HEAD
     RoomLayoutService, HomeService,ContactService,
-    RestApiProvider
-=======
-    RoomLayoutService, HomeService,ContactService, TabService
->>>>>>> 9a2c0bacae648a40dc85e385fbefb58af7d418ca
+    RestApiProvider,
+    TabService
   ]
 })
 export class AppModule {}
