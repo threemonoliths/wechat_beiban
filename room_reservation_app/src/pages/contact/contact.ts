@@ -21,8 +21,8 @@ export class ContactPage implements OnInit {
   q: any = {             //排序按照预订日期排序
     page_index: 1,
     page_size: 99,
-    sort_field: "id",  
-    sort_direction: "asc"
+    sort_field: "inserted_at",
+    sort_direction: "desc"
   };
 
   order: string = "rooms";//导航
@@ -175,5 +175,10 @@ searchingItems=[];
       console.log('Async operation has ended');
       infiniteScroll.complete();
     }, 1000);
+  }
+
+  ionViewDidEnter(){
+    console.log("refreshing data...")
+    this.getPages();
   }
 }

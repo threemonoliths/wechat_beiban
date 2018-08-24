@@ -38,9 +38,9 @@ export class HomePage implements OnInit {
       rooms: [null, Validators.required],
       days: [null, Validators.required]
     });
-
+    console.log(this.tabSrv.selectedId)
   
-    this.type=this.params.get('roomtype');
+    // this.type=this.params.get('roomtype');
     //this.type= params.data.roomtype;//获得数据
     
   }
@@ -83,5 +83,11 @@ export class HomePage implements OnInit {
     alert.present();
   }
 
+  ionViewDidEnter(){
+    console.log("refreshing data...")
+    this.form.controls["start_time"].setValue(null)
+    this.form.controls["rooms"].setValue(null)
+    this.form.controls["days"].setValue(null)
+  }
 
 }
