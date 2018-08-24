@@ -33,7 +33,7 @@ const routes: Routes = [
             { path: 'roomlayout', loadChildren: './roomlayout/roomlayout.module#RoomLayoutModule' },
             { path: 'car', loadChildren: './car/car.module#CarModule' },
             { path: 'room', loadChildren: './room/room.module#RoomModule' },
-            // { path: 'carorder', loadChildren: './carorder/carorder.module#RoomModule' },           
+            { path: 'carorder', loadChildren: './carorder/carorder.module#CarOrderModule' },                    
             { path: 'order', loadChildren: './roomorder/roomorder.module#RoomOrderModule' },
             
             

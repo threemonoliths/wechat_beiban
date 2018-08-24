@@ -37,7 +37,7 @@ defmodule RoomReservationServerWeb.Router do
     resources "/room", RoomController, except: [:new, :edit]
     resources "/room_order_info", RoomOrderInfoController, except: [:new, :edit]
     resources "/cars", CarController, except: [:new, :edit]
-    resources "/car_order_info", CarOrderController, except: [:new, :edit]
+    resources "/car_order", CarOrderController, except: [:new, :edit]
     
   end
 

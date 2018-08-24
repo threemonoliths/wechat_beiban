@@ -6,11 +6,17 @@
   </ion-navbar>
   <!-- 搜索栏 -->
 <ion-toolbar>
-  <ion-searchbar [(ngModel)]="searchInput"
-    (ionInput)="getItems($event)"
-    placeholder="请输入查询日期" autocomplete="on" mode='ios'
-    showCancelButton='true' cancelButtonText="取消"
-    (ionCancel)="onCancelSearch($event)"></ion-searchbar>
+    <ion-searchbar [(ngModel)]="searchInput"
+    (ionInput)="getItems($event)" placeholder="请输入日期" 
+    autocomplete="on" mode='ios' showCancelButton='true' 
+    cancelButtonText="取消" (ionCancel)="onCancelSearch($event)" >
+    </ion-searchbar>
+    <ion-item>
+    <ion-label>有效订单</ion-label>
+         <ion-checkbox [(ngModel)]="valid" mode='ios'
+        (ionChange)="updateValid($event)" value="true"
+        ></ion-checkbox>
+      </ion-item>
 </ion-toolbar>
 <!-- 导航 -->
   <ion-toolbar no-border-top>
@@ -39,7 +45,7 @@
           </ion-card-title>
             <p><span>开始时间：</span>{{i.start_time}}</p>
             <p><span>预定天数：</span>{{i.days+ "天"}}</p>
-            <p><span>房间数：</span>{{i.rooms+ "间"}}</p>
+            <p ><span>房间数：</span>{{i.rooms+ "间"}}</p>
             <p ><span>房型：</span>{{i.layout}}</p>
             <p ><span>状态：</span>{{i.status}}</p>
         <ion-item>
@@ -65,7 +71,7 @@
             <p ><span>状态：</span>{{i.status}}</p>
         <ion-item>
             <button ion-button icon-start clear item-end block 
-            (click)="cancelOrder(i)" [disabled]="!i.status" >
+            (click)="cancelOrder(i)" [disabled]="!i.status" outline >
               取消预订
             </button>
             </ion-item>
@@ -73,20 +79,17 @@
     </ion-card>
   </div>
      </div>
+     <div *ngIf="noSearching"><h2 style=text-align:center>没有更多订单了</h2></div>
 
 <!-- 用车订单页面 -->
      <div *ngSwitchCase="'cars'">
 
     </div>
+</div>
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)" 
+  *ngIf="page < totalPage">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" 
+    loadingText="Loading more data..."></ion-infinite-scroll-content>
+  </ion-infinite-scroll> 
 
-<!-- <div ng-if="">没有更多了</div>
-    <ion-infinite-scroll
-      icon="ion-loading-c"
-      ng-if="moreDataCanBeLoaded()"
-      immediate-check="false"
-      on-infinite="loadMore()"
-      distance="1%">
-    </ion-infinite-scroll> -->
-
-  </div>
 </ion-content>

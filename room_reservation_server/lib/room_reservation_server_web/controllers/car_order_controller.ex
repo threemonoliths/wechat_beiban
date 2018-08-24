@@ -27,17 +27,19 @@ defmodule RoomReservationServerWeb.CarOrderController do
   end
 
   def update(conn, %{"id" => id, "car_order" => car_order_params}) do
-    car_order = CarOrderContext.get_car_order!(id)
-
-    with {:ok, %CarOrder{} = car_order} <- CarOrderContext.update_car_order(car_order, car_order_params) do
-      render(conn, "show.json", car_order: car_order)
+    with {:ok, layout} <- get_by_id(CarOrder, id) do
+      layout_changeset = CarOrder.changeset(layout, car_order_params)
+      with {:ok, %CarOrder{} = layout} <- save_update(layout_changeset) do
+        render(conn, "show.json", car_order: layout)
+      end
     end
   end
 
+
   def delete(conn, %{"id" => id}) do
-    car_order = CarOrderContext.get_car_order!(id)
-    with {:ok, %CarOrder{}} <- CarOrderContext.delete_car_order(car_order) do
-      send_resp(conn, :no_content, "")
+    with {:ok, %CarOrder{} = layout} <- delete_by_id(CarOrder, id) do
+      render(conn, "show.json", car_order: layout)
     end
   end
 end
+

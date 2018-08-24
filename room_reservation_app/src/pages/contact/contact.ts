@@ -4,7 +4,7 @@ import { AlertController } from 'ionic-angular';
 import{ contactpages}from'./contactpage';
 import { ContactService } from './service';
 import { Platform } from 'ionic-angular';
-
+import { RestApiProvider } from '../../providers/rest-api/rest-api';
 @Component({
   selector: 'page-contact',
   templateUrl: 'contact.html'
@@ -15,31 +15,58 @@ export class ContactPage implements OnInit {
   // cancelOrderInfo : any = null;
   roomLayouts: any[] = [];//房型
 
+  valid:boolean=false;//有效订单
+
   q: any = {             //排序
     page_index: 1,
-    page_size: 15,
-    sort_field: "start_time",
+    page_size: 99,
+    sort_field: "id",
     sort_direction: "asc"
   };
 
   order: string = "rooms";//导航
-  isAndroid: boolean = false;
-  searchInput:number;
+  isAndroid: boolean ;
+  searchInput:any;
 
-  //public Status:any;//按钮
+  data: any;//上拉加载
+  users: string[];
+  errorMessage: string;
+  page = 1;
+  perPage = 0;
+  totalData = 0;
+  totalPage = 0;
 
   constructor(public navCtrl: NavController,
     private contactService: ContactService,
     public alertCtrl: AlertController,
     platform: Platform,
-  ) {
+     public restApi: RestApiProvider) {
     this.isAndroid = platform.is('android');
     this.getPages();
+    this.getUsers();
   }
 
+isSearching=false;
+searchingItems=[];
+noSearching=false;
+//有效订单
+  updateValid(){
+    console.log('Valid new state:' + this.valid);
+    this.isSearching=true;
+  this.initializeItems();
+  if (this.valid==true) {
+      this.searchingItems = this.searchingItems.filter((i) => {
+      return (i.status==true);
+    })
+    
+  } else{
+    this.noSearching=true;
+  }
+}
+
+
    //搜索后的显示列表
-  isSearching=false;
-  searchingItems=[];
+   
   onCancelSearch(event){
     this.isSearching=false;
     this.searchingItems=[];
@@ -55,7 +82,7 @@ export class ContactPage implements OnInit {
         return (i.start_time.indexOf(val) > -1);
       })
     } else{
-      this.isSearching=false;
+      this.noSearching=true;
     }
   }
   initializeItems(){
@@ -81,7 +108,6 @@ export class ContactPage implements OnInit {
   }
   
 //取消预定
-
   cancelOrder(i) {
     let alert = this.alertCtrl.create({
       title: '取消预订',
@@ -99,10 +125,8 @@ export class ContactPage implements OnInit {
             console.log('Cancle clicked');
             console.log(i)
             this.contactService.cancelOrder(i).then(resp => console.log(resp))
-            this.contactService.cancelOrder(i).then(resp => {    //显示取消成功
-              if (resp.data) { this.showOK() }
-            })
-           
+            i.status=false;
+            this.showOK() ;
             
           }
         },
@@ -119,5 +143,37 @@ export class ContactPage implements OnInit {
     alert.present();
   }
   
- 
+
+  getUsers() {
+    this.restApi.getUsers(this.page)
+       .subscribe(
+         res => {
+           this.data = res;
+           this.users = this.data.data;
+           this.perPage = this.data.per_page;
+           this.totalData = this.data.total;
+           this.totalPage = this.data.total_pages;
+         },
+         error =>  this.errorMessage = <any>error);
+  }
+  doInfinite(infiniteScroll) {
+    this.page = this.page+1;
+    setTimeout(() => {
+      this.restApi.getUsers(this.page)
+         .subscribe(
+           res => {
+             this.data = res;
+             this.perPage = this.data.per_page;
+             this.totalData = this.data.total;
+             this.totalPage = this.data.total_pages;
+             for(let i=0; i<this.data.data.length; i++) {
+               this.users.push(this.data.data[i]);
+             }
+           },
+           error =>  this.errorMessage = <any>error);
+  
+      console.log('Async operation has ended');
+      infiniteScroll.complete();
+    }, 1000);
+  }
 }
