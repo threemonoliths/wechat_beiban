@@ -20,8 +20,8 @@ export class RestApiProvider {
     console.log('Hello RestApiProvider Provider');
   }
 
-  getUsers(page): Observable<string[]> {
-    return this.http.get(this.apiUrl+"users?page="+page)
+  getPages(page): Observable<string[]> {
+    return this.http.get(this.apiUrl+"pages?page="+page)
                     .map(this.extractData)
                     .catch(this.handleError);
   }
@@ -43,5 +43,4 @@ private handleError (error: Response | any) {
   console.error(errMsg);
   return Observable.throw(errMsg);
 }
-
 }

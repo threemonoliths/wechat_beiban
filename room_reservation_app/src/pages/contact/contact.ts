@@ -12,6 +12,7 @@ import { RestApiProvider } from '../../providers/rest-api/rest-api';
 export class ContactPage implements OnInit {
   
   pages:contactpages[];//房间订单
+  pages: any[];
   // cancelOrderInfo : any = null;
   roomLayouts: any[] = [];//房型
 
@@ -29,7 +30,6 @@ export class ContactPage implements OnInit {
   searchInput:any;
 
   data: any;//上拉加载
-  users: string[];
   errorMessage: string;
   page = 1;
   perPage = 0;
@@ -43,7 +43,6 @@ export class ContactPage implements OnInit {
      public restApi: RestApiProvider) {
     this.isAndroid = platform.is('android');
     this.getPages();
-    this.getUsers();
   }
 
 clicked=false;
@@ -145,12 +144,12 @@ searchingItems=[];
   }
   
 
-  getUsers() {
-    this.restApi.getUsers(this.page)
+  getPage() {
+    this.restApi.getPages(this.page)
        .subscribe(
          res => {
            this.data = res;
-           this.users = this.data.data;
+           this.pages = this.data.data;
            this.perPage = this.data.per_page;
            this.totalData = this.data.total;
            this.totalPage = this.data.total_pages;
@@ -160,7 +159,7 @@ searchingItems=[];
   doInfinite(infiniteScroll) {
     this.page = this.page+1;
     setTimeout(() => {
-      this.restApi.getUsers(this.page)
+      this.restApi.getPages(this.page)
          .subscribe(
            res => {
              this.data = res;
@@ -168,7 +167,7 @@ searchingItems=[];
              this.totalData = this.data.total;
              this.totalPage = this.data.total_pages;
              for(let i=0; i<this.data.data.length; i++) {
-               this.users.push(this.data.data[i]);
+               this.pages.push(this.data.data[i]);
              }
            },
            error =>  this.errorMessage = <any>error);

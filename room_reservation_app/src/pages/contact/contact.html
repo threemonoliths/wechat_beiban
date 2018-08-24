@@ -11,12 +11,12 @@
     (ionChange)="updateValid($event)" value="true"
     ></ion-checkbox><ion-label >有效订单</ion-label>
     <button ion-button icon-only clear item-end 
-    (click)="showSearchbar()"  *ngIf="!clicked"  >
+    (click)="showSearchbar()"   >
         <ion-icon name="search"  ></ion-icon>搜索
       </button>
     </ion-item>
     <ion-searchbar [(ngModel)]="searchInput" *ngIf="clicked"
-    (ionInput)="getItems($event)" placeholder="请输入日期" 
+    (ionInput)="getItems($event)" placeholder="请输入日期" display="block"
     autocomplete="on" mode='ios' showCancelButton='true' animated='true' debounce
     cancelButtonText="取消" (ionCancel)="onCancelSearch($event)"  display='none' onblur="upperCase()" >
     </ion-searchbar>
@@ -110,8 +110,11 @@
   
      </div>
 </div>
+
+<!-- *ngIf="page < totalPage" -->
   <ion-infinite-scroll (ionInfinite)="doInfinite($event)" 
-  *ngIf="page < totalPage">
+  
+  >
     <ion-infinite-scroll-content loadingSpinner="bubbles" 
     loadingText="Loading more data..."></ion-infinite-scroll-content>
   </ion-infinite-scroll> 
