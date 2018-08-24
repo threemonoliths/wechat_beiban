@@ -57,7 +57,7 @@ export class PreviewPage implements OnInit {
     // };
   //this.navCtrl.push({roomtype:i.id});
     console.log(i.id)
-    this.tabSrv.selectedId = i.id;
+    // this.tabSrv.selectedId = i.id;
     var t: Tabs = this.navCtrl.parent;
     t.select(0);
   }

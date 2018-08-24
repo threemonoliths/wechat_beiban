@@ -48,12 +48,12 @@
         <ion-card-title>
           预定信息
           </ion-card-title>
-          <ion-row no-padding>
+          <ion-row no-padding no-margin>
               <ion-col>
             <span>开始时间：</span>{{i.start_time}}
               </ion-col>
             <ion-col text-right>
-               <span >{{i.status?"预订成功":"已退订"}}</span>
+               <span >{{i.status?"已预订":"已退订"}}</span>
             </ion-col>
           </ion-row>
             <p><span>预定天数：</span>{{i.days+ "天"}}</p>
@@ -83,7 +83,7 @@
             <span>开始时间：</span>{{i.start_time}}
               </ion-col>
             <ion-col text-right>
-               <span >{{i.status?"预订成功":"已退订"}}</span>
+               <span >{{i.status?"已预订":"已退订"}}</span>
             </ion-col>
           </ion-row>
             <p><span>预定天数：</span>{{i.days+ "天"}}</p>
