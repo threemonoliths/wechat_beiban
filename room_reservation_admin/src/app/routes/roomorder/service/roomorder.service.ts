@@ -21,10 +21,8 @@ export class RoomOrderService {
     }
 
     add(v): Promise<any>{ 
-        v.user = {open_id: v.user_id.toString()};
-        v.name = {name: v.name};
+        v.user = {open_id: v.user_id.toString()};      
         v.room_layout = {id: v.layout_id};
-        v.layout = {layout: v.layout};
         let param = { room_order_info: v};
         return this.http.post(this.url, param, getTokenOptions(null))
                    .map(response => response.json()).toPromise();

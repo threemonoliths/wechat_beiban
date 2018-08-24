@@ -5,12 +5,21 @@
     </ion-title>
   </ion-navbar>
   <!-- 搜索栏 -->
-<ion-toolbar>
-  <ion-searchbar [(ngModel)]="searchInput"
-    (ionInput)="getItems($event)"
-    placeholder="请输入查询日期" autocomplete="on" mode='ios'
-    showCancelButton='true' cancelButtonText="取消"
-    (ionCancel)="onCancelSearch($event)"></ion-searchbar>
+<ion-toolbar >
+  <ion-item *ngIf="!clicked">
+    <ion-checkbox [(ngModel)]="valid" mode='ios' item-start
+    (ionChange)="updateValid($event)" value="true"
+    ></ion-checkbox><ion-label >有效订单</ion-label>
+    <button ion-button icon-only clear item-end 
+    (click)="showSearchbar()"  *ngIf="!clicked"  >
+        <ion-icon name="search"  ></ion-icon>搜索
+      </button>
+    </ion-item>
+    <ion-searchbar [(ngModel)]="searchInput" *ngIf="clicked"
+    (ionInput)="getItems($event)" placeholder="请输入日期" 
+    autocomplete="on" mode='ios' showCancelButton='true' animated='true' debounce
+    cancelButtonText="取消" (ionCancel)="onCancelSearch($event)"  display='none' onblur="upperCase()" >
+    </ion-searchbar>
 </ion-toolbar>
 <!-- 导航 -->
   <ion-toolbar no-border-top>
@@ -32,16 +41,24 @@
     <div *ngSwitchCase="'rooms'" >
 <!-- 搜索后显示 -->
 <div *ngIf="isSearching">
-<ion-card *ngFor="let i of searchingItems" >
+    <div *ngFor="let i of searchingItems">
+        <p class="orderdate" > <span>预订日期：</span>{{i.start_time}} </p>
+<ion-card  >
       <ion-card-content>
         <ion-card-title>
           预定信息
           </ion-card-title>
-            <p><span>开始时间：</span>{{i.start_time}}</p>
+          <ion-row no-padding>
+              <ion-col>
+            <span>开始时间：</span>{{i.start_time}}
+              </ion-col>
+            <ion-col text-right>
+               <span >{{i.status?"预订成功":"已退订"}}</span>
+            </ion-col>
+          </ion-row>
             <p><span>预定天数：</span>{{i.days+ "天"}}</p>
-            <p><span>房间数：</span>{{i.rooms+ "间"}}</p>
+            <p ><span>房间数：</span>{{i.rooms+ "间"}}</p>
             <p ><span>房型：</span>{{i.layout}}</p>
-            <p ><span>状态：</span>{{i.status}}</p>
         <ion-item>
             <button ion-button icon-start clear item-end block 
             (click)="cancelOrder(i)" [disabled]="!i.status">
@@ -51,42 +68,52 @@
       </ion-card-content>
     </ion-card>
   </div>
+  </div>
 <!-- 不搜索显示 -->
-<div *ngIf="!isSearching">
-  <ion-card *ngFor="let i of pages" >
+<div *ngIf="!isSearching" >
+  <div *ngFor="let i of pages">
+    <p class="orderdate" > <span>预订日期：</span>{{i.start_time}} </p>
+  <ion-card>
       <ion-card-content>
         <ion-card-title>
           预定信息
           </ion-card-title>
-            <p><span>开始时间：</span>{{i.start_time}}</p>
+          <ion-row no-padding>
+              <ion-col>
+            <span>开始时间：</span>{{i.start_time}}
+              </ion-col>
+            <ion-col text-right>
+               <span >{{i.status?"预订成功":"已退订"}}</span>
+            </ion-col>
+          </ion-row>
             <p><span>预定天数：</span>{{i.days+ "天"}}</p>
             <p><span>房间数：</span>{{i.rooms+ "间"}}</p>
             <p ><span>房型：</span>{{i.layout}}</p>
-            <p ><span>状态：</span>{{i.status}}</p>
+           
         <ion-item>
             <button ion-button icon-start clear item-end block 
-            (click)="cancelOrder(i)" [disabled]="!i.status" >
+            (click)="cancelOrder(i)" [disabled]="!i.status" outline >
               取消预订
             </button>
             </ion-item>
       </ion-card-content>
     </ion-card>
+        </div>
+    
   </div>
+  <h2 style=text-align:center>没有更多订单了</h2>
      </div>
+     
 
 <!-- 用车订单页面 -->
      <div *ngSwitchCase="'cars'">
+  
+     </div>
+</div>
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)" 
+  *ngIf="page < totalPage">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" 
+    loadingText="Loading more data..."></ion-infinite-scroll-content>
+  </ion-infinite-scroll> 
 
-    </div>
-
-<!-- <div ng-if="">没有更多了</div>
-    <ion-infinite-scroll
-      icon="ion-loading-c"
-      ng-if="moreDataCanBeLoaded()"
-      immediate-check="false"
-      on-infinite="loadMore()"
-      distance="1%">
-    </ion-infinite-scroll> -->
-
-  </div>
 </ion-content>

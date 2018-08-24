@@ -45,7 +45,7 @@ defmodule RoomReservationServerWeb.RoomOrderInfoController do
   end
 
   def delete(conn, %{"id" => id}) do
-    with {:ok, %RoomOrderInfo{} = layout} <- delete_by_id(RoomOrderInfo, id) do
+    with {:ok, %RoomOrderInfo{} = layout} <- delete_by_id(RoomOrderInfo, id, [:layout, :user]) do
       render(conn, "show.json", room_order_info: layout)
     end
   end

@@ -56,7 +56,7 @@ export class RoomOrderListComponent implements OnInit {
                                 this.loading = false;
                              } else {
                                 this.data = resp.data;this.total = resp.total_entries;                                
-                                this.loading = false;
+                                this.loading = false;                              
                              }
                          })
                          .catch((error) => {this.msg.error(error); this.loading = false;})

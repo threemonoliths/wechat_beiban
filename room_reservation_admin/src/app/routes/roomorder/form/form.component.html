@@ -15,11 +15,11 @@
                     </div> -->
                     <div nz-form-item nz-row>
                         <div nz-form-label nz-col>
-                            <label>用户ID:</label>
+                            <label>预订人:</label>
                         </div>
                         <div nz-form-control nz-col nzHasFeedback [nzValidateStatus]="user_id">
     
-                            <nz-select formControlName="user_id" [nzPlaceHolder]="'请选择用户ID'"  nzAllowClear>
+                            <nz-select formControlName="user_id" [nzPlaceHolder]="'请选择预订人'"  nzAllowClear>
                                 <nz-option *ngFor="let i of data2" [nzLabel]="i.name" [nzValue]="i.id" [nzDisabled]="i.disabled">
                                 </nz-option>
                             </nz-select>
