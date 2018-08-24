@@ -56,8 +56,8 @@ export class RoomOrderFormComponent implements OnInit {
         if (this.srv.formOperation == 'create') {this.initCreate();}
         if (this.srv.formOperation == 'update') {this.initUpdate();}
         this.form = this.fb.group({
-            user_id : [this.order? this.order.user_id : null, Validators.required ],
-            layout_id : [this.order? this.order.layout_id : null, Validators.required],
+            user_id : [this.order? this.order.user.id : null, Validators.required ],
+            layout_id : [this.order? this.order.layout.id : null, Validators.required],
             start_time : [this.order? this.order.start_time : '', Validators.required ],
             days : [this.order? this.order.days : null, Validators.required],
             rooms : [this.order? this.order.rooms : null, Validators.required ],
@@ -118,6 +118,8 @@ export class RoomOrderFormComponent implements OnInit {
             if (resp.error) { 
                 this.msg.error(resp.error);
             } else {
+                console.log("888888888888888888888888888888");
+                console.log(resp.data);
                 this.msg.success(resp.data.id + ' 的房间预订信息已更新！');
                 this.goBack();
             }

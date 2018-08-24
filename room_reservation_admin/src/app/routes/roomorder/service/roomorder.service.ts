@@ -41,9 +41,12 @@ export class RoomOrderService {
     initUpdate(id){
         return this.http.get(this.url + `/${id}`, getTokenOptions(null))
                 .map(response => response.json()).toPromise();
+                
     }
 
     update(cid, v): Promise<any>{
+        v.user = {open_id: v.user_id.toString()};      
+        v.room_layout = {id: v.layout_id};
         let param = { room_order_info: v} 
         return this.http.put(this.url + `/${cid}`,param, getTokenOptions(null))
                 .map(response => response.json()).toPromise();

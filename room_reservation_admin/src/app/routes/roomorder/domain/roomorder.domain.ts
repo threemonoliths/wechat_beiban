@@ -7,5 +7,7 @@ export class RoomOrder{
     rooms: number;
     status: boolean;
     comment: string;
+    user: any;
+    layout: any;
 
 }
