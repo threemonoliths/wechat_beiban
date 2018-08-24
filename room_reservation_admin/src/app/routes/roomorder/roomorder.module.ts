@@ -9,6 +9,8 @@ import { RoomOrderListComponent } from './list/list.component';
 import { RoomOrderFormComponent } from './form/form.component';
 import { RoomOrderService } from '../roomorder/service/roomorder.service';
 import { MainPipe } from '../../pipes/pipes.module';
+import { RoomLayoutService } from '../roomlayout/service/roomlayout.service';
+import { UsersService } from '../users/service/users.service';
 
 @NgModule({
   imports: [ SharedModule, RoomOrderRoutingModule, MainPipe ],
@@ -18,7 +20,9 @@ import { MainPipe } from '../../pipes/pipes.module';
     RoomOrderFormComponent
   ],
   providers: [
-    RoomOrderService
+    RoomOrderService,
+    RoomLayoutService,
+    UsersService
   ]
 })
 export class RoomOrderModule { }

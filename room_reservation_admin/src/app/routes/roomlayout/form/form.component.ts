@@ -82,7 +82,7 @@ export class RoomLayoutFormComponent implements OnInit {
 
     goBack() {
         console.log(this.file)
-        // this.router.navigateByUrl('/roomlayout/page');
+     this.router.navigateByUrl('/roomlayout/page');
     }
 
     initUpdate() {

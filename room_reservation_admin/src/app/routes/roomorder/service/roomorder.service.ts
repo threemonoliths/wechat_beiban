@@ -21,7 +21,11 @@ export class RoomOrderService {
     }
 
     add(v): Promise<any>{ 
-        let param = { order: v} 
+        v.user = {open_id: v.user_id.toString()};
+        v.name = {name: v.name};
+        v.room_layout = {id: v.layout_id};
+        v.layout = {layout: v.layout};
+        let param = { room_order_info: v};
         return this.http.post(this.url, param, getTokenOptions(null))
                    .map(response => response.json()).toPromise();
     }
@@ -34,7 +38,7 @@ export class RoomOrderService {
 
     isUpdate = false;
     formOperation = 'create';
-    order : RoomOrder = null;
+    room_order_info : RoomOrder = null;
 
     initUpdate(id){
         return this.http.get(this.url + `/${id}`, getTokenOptions(null))
@@ -42,7 +46,7 @@ export class RoomOrderService {
     }
 
     update(cid, v): Promise<any>{
-        let param = { order: v} 
+        let param = { room_order_info: v} 
         return this.http.put(this.url + `/${cid}`,param, getTokenOptions(null))
                 .map(response => response.json()).toPromise();
     }
