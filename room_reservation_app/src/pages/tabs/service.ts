@@ -12,6 +12,7 @@ export class TabService {
 
   constructor() {}
   
-  tabIndex = 0;
+  // tabIndex = 0;
+  selectedId = "test";
   
 }

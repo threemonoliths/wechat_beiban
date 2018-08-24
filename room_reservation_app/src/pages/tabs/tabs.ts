@@ -18,13 +18,13 @@ export class TabsPage implements OnInit {
   tab3Root = CarPage;
   tab4Root = ContactPage;
 
-  tabIndex=0;
+  // tabIndex=0;
 
   constructor(private srv: TabService) {
 
   }
 
   ngOnInit() {
-    this.tabIndex = this.srv.tabIndex;
+    // this.tabIndex = this.srv.tabIndex;
   }
 }
