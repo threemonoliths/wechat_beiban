@@ -3,6 +3,7 @@ defmodule RoomReservationServerWeb.RoomOrderInfoController do
 
   use RoomReservationServer.RoomOrderInfoContext
   alias RoomReservationServer.Accounts.User
+  alias RoomReservationServer.RoomOrderInfoContext.RoomOrderInfo 
   alias RoomReservationServer.RoomLayoutContext.RoomLayout
 
   action_fallback RoomReservationServerWeb.FallbackController
@@ -31,14 +32,27 @@ defmodule RoomReservationServerWeb.RoomOrderInfoController do
     end
   end
 
+  
+  # def show(conn, %{"id" => id}) do
+  #   room_order_info = RoomOrderInfoContext.get_room_order_info!(id)
+  #   render(conn, "show.json", room_order_info: room_order_info)
+  # end
+
   def show(conn, %{"id" => id}) do
-    room_order_info = RoomOrderInfoContext.get_room_order_info!(id)
-    render(conn, "show.json", room_order_info: room_order_info)
+    with {:ok, room_order_info} <- get_by_id(RoomOrderInfo, id,[:layout, :user]) do
+      render(conn, "show.json", room_order_info: room_order_info)
+    end
   end
 
   def update(conn, %{"id" => id, "room_order_info" => room_order_info_params}) do
     {:ok, room_order_info} = get_by_id(RoomOrderInfo, id, [:layout, :user])
+    user_changeset = get_user_changeset(room_order_info_params)
+    IO.puts inspect user_changeset
+    layout_changeset = get_layout_changeset(room_order_info_params)
+    IO.puts inspect layout_changeset
     info_changeset = RoomOrderInfo.changeset(room_order_info, room_order_info_params)
+    |> Ecto.Changeset.put_assoc(:user, user_changeset)
+    |> Ecto.Changeset.put_assoc(:layout, layout_changeset)
     with {:ok, %RoomOrderInfo{} = room_order_info} <- save_update(info_changeset) do
       render(conn, "show.json", room_order_info: room_order_info)
     end
