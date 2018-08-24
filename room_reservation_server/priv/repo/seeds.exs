@@ -24,7 +24,7 @@ alias RoomReservationServer.Accounts.User
 %User{}
 |> User.changeset(%{
   open_id: "weixin000001",
-  name: "wanglei",
+  name: "王磊",
   mobile: "15156709660"
 })
 |> Repo.insert()
