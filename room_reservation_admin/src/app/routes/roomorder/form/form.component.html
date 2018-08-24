@@ -3,11 +3,29 @@
         <nz-card [nzBordered]="false" [nzTitle]="card_title" >
             <div nz-row [nzGutter]="16">
               
+
                 <div nz-col nzMd="6" nzSm="12" nzXs="24" style="text-align: left;" >
-                    <div nz-form-item nz-row>
-                        <div nz-form-label nz-col><label>房客姓名:</label></div>
+                    <!-- <div nz-form-item nz-row>
+                        <div nz-form-label nz-col><label>用户ID:</label></div>
                         <div nz-form-control nz-col nzHasFeedback [nzValidateStatus]="user_id">
-                            <nz-input formControlName="user_id" nzPlaceHolder="请输入名称" nzSize="large"></nz-input>
+                                <nz-select formControlName="user_id"  nzAllowClear nzPlaceHolder="用户ID">
+                                   <nz-option *ngFor="let i of data2" [nzValue]="i.id" [nzLabel]="i.id"></nz-option>
+                                </nz-select>
+                        </div>
+                    </div> -->
+                    <div nz-form-item nz-row>
+                        <div nz-form-label nz-col>
+                            <label>预订人:</label>
+                        </div>
+                        <div nz-form-control nz-col nzHasFeedback [nzValidateStatus]="user_id">
+    
+                            <nz-select formControlName="user_id" [nzPlaceHolder]="'请选择预订人'"  nzAllowClear>
+                                <nz-option *ngFor="let i of data2" [nzLabel]="i.name" [nzValue]="i.id" [nzDisabled]="i.disabled">
+                                </nz-option>
+                            </nz-select>
+                            <p nz-form-explain *ngIf="form.controls['user_id'].invalid && (form.controls['user_id'].dirty || form.controls['user_id'].touched) && form.controls['user_id'].errors.required">
+                                请选择用户ID
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -17,7 +35,9 @@
                     <div nz-form-item nz-row>
                         <div nz-form-label nz-col><label>房型:</label></div>
                         <div nz-form-control nz-col nzHasFeedback [nzValidateStatus]="layout_id">
-                            <nz-input formControlName="layout_id" nzPlaceHolder="请输入房型" nzSize="large"></nz-input>
+                            <nz-select  formControlName="layout_id" nzAllowClear nzPlaceHolder="房型">
+                                <nz-option *ngFor="let j of data1"  [nzValue]="j.id" [nzLabel]="j.layout"></nz-option>
+                            </nz-select>
                         </div>
                     </div>
                 </div>
@@ -26,7 +46,7 @@
                     <div nz-form-item nz-row>
                         <div nz-form-label nz-col><label>开始时间:</label></div>
                         <div nz-form-control nz-col nzHasFeedback [nzValidateStatus]="start_time">
-                            <nz-datepicker style="width: 100%;" [nzSize]="'large'" formControlName="start_time" [nzPlaceHolder]="'开始时间'" nzFormat="YYYY/MM/DD"></nz-datepicker>
+                            <nz-datepicker formControlName="start_time" [nzPlaceHolder]="'开始时间'" nzFormat="YYYY/MM/DD"></nz-datepicker>
                                 <p nz-form-explain *ngIf="form.controls['start_time'].invalid && (form.controls['start_time'].dirty || form.controls['start_time'].touched) && form.controls['start_time'].errors.required">
                                     请选择开始时间
                                 </p>

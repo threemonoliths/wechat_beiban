@@ -13,7 +13,7 @@ defmodule RoomReservationServerWeb.RoomOrderInfoController do
   end
 
   def create(conn, %{"room_order_info" => room_order_info_params}) do
-    IO.puts("get user and layout changeset!!!######################################")
+    IO.puts("get user and layout changeset!!!@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
     user_changeset = get_user_changeset(room_order_info_params)
     IO.puts inspect user_changeset
     layout_changeset = get_layout_changeset(room_order_info_params)
@@ -45,9 +45,8 @@ defmodule RoomReservationServerWeb.RoomOrderInfoController do
   end
 
   def delete(conn, %{"id" => id}) do
-    room_order_info = RoomOrderInfoContext.get_room_order_info!(id)
-    with {:ok, %RoomOrderInfo{}} <- RoomOrderInfoContext.delete_room_order_info(room_order_info) do
-      send_resp(conn, :no_content, "")
+    with {:ok, %RoomOrderInfo{} = layout} <- delete_by_id(RoomOrderInfo, id, [:layout, :user]) do
+      render(conn, "show.json", room_order_info: layout)
     end
   end
 

@@ -24,7 +24,8 @@ defmodule RoomReservationServerWeb.RoomOrderInfoView do
       start_time: room_order_info.start_time,
       days: room_order_info.days,
       rooms: room_order_info.rooms,
-      status: room_order_info.status,
+      status: room_order_info.status,    
+      comment: room_order_info.comment,    
       layout: %{id: room_order_info.layout.id, layout: room_order_info.layout.layout},
       user: %{id: room_order_info.user.id, open_id: room_order_info.user.open_id, name: room_order_info.user.name}
 

@@ -4,7 +4,7 @@ export class contactpages {
     rooms : number;
     layout : string;
     id:number;
-    status:string;
+    status:any;
   }
 
  

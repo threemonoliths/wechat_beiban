@@ -55,8 +55,8 @@ export class RoomOrderListComponent implements OnInit {
                                 this.msg.error(resp.error);
                                 this.loading = false;
                              } else {
-                                this.data = resp.data;this.total = resp.total_entries; 
-                                this.loading = false;
+                                this.data = resp.data;this.total = resp.total_entries;                                
+                                this.loading = false;                              
                              }
                          })
                          .catch((error) => {this.msg.error(error); this.loading = false;})
@@ -83,7 +83,7 @@ export class RoomOrderListComponent implements OnInit {
     update(id) {
         this.srv.formOperation='update';
         this.srv.initUpdate(id)
-            .then(result => { this.srv.order = result.data;})
+            .then(result => { this.srv.room_order_info = result.data;})
             .then(() => this.router.navigateByUrl('/order/form')).catch((error)=>
             this.msg.error(error)); 
     }

@@ -4,7 +4,7 @@
             <div nz-row [nzGutter]="24">
                 <div nz-col [nzSpan]="8" class="mb-md">
                     <div nz-form-item class="d-flex">
-                        <div nz-form-label><label for="name">预订人</label></div>
+                        <div nz-form-label><label for="name">客户姓名</label></div>
                         <div nz-form-control class="flex-1">
                             <nz-input [(ngModel)]="q.user_id" name="user_id" [nzSize]="'large'" [nzPlaceHolder]="'请输入客户姓名'" nzId="user_id"></nz-input>
                         </div>
@@ -34,32 +34,25 @@
                 <tr>
                     
                     <th nz-th>
-                        <span>预订人</span>
-                        <nz-table-sort [(nzValue)]="sortMap.user_id" (nzValueChange)="sort('user_id',$event)"></nz-table-sort>
+                        <span>预订人</span>                      
                     </th>
                     <th nz-th>
                         <span>房型</span>
-                        <nz-table-sort [(nzValue)]="sortMap.layout_id" (nzValueChange)="sort('layout_id',$event)"></nz-table-sort>
                     </th>                  
                     <th nz-th>
                         <span>开始时间</span>
-                        <nz-table-sort [(nzValue)]="sortMap.start_time" (nzValueChange)="sort('start_time',$event)"></nz-table-sort>
                     </th>
                     <th nz-th>
                         <span>预订天数</span>
-                        <nz-table-sort [(nzValue)]="sortMap.days" (nzValueChange)="sort('days',$event)"></nz-table-sort>
                     </th>
                     <th nz-th>
                         <span>房间数量</span>
-                        <nz-table-sort [(nzValue)]="sortMap.rooms" (nzValueChange)="sort('rooms',$event)"></nz-table-sort>
                     </th>
                     <th nz-th>
                         <span>状态</span>
-                        <nz-table-sort [(nzValue)]="sortMap.status" (nzValueChange)="sort('status',$event)"></nz-table-sort>
                     </th>
                     <th nz-th>
                         <span>备注</span>
-                        <nz-table-sort [(nzValue)]="sortMap.comment" (nzValueChange)="sort('comment',$event)"></nz-table-sort>
                     </th>
                     <th nz-th><span>操作</span></th>
                     
@@ -68,8 +61,8 @@
             <tbody nz-tbody>
                 <tr nz-tbody-tr *ngFor="let i of nzTable.data">
                     
-                    <td nz-td>{{i.user_id}}</td>
-                    <td nz-td>{{i.layout_id}}</td>
+                    <td nz-td>{{i.user.name}}</td>
+                    <td nz-td>{{i.layout.layout}}</td>
                     <td nz-td>{{i.start_time}}</td>
                     <td nz-td>{{i.days}}</td>
                     <td nz-td>{{i.rooms}}</td>

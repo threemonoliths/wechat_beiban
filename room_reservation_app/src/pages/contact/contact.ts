@@ -17,7 +17,7 @@ export class ContactPage implements OnInit {
 
   valid:boolean=false;//有效订单
 
-  q: any = {             //排序
+  q: any = {             //排序按照预订日期排序
     page_index: 1,
     page_size: 99,
     sort_field: "inserted_at",
@@ -46,9 +46,14 @@ export class ContactPage implements OnInit {
     this.getUsers();
   }
 
+clicked=false;
+  showSearchbar(){
+    this.clicked=true;
+    this.valid=false;
+  }
+
 isSearching=false;
 searchingItems=[];
-noSearching=false;
 //有效订单
   updateValid(){
     console.log('Valid new state:' + this.valid);
@@ -58,9 +63,6 @@ noSearching=false;
       this.searchingItems = this.searchingItems.filter((i) => {
       return (i.status==true);
     })
-    
-  } else{
-    this.noSearching=true;
   }
 }
 
@@ -70,6 +72,7 @@ noSearching=false;
   onCancelSearch(event){
     this.isSearching=false;
     this.searchingItems=[];
+    this.clicked=false;
   }
   getItems(ev:any) {
     console.log('getItems');
@@ -81,9 +84,7 @@ noSearching=false;
         this.searchingItems = this.searchingItems.filter((i) => {
         return (i.start_time.indexOf(val) > -1);
       })
-    } else{
-      this.noSearching=true;
-    }
+    } 
   }
   initializeItems(){
     this.searchingItems = this.pages;
