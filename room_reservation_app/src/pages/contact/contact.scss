@@ -1,11 +1,31 @@
 page-contact {
+ .validorder{
+     font-size: 10px;
+ }
  .orderdate{
         border-radius:25px;
         background-color: lightskyblue;
         color: aliceblue;
         width:45%;
         margin-left:10px;
-        padding-left:10px
+        padding-left:10px;
        }
- 
+ .home{ color: aliceblue;
+    background-color: lightskyblue;
+    border-radius:5px/5px;
+    padding: 3px;
+    margin-right: 5px;
+    font-size:2px;
+ }
+ p{
+    color: darkgray;
+ }
+.cardtitle{
+    font-size: 18px;
+}
+
+.tool{
+    background-color: lightblue;
+}
+
 }

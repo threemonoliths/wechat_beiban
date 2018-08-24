@@ -5,11 +5,11 @@
     </ion-title>
   </ion-navbar>
   <!-- 搜索栏 -->
-<ion-toolbar >
+<ion-toolbar class="tool">
   <ion-item *ngIf="!clicked">
     <ion-checkbox [(ngModel)]="valid" mode='ios' item-start
-    (ionChange)="updateValid($event)" value="true"
-    ></ion-checkbox><ion-label >有效订单</ion-label>
+    (ionChange)="updateValid($event)" value="true" small
+    ></ion-checkbox><ion-label ><span class="validorder">有效订单</span></ion-label>
     <button ion-button icon-only clear item-end 
     (click)="showSearchbar()"   >
         <ion-icon name="search"  ></ion-icon>搜索
@@ -44,24 +44,24 @@
     <div *ngFor="let i of searchingItems">
         <p class="orderdate" > <span>预订日期：</span>{{i.start_time}} </p>
 <ion-card  >
-      <ion-card-content>
+    <ion-card-content>
         <ion-card-title>
-          预定信息
-          </ion-card-title>
-          <ion-row no-padding no-margin>
-              <ion-col>
-            <span>开始时间：</span>{{i.start_time}}
-              </ion-col>
-            <ion-col text-right>
-               <span >{{i.status?"已预订":"已退订"}}</span>
-            </ion-col>
-          </ion-row>
-            <p><span>预定天数：</span>{{i.days+ "天"}}</p>
-            <p ><span>房间数：</span>{{i.rooms+ "间"}}</p>
-            <p ><span>房型：</span>{{i.layout}}</p>
+          <ion-icon class="home" name="home"  ></ion-icon>预订信息
+        </ion-card-title>
+      <ion-row no-padding>
+        <ion-col text-left >
+          <p>{{i.start_time}}入住</p>
+          <p>预定天数：{{i.days+ "天"}}</p>
+          <p>房间数：{{i.rooms+ "间"}}</p>
+          <p>房型：{{i.layout}}</p>
+        </ion-col>
+        <ion-col text-right >
+          <p>{{i.status?"已预订":"已退订"}}</p>
+        </ion-col>
+      </ion-row>
         <ion-item>
-            <button ion-button icon-start clear item-end block 
-            (click)="cancelOrder(i)" [disabled]="!i.status">
+            <button ion-button icon-start  item-right 
+            (click)="cancelOrder(i)" [disabled]="!i.status" outline >
               取消预订
             </button>
             </ion-item>
@@ -74,24 +74,23 @@
   <div *ngFor="let i of pages">
     <p class="orderdate" > <span>预订日期：</span>{{i.start_time}} </p>
   <ion-card>
-      <ion-card-content>
-        <ion-card-title>
-          预定信息
+      <ion-card-content >
+          <ion-card-title>
+            <ion-icon class="home" name="home"  ></ion-icon><span class="cardtitle">预订信息</span>
           </ion-card-title>
-          <ion-row no-padding>
-              <ion-col>
-            <span>开始时间：</span>{{i.start_time}}
-              </ion-col>
-            <ion-col text-right>
-               <span >{{i.status?"已预订":"已退订"}}</span>
-            </ion-col>
-          </ion-row>
-            <p><span>预定天数：</span>{{i.days+ "天"}}</p>
-            <p><span>房间数：</span>{{i.rooms+ "间"}}</p>
-            <p ><span>房型：</span>{{i.layout}}</p>
-           
+        <ion-row no-padding>
+          <ion-col text-left >
+            <p>{{i.start_time}} 入住</p>
+            <p>预定天数：{{i.days+ "天"}}</p>
+            <p>房间数：{{i.rooms+ "间"}}</p>
+            <p>房型：{{i.layout}}</p>
+          </ion-col>
+          <ion-col text-right >
+            <p>{{i.status?"已预订":"已退订"}}</p>
+          </ion-col>
+        </ion-row>
         <ion-item>
-            <button ion-button icon-start clear item-end block 
+            <button ion-button icon-start  item-right 
             (click)="cancelOrder(i)" [disabled]="!i.status" outline >
               取消预订
             </button>
