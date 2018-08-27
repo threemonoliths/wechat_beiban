@@ -1,6 +1,7 @@
 defmodule RoomReservationServerWeb.RoomOrderInfoView do
   use RoomReservationServerWeb, :view
   alias RoomReservationServerWeb.RoomOrderInfoView
+  alias RoomReservationServerWeb.Utils.DateHandler
 
   def render("index.json", %{page: page}) do
     %{
@@ -25,7 +26,8 @@ defmodule RoomReservationServerWeb.RoomOrderInfoView do
       days: room_order_info.days,
       rooms: room_order_info.rooms,
       status: room_order_info.status,    
-      comment: room_order_info.comment,    
+      comment: room_order_info.comment,  
+      inserted_at: room_order_info.inserted_at |> DateHandler.get_date_str,  
       layout: %{id: room_order_info.layout.id, layout: room_order_info.layout.layout},
       user: %{id: room_order_info.user.id, open_id: room_order_info.user.open_id, name: room_order_info.user.name}
 
