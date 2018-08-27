@@ -49,15 +49,7 @@ export class PreviewPage implements OnInit {
   }
 
   book(i) {
-    // console.log("代码方式跳转");
-    // this.navCtrl.parent.select(0);
-    // this.pushPage=HomePage;
-    // this.params={
-    //   roomtype:i.id
-    // };
-  //this.navCtrl.push({roomtype:i.id});
     console.log(i.id)
-    // this.tabSrv.selectedId = i.id;
     var t: Tabs = this.navCtrl.parent;
     t.select(0);
   }
