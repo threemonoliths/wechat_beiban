@@ -1,7 +1,6 @@
 import { Component,OnInit } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
-import{ contactpages}from'./contactpage';
 import { ContactService } from './service';
 import { Platform } from 'ionic-angular';
 import { RestApiProvider } from '../../providers/rest-api/rest-api';
