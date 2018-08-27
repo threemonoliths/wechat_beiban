@@ -40,9 +40,6 @@ export class HomePage implements OnInit {
     });
     console.log(this.tabSrv.selectedId)
   
-    // this.type=this.params.get('roomtype');
-    //this.type= params.data.roomtype;//获得数据
-    
   }
 
   ngOnInit() {
