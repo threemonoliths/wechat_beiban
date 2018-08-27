@@ -12,6 +12,7 @@ export class ContactPage implements OnInit {
   
   pages: any[];
   roomLayouts: any[] = [];//房型
+  cars:any[];
 
   valid:boolean=false;//有效订单
 
@@ -40,6 +41,7 @@ export class ContactPage implements OnInit {
      public restApi: RestApiProvider) {
     this.isAndroid = platform.is('android');
     this.getPages();
+    this.getCars();
   }
 
 clicked=false;
@@ -49,15 +51,21 @@ clicked=false;
   }
 
 isSearching=false;
+isSearching1=false;
 searchingItems=[];
+searchingItems1=[];
 //有效订单
   updateValid(){
     console.log('Valid new state:' + this.valid);
     this.isSearching=true;
+    this.isSearching1=true;
   this.initializeItems();
   if (this.valid==true) {
       this.searchingItems = this.searchingItems.filter((i) => {
       return (i.status==true);
+      })
+      this.searchingItems1 = this.searchingItems1.filter((i) => {
+        return (i.status==true);
     })
   }
 }
@@ -67,12 +75,15 @@ searchingItems=[];
    
   onCancelSearch(event){
     this.isSearching=false;
+    this.isSearching1=false;
     this.searchingItems=[];
+    this.searchingItems1=[];
     this.clicked=false;
   }
   getItems(ev:any) {
     console.log('getItems');
     this.isSearching=true;
+    this.isSearching1=true;
     this.initializeItems();
     let val = ev.target.value;
     this.searchInput=val;
@@ -80,14 +91,19 @@ searchingItems=[];
         this.searchingItems = this.searchingItems.filter((i) => {
         return (i.start_time.indexOf(val) > -1);
       })
+      this.searchingItems1 = this.searchingItems1.filter((i) => {
+        return (i.start_time.indexOf(val) > -1);
+      })
     } 
   }
   initializeItems(){
     this.searchingItems = this.pages;
+    this.searchingItems1=this.cars;
   }
 
   ngOnInit() {
-    this.getPages();  
+    this.getPages();
+    this.getCars();
   }
 
  //获取房间订单信息
@@ -102,6 +118,19 @@ searchingItems=[];
         }
       })
       .catch((error) => {error => console.log(error)})  
+  }
+//获取车辆订单信息
+  getCars():void{
+    this.contactService.listOnePageCar(this.q)
+    .then(resp => {
+      if (resp.error) {
+        console.log(resp.error)
+      } else {
+        this.pages = resp.data; 
+        console.log(this.pages);
+      }
+    })
+    .catch((error) => {error => console.log(error)}) 
   }
   
 //取消预定

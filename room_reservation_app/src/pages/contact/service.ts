@@ -11,10 +11,16 @@ export class ContactService {
 
   layout_url = baseUrl + "room_layouts";
   url = baseUrl + "room_order_info";
+  car_url = baseUrl + "car_order";
     listOnePage(q) {
         return this.http.get(this.url, getTokenOptions(q))
                    .toPromise().then(res => {return res.json()})           
     }
+
+    listOnePageCar(q) {
+      return this.http.get(this.car_url, getTokenOptions(q))
+                 .toPromise().then(res => {return res.json()})           
+  }
 
 getAllRoomLayouts() {
     return this.http.get(this.layout_url, getTokenOptions(null))

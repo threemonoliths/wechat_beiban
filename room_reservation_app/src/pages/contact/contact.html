@@ -107,6 +107,64 @@
 <!-- 用车订单页面 -->
      <div *ngSwitchCase="'cars'">
   
+     <!-- 搜索后显示 -->
+<div *ngIf="isSearching1">
+    <div *ngFor="let i of searchingItems1">
+        <p class="orderdate" > <span>预订日期：</span> </p>
+  <ion-card>
+      <ion-card-content >
+          <ion-card-title>
+            <ion-icon class="home" name="home"  ></ion-icon><span class="cardtitle">预订信息</span>
+          </ion-card-title>
+        <ion-row no-padding>
+          <ion-col text-left >
+            <p>{{i.orderDate} 入住</p>
+            <p>{{i.kind}租用</p>
+          </ion-col>
+          <ion-col text-right >
+            <p>{{i.status?"已预订":"已退订"}}</p>
+          </ion-col>
+        </ion-row>
+        <ion-item>
+            <button ion-button icon-start  item-right 
+            (click)="cancelOrder(i)" [disabled]="!i.status" outline >
+              取消预订
+            </button>
+            </ion-item>
+      </ion-card-content>
+    </ion-card>
+  </div>
+  </div>
+<!-- 不搜索显示 -->
+<div *ngIf="!isSearching1" >
+  <div *ngFor="let i of cars">
+    <p class="orderdate" > <span>预订日期：</span> </p>
+  <ion-card>
+      <ion-card-content >
+          <ion-card-title>
+            <ion-icon class="home" name="home"  ></ion-icon><span class="cardtitle">预订信息</span>
+          </ion-card-title>
+        <ion-row no-padding>
+          <ion-col text-left >
+            <p>{{i.orderDate} 入住</p>
+            <p>{{i.kind}租用</p>
+          </ion-col>
+          <ion-col text-right >
+            <p>{{i.status?"已预订":"已退订"}}</p>
+          </ion-col>
+        </ion-row>
+        <ion-item>
+            <button ion-button icon-start  item-right 
+            (click)="cancelOrder(i)" [disabled]="!i.status" outline >
+              取消预订
+            </button>
+            </ion-item>
+      </ion-card-content>
+    </ion-card>
+        </div>
+    
+  </div>
+  <h2 style=text-align:center>没有更多订单了</h2>
      </div>
 </div>
 
