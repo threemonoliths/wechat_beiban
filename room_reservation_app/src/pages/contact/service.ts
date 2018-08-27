@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import{ contactpages} from './contactpage';
 import { Http, URLSearchParams, RequestOptions, Headers, ResponseContentType } from '@angular/http';
 import { baseUrl, getTokenOptions } from '../../shared/shared';
 

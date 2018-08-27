@@ -22,8 +22,6 @@ export class CarPage {
     private srv: CarService
   ) {
     this.form = this.formBuilder.group({
-      title: ['', Validators.required],
-      description: [''],
       orderDate: [null, Validators.required],
       kind: [null, Validators.required]
     });
@@ -35,10 +33,12 @@ export class CarPage {
   }
 
   logForm(){
+    
     console.log(this.form.value)
   }
 
   _submitForm(){
+    console.log(this.form);
     if (this.form.invalid) {
       this.showError();
       return

@@ -11,7 +11,6 @@ import { RestApiProvider } from '../../providers/rest-api/rest-api';
 export class ContactPage implements OnInit {
   
   pages: any[];
-  // cancelOrderInfo : any = null;
   roomLayouts: any[] = [];//房型
 
   valid:boolean=false;//有效订单

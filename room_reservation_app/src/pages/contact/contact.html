@@ -42,7 +42,7 @@
 <!-- 搜索后显示 -->
 <div *ngIf="isSearching">
     <div *ngFor="let i of searchingItems">
-        <p class="orderdate" > <span>预订日期：</span>{{i.start_time}} </p>
+        <p class="orderdate" > <span>预订日期：</span>{{i.inserted_at}}</p>
 <ion-card  >
     <ion-card-content>
         <ion-card-title>
@@ -53,7 +53,7 @@
           <p>{{i.start_time}}入住</p>
           <p>预定天数：{{i.days+ "天"}}</p>
           <p>房间数：{{i.rooms+ "间"}}</p>
-          <p>房型：{{i.layout}}</p>
+          <p>房型：{{i.layout.layout}}</p>
         </ion-col>
         <ion-col text-right >
           <p>{{i.status?"已预订":"已退订"}}</p>
@@ -72,7 +72,7 @@
 <!-- 不搜索显示 -->
 <div *ngIf="!isSearching" >
   <div *ngFor="let i of pages">
-    <p class="orderdate" > <span>预订日期：</span>{{i.start_time}} </p>
+    <p class="orderdate" > <span>预订日期：</span>{{i.inserted_at}} </p>
   <ion-card>
       <ion-card-content >
           <ion-card-title>
@@ -83,7 +83,7 @@
             <p>{{i.start_time}} 入住</p>
             <p>预定天数：{{i.days+ "天"}}</p>
             <p>房间数：{{i.rooms+ "间"}}</p>
-            <p>房型：{{i.layout}}</p>
+            <p>房型：{{i.layout.layout}}</p>
           </ion-col>
           <ion-col text-right >
             <p>{{i.status?"已预订":"已退订"}}</p>

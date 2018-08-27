@@ -17,8 +17,6 @@ export class HomePage implements OnInit {
   selected:boolean;
   //房型列表数据
   roomLayouts: any[] = [];
-  type:any="";
-  roomtypes:any;
 
   //日期空间时间范围
   minDate: string = "";
