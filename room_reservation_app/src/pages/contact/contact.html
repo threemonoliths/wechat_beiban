@@ -5,7 +5,7 @@
     </ion-title>
   </ion-navbar>
   <!-- 搜索栏 -->
-<ion-toolbar class="tool">
+<ion-toolbar mode='ios'>
   <ion-item *ngIf="!clicked">
     <ion-checkbox [(ngModel)]="valid" mode='ios' item-start
     (ionChange)="updateValid($event)" value="true" small
@@ -22,7 +22,7 @@
     </ion-searchbar>
 </ion-toolbar>
 <!-- 导航 -->
-  <ion-toolbar no-border-top>
+  <ion-toolbar no-border-top mode='ios'> 
     <ion-segment [(ngModel)]="order">
       <ion-segment-button value="rooms">
         房间订单
@@ -46,7 +46,7 @@
 <ion-card  >
     <ion-card-content>
         <ion-card-title>
-          <ion-icon class="home" name="home"  ></ion-icon>预订信息
+          <ion-icon class="home" name="home"  ></ion-icon><span class="cardtitle">预订信息</span>
         </ion-card-title>
       <ion-row no-padding>
         <ion-col text-left >

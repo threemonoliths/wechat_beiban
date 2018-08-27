@@ -10,22 +10,25 @@ page-contact {
         margin-left:10px;
         padding-left:10px;
        }
- .home{ color: aliceblue;
+ .home{ 
+    color: aliceblue;
     background-color: lightskyblue;
-    border-radius:5px/5px;
+    border-radius:45%;
     padding: 3px;
     margin-right: 5px;
     font-size:2px;
  }
- p{
-    color: darkgray;
- }
 .cardtitle{
     font-size: 18px;
 }
+.cardcontent{
+    color:blueviolet ;
+    font-size: 1.0em;
+}
 
-.tool{
+ion-toolbar{
     background-color: lightblue;
+    height:20px;
 }
 
 }
