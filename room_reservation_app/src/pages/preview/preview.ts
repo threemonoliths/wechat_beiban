@@ -49,7 +49,7 @@ export class PreviewPage implements OnInit {
   }
 
   book(i) {
-    console.log(i.id)
+    this.tabSrv.selectedId = i.id;
     var t: Tabs = this.navCtrl.parent;
     t.select(0);
   }
