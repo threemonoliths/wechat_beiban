@@ -20,8 +20,14 @@ export class RestApiProvider {
     console.log('Hello RestApiProvider Provider');
   }
 
-  getPages(page): Observable<string[]> {
-    return this.http.get(this.apiUrl+"pages?page="+page)
+  getRooms(page): Observable<string[]> {
+    return this.http.get(this.apiUrl+"rooms?page="+page)
+                  .map(this.extractData)
+                  .catch(this.handleError);
+}
+
+  getCars(page): Observable<string[]> {
+    return this.http.get(this.apiUrl+"cars?page="+page)
                     .map(this.extractData)
                     .catch(this.handleError);
   }

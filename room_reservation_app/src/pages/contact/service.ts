@@ -11,36 +11,41 @@ export class ContactService {
 
   layout_url = baseUrl + "room_layouts";
   url = baseUrl + "room_order_info";
-  car_url = baseUrl + "car_order";
-    listOnePage(q) {
-        return this.http.get(this.url, getTokenOptions(q))
-                   .toPromise().then(res => {return res.json()})           
-    }
+  car_url = baseUrl + "car_orders";
 
-    listOnePageCar(q) {
-      return this.http.get(this.car_url, getTokenOptions(q))
-                 .toPromise().then(res => {return res.json()})           
+  listOnePage(q) {
+    return this.http.get(this.url, getTokenOptions(q))
+    .toPromise().then(res => {return res.json()})           
   }
 
-getAllRoomLayouts() {
+  listOnePageCar(q) {
+    return this.http.get(this.car_url, getTokenOptions(q))
+     .toPromise().then(res => {return res.json()})           
+  }
+
+  getAllRoomLayouts() {
     return this.http.get(this.layout_url, getTokenOptions(null))
-      .toPromise().then(res => {return res.json()})   
+    .toPromise().then(res => {return res.json()})   
   }
 
-    cancelOrder(i) {
-      let v = {room_order_info: null};
-      // v.id = i.id;
-      v.room_order_info = { status: false}
-      return this.http.put(this.url + `/${i.id}`, v, getTokenOptions(null))
-        .map(response => response.json()).toPromise(); 
+  cancelOrder(i) {
+    let v = {room_order_info: null};
+    v.room_order_info = { status: false}
+    return this.http.put(this.url + `/${i.id}`, v, getTokenOptions(null))
+    .map(response => response.json()).toPromise(); 
+  }
 
+  cancelOrderCar(i) {
+    let v = {car_orders: null};
+    v.car_orders = { status: false}
+    return this.http.put(this.car_url + `/${i.id}`, v, getTokenOptions(null))
+    .map(response => response.json()).toPromise(); 
+  }
 
-    }
-
-    getAllRoomOrdeInfo() {
-      return this.http.get(this.url, getTokenOptions(null))
-        .toPromise().then(res => {return res.json()})   
-    }
+  getAllRoomOrdeInfo() {
+    return this.http.get(this.url, getTokenOptions(null))
+    .toPromise().then(res => {return res.json()})   
+  }
 
     
     

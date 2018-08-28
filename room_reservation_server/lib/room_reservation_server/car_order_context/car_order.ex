@@ -18,6 +18,6 @@ defmodule RoomReservationServer.CarOrderContext.CarOrder do
   def changeset(car_order, attrs) do
     car_order
     |> cast(attrs, [:orderNo, :orderDate, :kind, :carNo, :userNo, :state])
-    |> validate_required([:orderNo])
+    # |> validate_required([:orderNo])
   end
 end

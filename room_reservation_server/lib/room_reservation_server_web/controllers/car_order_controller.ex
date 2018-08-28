@@ -16,7 +16,7 @@ defmodule RoomReservationServerWeb.CarOrderController do
     layout_changeset = CarOrder.changeset(%CarOrder{}, car_order_params)
     with {:ok, %CarOrder{} = layout} <- save_create(layout_changeset) do
       conn
-      |> render("show.json", car_order_params: layout)
+      |> render("show.json", car_order: layout)
     end   
   end
 
