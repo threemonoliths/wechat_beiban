@@ -11,7 +11,7 @@ export class ContactService {
 
   layout_url = baseUrl + "room_layouts";
   url = baseUrl + "room_order_info";
-  car_url = baseUrl + "car_orders";
+  car_url = baseUrl + "car_order";
 
   listOnePage(q) {
     return this.http.get(this.url, getTokenOptions(q))
@@ -36,8 +36,8 @@ export class ContactService {
   }
 
   cancelOrderCar(i) {
-    let v = {car_orders: null};
-    v.car_orders = { status: false}
+    let v = {car_order: null};
+    v.car_order = { status: false}
     return this.http.put(this.car_url + `/${i.id}`, v, getTokenOptions(null))
     .map(response => response.json()).toPromise(); 
   }

@@ -12,7 +12,7 @@ export class CarService {
 
   constructor(private http: Http) {}
   
-  url = baseUrl + "car_orders";
+  url = baseUrl + "car_order";
 
   listOnePage(q) {
     return this.http.get(this.url, getTokenOptions(q))
@@ -21,7 +21,7 @@ export class CarService {
 
 
   createOrderInfo(v) {
-    let param = { car_orders: v} 
+    let param = { car_order: v} 
     console.log("in createorderinfo")
     console.log(param)
     return this.http.post(this.url, param, getTokenOptions(null))
