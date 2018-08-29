@@ -9,7 +9,7 @@
 
 <ion-list *ngFor="let i of data" no-lines >
   <ion-card >
-    <img src = "../../assets/imgs/room.png" >
+    <img [src] = "i.image_url" >
   </ion-card>
 
    <ion-item>
