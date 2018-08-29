@@ -10,13 +10,14 @@ export class ContactService {
   constructor(private http: Http) { }
 
   layout_url = baseUrl + "room_layouts";
-  url = baseUrl + "room_order_info";
+  room_url = baseUrl + "room_order_info";
   car_url = baseUrl + "car_order";
 
-  listOnePage(q) {
-    return this.http.get(this.url, getTokenOptions(q))
+  listOnePageRoom(q) {
+    return this.http.get(this.room_url, getTokenOptions(q))
     .toPromise().then(res => {return res.json()})           
   }
+
 
   listOnePageCar(q) {
     return this.http.get(this.car_url, getTokenOptions(q))
@@ -31,7 +32,7 @@ export class ContactService {
   cancelOrder(i) {
     let v = {room_order_info: null};
     v.room_order_info = { status: false}
-    return this.http.put(this.url + `/${i.id}`, v, getTokenOptions(null))
+    return this.http.put(this.room_url + `/${i.id}`, v, getTokenOptions(null))
     .map(response => response.json()).toPromise(); 
   }
 
@@ -43,7 +44,7 @@ export class ContactService {
   }
 
   getAllRoomOrdeInfo() {
-    return this.http.get(this.url, getTokenOptions(null))
+    return this.http.get(this.room_url, getTokenOptions(null))
     .toPromise().then(res => {return res.json()})   
   }
 

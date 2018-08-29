@@ -22,6 +22,7 @@ defmodule RoomReservationServer.RoomOrderInfoContext do
     RoomOrderInfo
     |> query_equal(params, "layout_id")
     |> query_equal(params, "user_id")
+    |> query_equal(params, "status")
     |> query_order_by(params, "inserted_at")
     |> query_preload([:layout, :user])
     |> get_pagination(params)
