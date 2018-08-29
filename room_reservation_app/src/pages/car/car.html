@@ -5,7 +5,9 @@
 </ion-header>
 
 <ion-content padding>
-  <img src = "../../assets/imgs/home.png">
+  <ion-card>
+  <img src = "../../assets/imgs/car.png">
+  </ion-card>
   <form nz-form [formGroup]="form" (ngSubmit)="_submitForm()">
   <ion-list>
 
@@ -18,9 +20,9 @@
     <ion-item>
       <ion-label>租用方式:</ion-label>
       <ion-select [(ngModel)]="kind" formControlName="kind" [cancelText]="'取消'" [okText]="'确定'">
-        <ion-option value="type01">单次</ion-option>
-        <ion-option value="type02">多次</ion-option>
-        <ion-option value="type03">包天</ion-option>
+        <ion-option value="单次">单次</ion-option>
+        <ion-option value="多次">多次</ion-option>
+        <ion-option value="包天">包天</ion-option>
         
       </ion-select>
     </ion-item>

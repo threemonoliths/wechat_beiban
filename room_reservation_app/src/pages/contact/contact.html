@@ -74,7 +74,7 @@
   <!-- 用车订单页面 -->
   <div *ngSwitchCase="'cars'">
       <div *ngFor="let i of cars">
-        <p class="orderdate" > <span>预订日期：</span>{{i.orderDate}}</p>
+        <p class="orderdate" > <span>预订日期：</span>{{i.inserted_at}}</p>
         <ion-card>
             <ion-card-title>
               <ion-icon class="car" name="car" ></ion-icon><span class="cardtitle">预订信息</span>
@@ -82,16 +82,17 @@
             <div class="cardcontent" >
             <ion-row no-padding>
               <ion-col text-left >
+                <p>NO. {{i.id}}</p>
                 <p>{{i.orderDate}} 入住</p>
                 <p>{{i.kind}}租用</p>
               </ion-col>
               <ion-col text-right >
-                <p>{{i.status?"已预订":"已退订"}}</p>
+                <p>{{i.state=="t"?"已预订":"已退订"}}</p>
               </ion-col>
             </ion-row>
             <ion-item>
               <button ion-button icon-start  item-right 
-                (click)="cancelOrderCar(i)" [disabled]="!i.status" outline >
+                (click)="cancelOrderCar(i)" [disabled]="i.state=='f'" outline >
                 取消预订
               </button>
             </ion-item>

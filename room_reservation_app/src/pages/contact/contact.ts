@@ -46,12 +46,15 @@ export class ContactPage implements OnInit {
     console.log('Valid new state:' + this.valid);
     if(this.valid==true){
       
-      this.q.status=true
+      this.q.status=true;
+      this.q.state="t";
     }
     else{
       delete this.q.status;
+      delete this.q.state;
     }
     this.getRooms();
+    this.getCars();
   }
 
   ngOnInit() {
@@ -133,7 +136,7 @@ export class ContactPage implements OnInit {
             console.log('Cancle clicked');
             console.log(i)
             this.contactService.cancelOrderCar(i).then(resp => console.log(resp))
-            i.status=false;
+            i.state="f";
             this.showOK() ;
           }
         },

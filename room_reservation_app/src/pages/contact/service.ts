@@ -38,7 +38,7 @@ export class ContactService {
 
   cancelOrderCar(i) {
     let v = {car_order: null};
-    v.car_order = { status: false}
+    v.car_order = { state:"f"}
     return this.http.put(this.car_url + `/${i.id}`, v, getTokenOptions(null))
     .map(response => response.json()).toPromise(); 
   }
