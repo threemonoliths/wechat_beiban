@@ -1,6 +1,7 @@
 defmodule RoomReservationServerWeb.CarOrderView do
   use RoomReservationServerWeb, :view
   alias RoomReservationServerWeb.CarOrderView
+  alias RoomReservationServerWeb.Utils.DateHandler
 
   def render("index.json", %{page: page}) do
     %{
@@ -23,6 +24,7 @@ defmodule RoomReservationServerWeb.CarOrderView do
       kind: car_order.kind,
       carNo: car_order.carNo,
       userNo: car_order.userNo,
+      inserted_at: car_order.inserted_at |> DateHandler.get_date_str,
       state: car_order.state}
   end
 end
