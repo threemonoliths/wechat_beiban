@@ -20,13 +20,6 @@ export class ContactPage implements OnInit {
     page_size: 3,
     sort_field: "inserted_at",
     sort_direction: "desc",
-    //status:true||false,
-  };
-  p: any = {             //排序按照预订日期排序
-    page_index: 1,
-    page_size: 3,
-    sort_field: "inserted_at",
-    sort_direction: "desc",
   };
 
   order: string = "rooms";//导航
@@ -47,28 +40,19 @@ export class ContactPage implements OnInit {
     this.isAndroid = platform.is('android');
   }
 
-
- 
   //有效订单
   updateValid(){
+    this.initSearch();
     console.log('Valid new state:' + this.valid);
     if(this.valid==true){
+      
       this.q.status=true
     }
     else{
-      this.q=this.p
+      delete this.q.status;
     }
     this.getRooms();
-    //this.rooms = this.rooms.filter((i) => {
-    //return (i.status==true);
-      //})
-    //this.cars = this.cars.filter((i) => {
-    //return (i.status==true);
-    //})
-   // }
   }
-
-
 
   ngOnInit() {
     this.getRooms();
@@ -77,6 +61,7 @@ export class ContactPage implements OnInit {
 
   //获取房间订单信息
   getRooms() {  
+      console.log(this.q)
       this.contactService.listOnePageRoom(this.q)
       .then(resp => {
         if (resp.error) {
@@ -84,44 +69,25 @@ export class ContactPage implements OnInit {
         } else {
           this.rooms = resp.data; 
           this.totalPage = resp.total_pages;
+          console.log(this.rooms)
         }
       })
       .catch((error) => {error => console.log(error)})
-      this.restApi.getRooms(this.page)
-      .subscribe(
-        res => {
-          this.data = res;
-          this.rooms = this.data.data;
-          this.perPage = this.data.per_page;
-          this.totalData = this.data.total;
-          this.totalPage = this.data.total_pages;
-        },
-        error =>  this.errorMessage = <any>error); 
   }
   //获取车辆订单信息
   getCars(){
     this.contactService.listOnePageCar(this.q)
     .then(resp => {
       if (resp.error) {
-        console.log(resp.error)
+        // console.log(resp.error)
       } else {
         this.cars = resp.data; 
         this.totalPage = resp.total_pages;
-        console.log(resp)
-        console.log(this.cars);
+        // console.log(resp)
+        // console.log(this.cars);
       }
     })
     .catch((error) => {error => console.log(error)}) 
-    this.restApi.getCars(this.page)
-    .subscribe(
-      res => {
-        this.data = res;
-        this.cars = this.data.data;
-        this.perPage = this.data.per_page;
-        this.totalData = this.data.total;
-        this.totalPage = this.data.total_pages;
-      },
-      error =>  this.errorMessage = <any>error);
   }
   
   //取消预定
@@ -203,15 +169,38 @@ export class ContactPage implements OnInit {
       })
       .catch((error) => {error => console.log(error)})  
     infiniteScroll.complete();
+    this.contactService.listOnePageCar(this.q)
+      .then(resp => {
+        if (resp.error) {
+          console.log(resp.error)
+        } else {
+          let data = resp.data; 
+          for(let i=0; i< data.length; i++) {
+            this.cars.push(data[i]);
+          }
+          console.log(resp)
+          console.log(this.cars);
+        }
+      })
+      .catch((error) => {error => console.log(error)})  
+    infiniteScroll.complete();
   }
 
   ionViewDidEnter(){
     console.log("refreshing data...")
     this.rooms = null;
     this.cars=null;
+    this.valid=false;
     this.q.page_index = 1;
     this.totalPage = 1;
     this.getRooms();
     this.getCars();
+  }
+
+  initSearch(){
+    this.rooms = null;
+    this.cars=null;
+    this.q.page_index = 1;
+    this.totalPage = 1;
   }
 }

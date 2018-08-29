@@ -15,6 +15,7 @@ page-contact {
     background-color: lightskyblue;
     border-radius:45%;
     padding: 3px;
+    margin-left: 8px;
     margin-right: 5px;
     font-size:2px;
  }
@@ -23,21 +24,16 @@ page-contact {
     background-color: orange;
     border-radius:42%;
     padding: 3px;
+    margin-left: 8px;
     margin-right: 6px;
     font-size:2px;
  }
 
-.cardtitle{
+.cardtitle{//卡头
     font-size: 18px;
 }
-.cardcontent{
-    color:blueviolet ;
-    font-size: 1.0em;
-}
-
-ion-toolbar{
-    background-color: lightblue;
-    height:20px;
+.cardcontent{//卡片内部格式
+    margin-left: 23px;
 }
 
 }
