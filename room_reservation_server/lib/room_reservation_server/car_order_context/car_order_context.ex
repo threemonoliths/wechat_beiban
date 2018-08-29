@@ -18,6 +18,7 @@ defmodule RoomReservationServer.CarOrderContext do
   def page(params) do 
     CarOrder
     |> query_like(params, "carNo")
+    |> query_equal(params, "state")
     |> query_order_by(params, "inserted_at")
     |> get_pagination(params)
   end
