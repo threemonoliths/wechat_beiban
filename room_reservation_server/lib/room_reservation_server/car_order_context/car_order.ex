@@ -8,7 +8,7 @@ defmodule RoomReservationServer.CarOrderContext.CarOrder do
     field :kind, :string
     field :orderDate, :date
     field :orderNo, :string
-    field :state, :string
+    field :state, :string, default: "t"
     field :userNo, :string
 
     timestamps()
