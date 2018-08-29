@@ -55,6 +55,7 @@ export class ContactPage implements OnInit {
     }
     this.getRooms();
     this.getCars();
+    console.log(this.cars)
   }
 
   ngOnInit() {
@@ -64,7 +65,6 @@ export class ContactPage implements OnInit {
 
   //获取房间订单信息
   getRooms() {  
-      console.log(this.q)
       this.contactService.listOnePageRoom(this.q)
       .then(resp => {
         if (resp.error) {
@@ -86,8 +86,7 @@ export class ContactPage implements OnInit {
       } else {
         this.cars = resp.data; 
         this.totalPage = resp.total_pages;
-        // console.log(resp)
-        // console.log(this.cars);
+        console.log(this.cars);
       }
     })
     .catch((error) => {error => console.log(error)}) 
