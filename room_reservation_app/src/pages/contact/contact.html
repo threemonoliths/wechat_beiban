@@ -36,12 +36,11 @@
           <p class="orderdate" > <span>预订日期：</span>{{i.inserted_at}} </p>
           <ion-card>
               <ion-card-title>
-                <ion-icon class="home" name="home"  ></ion-icon><span class="cardtitle">预订信息</span>
+                <ion-icon class="home" name="home"  ></ion-icon><span class="cardtitle">{{i.layout.layout}}</span>
               </ion-card-title>
               <div class="cardcontent" >
             <ion-row no-padding>
               <ion-col text-left >
-                <p>NO. {{i.id}}</p>
                 <p>{{i.start_time}} 入住</p>
                 <p>预定天数：{{i.days+ "天"}}</p>
                 <p>房间数：{{i.rooms+ "间"}}</p>
@@ -59,8 +58,8 @@
               </ion-item>
             </div>
           </ion-card>
-      <h2 style=text-align:center *ngIf="q.page_index > totalPage">没有更多订单了</h2>
       </div>
+      <h2 style=text-align:center>没有更多订单了</h2>
       <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="q.page_index <= totalPage">
           <ion-infinite-scroll-content
           loadingSpinner="bubbles"
@@ -76,14 +75,13 @@
           <p class="orderdate" > <span>预订日期：</span>{{i.inserted_at}}</p>
           <ion-card>
               <ion-card-title>
-                <ion-icon class="car" name="car" ></ion-icon><span class="cardtitle">预订信息</span>
+                <ion-icon class="car" name="car" ></ion-icon><span class="cardtitle">{{i.kind}}</span>
               </ion-card-title>
               <div class="cardcontent" >
               <ion-row no-padding>
                 <ion-col text-left >
-                  <p>NO. {{i.id}}</p>
-                  <p>{{i.orderDate}} 入住</p>
-                  <p>{{i.kind}}租用</p>
+                  <p>{{i.orderDate}} 使用</p>
+                  <p>{{i.kind}}用车</p>
                 </ion-col>
                 <ion-col text-right >
                   <p>{{i.state=="t"?"已预订":"已退订"}}</p>
@@ -97,9 +95,8 @@
               </ion-item>
             </div>
           </ion-card>
-        
-      <h2 style=text-align:center>没有更多订单了</h2>
     </div>
+    <h2 style=text-align:center>没有更多订单了</h2>
     <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="q.page_index <= totalPage">
         <ion-infinite-scroll-content
         loadingSpinner="bubbles"

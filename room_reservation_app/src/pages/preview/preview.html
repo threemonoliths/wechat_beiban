@@ -11,16 +11,16 @@
   <ion-card >
     <img [src] = "i.image_url" >
   </ion-card>
-
-   <ion-item>
+  <ion-item>
       <h3 ion-text class="roomtype" style="color:darkred">{{i.layout}} · {{ i.breakfast? "含":"不含"}}早餐</h3>
       <p padding-right="20px" ><ion-icon name="logo-yen" item-start small></ion-icon>{{ i.price_01}} 每晚</p>
+      <p padding-right="20px" *ngIf="i.price_01<i.price_02" ><ion-icon name="logo-yen" item-start small></ion-icon>{{ i.price_02}} 双人入住每晚</p>
+      <p padding-right="20px" *ngIf="i.price_01>i.price_02&&i.price_02!=Null" ><ion-icon name="logo-yen" item-start small></ion-icon>{{ i.price_02}} 单人拼房每晚</p>
       <button ion-button icon-start clear item-end (click)="book(i)" [navPush]="pushPage" [navParams]="params" small >
           <ion-icon name="create"></ion-icon>
             预订
         </button>
-    </ion-item>
-
+</ion-item>
 </ion-list>
      
 </ion-content>

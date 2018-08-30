@@ -19,10 +19,14 @@
 
     <ion-item>
       <ion-label>租用方式:</ion-label>
-      <ion-select [(ngModel)]="kind" formControlName="kind" [cancelText]="'取消'" [okText]="'确定'">
-        <ion-option value="单次">单次</ion-option>
-        <ion-option value="多次">多次</ion-option>
-        <ion-option value="包天">包天</ion-option>
+      <ion-select  formControlName="kind" [(ngModel)]="kind" interface="action-sheet" [cancelText]="'取消'" mode='ios'>
+        <ion-option value="北京南站单次">北京南站单次（150元）</ion-option>
+        <ion-option value="北京站单次">北京站单次（150元）</ion-option>
+        <ion-option value="首都机场">首都机场单次（300元）</ion-option>
+        <ion-option value="南苑机场">南苑机场单次（250元）</ion-option>
+        <ion-option value="半日">半日用车（400元）</ion-option>
+        <ion-option value="全日">全日用车（800元）</ion-option>
+        <ion-option value="协商">其他地点具体协商</ion-option>
         
       </ion-select>
     </ion-item>
