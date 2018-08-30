@@ -1,67 +1,105 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>
-      全部订单
-    </ion-title>
-  </ion-navbar>
-<!-- 有效订单选项 -->
-  <ion-toolbar mode='ios'>
-    <ion-item>
-      <ion-checkbox [(ngModel)]="valid" mode='ios' item-start
-        (ionChange)="updateValid($event)" value="true" small>
-      </ion-checkbox>
-      <ion-label ><span class="validorder">有效订单</span></ion-label>
-    </ion-item>
-  </ion-toolbar>
-      
-<!-- 导航 -->
-  <ion-toolbar no-border-top mode='ios'> 
-    <ion-segment [(ngModel)]="order">
-      <ion-segment-button value="rooms">
-        房间订单
-      </ion-segment-button>
-      <ion-segment-button value="cars">
-        用车订单
-      </ion-segment-button>
-    </ion-segment>
-  </ion-toolbar>
-</ion-header>
+  <ion-header>
+    <ion-navbar>
+      <ion-title>
+        全部订单
+      </ion-title>
+    </ion-navbar>
+  <!-- 有效订单选项 -->
+    <ion-toolbar mode='ios'>
+      <ion-item>
+        <ion-checkbox [(ngModel)]="valid" mode='ios' item-start
+          (ionChange)="updateValid($event)" value="true" small>
+        </ion-checkbox>
+        <ion-label ><span class="validorder">有效订单</span></ion-label>
+      </ion-item>
+    </ion-toolbar>
+        
+  <!-- 导航 -->
+    <ion-toolbar no-border-top mode='ios'> 
+      <ion-segment [(ngModel)]="order">
+        <ion-segment-button value="rooms">
+          房间订单
+        </ion-segment-button>
+        <ion-segment-button value="cars">
+          用车订单
+        </ion-segment-button>
+      </ion-segment>
+    </ion-toolbar>
+  </ion-header>
 
-<ion-content ng-controller="myCtrl">
-  <div [ngSwitch]="order">
+  <ion-content ng-controller="myCtrl">
+    <div [ngSwitch]="order">
 
-  <!-- 房间订单页面 -->
-  <div *ngSwitchCase="'rooms'" >
-      <div *ngFor="let i of rooms">
-        <p class="orderdate" > <span>预订日期：</span>{{i.inserted_at}} </p>
-        <ion-card>
-            <ion-card-title>
-              <ion-icon class="home" name="home"  ></ion-icon><span class="cardtitle">预订信息</span>
-            </ion-card-title>
-            <div class="cardcontent" >
-          <ion-row no-padding>
-            <ion-col text-left >
-              <p>NO. {{i.id}}</p>
-              <p>{{i.start_time}} 入住</p>
-              <p>预定天数：{{i.days+ "天"}}</p>
-              <p>房间数：{{i.rooms+ "间"}}</p>
-              <!-- <p>房型：{{i.layout.layout}}</p> -->
-            </ion-col>
-            <ion-col text-right >
-              <p>{{i.status?"已预订":"已退订"}}</p>
-            </ion-col>
-          </ion-row>
-          <ion-item>
-              <button ion-button icon-start  item-right 
-                (click)="cancelOrder(i)" [disabled]="!i.status" outline >
-                取消预订
-              </button>
-            </ion-item>
-          </div>
-        </ion-card>
+    <!-- 房间订单页面 -->
+    <div *ngSwitchCase="'rooms'" >
+        <div *ngFor="let i of rooms">
+          <p class="orderdate" > <span>预订日期：</span>{{i.inserted_at}} </p>
+          <ion-card>
+              <ion-card-title>
+                <ion-icon class="home" name="home"  ></ion-icon><span class="cardtitle">预订信息</span>
+              </ion-card-title>
+              <div class="cardcontent" >
+            <ion-row no-padding>
+              <ion-col text-left >
+                <p>NO. {{i.id}}</p>
+                <p>{{i.start_time}} 入住</p>
+                <p>预定天数：{{i.days+ "天"}}</p>
+                <p>房间数：{{i.rooms+ "间"}}</p>
+                <!-- <p>房型：{{i.layout.layout}}</p> -->
+              </ion-col>
+              <ion-col text-right >
+                <p>{{i.status?"已预订":"已退订"}}</p>
+              </ion-col>
+            </ion-row>
+            <ion-item>
+                <button ion-button icon-start  item-right 
+                  (click)="cancelOrder(i)" [disabled]="!i.status" outline >
+                  取消预订
+                </button>
+              </ion-item>
+            </div>
+          </ion-card>
+      <h2 style=text-align:center *ngIf="q.page_index > totalPage">没有更多订单了</h2>
       </div>
-    <h2 style=text-align:center *ngIf="q.page_index > totalPage">没有更多订单了</h2>
+      <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="q.page_index <= totalPage">
+          <ion-infinite-scroll-content
+          loadingSpinner="bubbles"
+          loadingText="正在玩命加载中...">
+        </ion-infinite-scroll-content>
+      </ion-infinite-scroll>
+    </div>
+        
 
+    <!-- 用车订单页面 -->
+    <div *ngSwitchCase="'cars'">
+        <div *ngFor="let i of cars">
+          <p class="orderdate" > <span>预订日期：</span>{{i.inserted_at}}</p>
+          <ion-card>
+              <ion-card-title>
+                <ion-icon class="car" name="car" ></ion-icon><span class="cardtitle">预订信息</span>
+              </ion-card-title>
+              <div class="cardcontent" >
+              <ion-row no-padding>
+                <ion-col text-left >
+                  <p>NO. {{i.id}}</p>
+                  <p>{{i.orderDate}} 入住</p>
+                  <p>{{i.kind}}租用</p>
+                </ion-col>
+                <ion-col text-right >
+                  <p>{{i.state=="t"?"已预订":"已退订"}}</p>
+                </ion-col>
+              </ion-row>
+              <ion-item>
+                <button ion-button icon-start  item-right 
+                  (click)="cancelOrderCar(i)" [disabled]="i.state=='f'" outline >
+                  取消预订
+                </button>
+              </ion-item>
+            </div>
+          </ion-card>
+        
+      <h2 style=text-align:center>没有更多订单了</h2>
+    </div>
     <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="q.page_index <= totalPage">
         <ion-infinite-scroll-content
         loadingSpinner="bubbles"
@@ -69,44 +107,6 @@
       </ion-infinite-scroll-content>
     </ion-infinite-scroll>
   </div>
-      
-
-  <!-- 用车订单页面 -->
-  <div *ngSwitchCase="'cars'">
-      <div *ngFor="let i of cars">
-        <p class="orderdate" > <span>预订日期：</span>{{i.inserted_at}}</p>
-        <ion-card>
-            <ion-card-title>
-              <ion-icon class="car" name="car" ></ion-icon><span class="cardtitle">预订信息</span>
-            </ion-card-title>
-            <div class="cardcontent" >
-            <ion-row no-padding>
-              <ion-col text-left >
-                <p>NO. {{i.id}}</p>
-                <p>{{i.orderDate}} 入住</p>
-                <p>{{i.kind}}租用</p>
-              </ion-col>
-              <ion-col text-right >
-                <p>{{i.state=="t"?"已预订":"已退订"}}</p>
-              </ion-col>
-            </ion-row>
-            <ion-item>
-              <button ion-button icon-start  item-right 
-                (click)="cancelOrderCar(i)" [disabled]="i.state=='f'" outline >
-                取消预订
-              </button>
-            </ion-item>
-          </div>
-        </ion-card>
-      </div>
-    <h2 style=text-align:center>没有更多订单了</h2>
   </div>
-  <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="q.page_index <= totalPage">
-      <ion-infinite-scroll-content
-      loadingSpinner="bubbles"
-      loadingText="正在玩命加载中...">
-    </ion-infinite-scroll-content>
-  </ion-infinite-scroll>
-</div>
 
-</ion-content>
+  </ion-content>
