@@ -8,9 +8,28 @@
 <ion-content padding>
 
 <ion-list *ngFor="let i of data" no-lines >
-  <ion-card >
-    <img [src] = "i.image_url" >
-  </ion-card>
+    <ion-card>
+        <ion-slides pager style="background-color: rgb(237, 242, 248)">
+            <ion-slide >
+         <img [src] = "i.image_url" 
+            </ion-slide>
+            <ion-slide *ngIf="i.breakfast==true">
+              <h2 style="margin-top:10px">客饭标准</h2>
+              <p>早餐免费、中餐或晚餐20元/位</p>
+              <p>请提前半天在总台预定，以便食堂为您安排就餐。</p>
+            <hr>
+            <h2>用餐时间</h2>
+            <p>早餐：7:30-8:00</p>
+              <p>中餐：11:30-12:00</p>
+              <p>晚餐：17:30-18:00</p>
+            </ion-slide>
+          <ion-slide *ngIf="i.breakfast==false">
+              <h2 style="margin-top:10px">订房须知</h2>
+              <p>房间不得增加人数</p>
+              <p>如10岁以下儿童增加40元/人</p>
+          </ion-slide>
+      </ion-slides>
+    </ion-card>
   <ion-item>
       <h3 ion-text class="roomtype" style="color:darkred">{{i.layout}} · {{ i.breakfast? "含":"不含"}}早餐</h3>      
       <p padding-right="20px" *ngIf="i.price_01<i.price_02"><ion-icon name="logo-yen" item-start small></ion-icon>{{ i.price_01}} 单人入住 · 每晚</p>
