@@ -50,8 +50,9 @@ export class PreviewPage implements OnInit {
 
   book(i) {
     this.tabSrv.selectedId = i.id;
-    var t: Tabs = this.navCtrl.parent;
-    t.select(0);
+    //var t: Tabs = this.navCtrl.parent;
+   // t.select(0);
+   this.navCtrl.push(HomePage);
   }
   
 

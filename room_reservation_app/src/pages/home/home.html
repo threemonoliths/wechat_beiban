@@ -1,53 +1,72 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>预订信息</ion-title>
-  </ion-navbar>
-</ion-header>
+  <ion-header>
+    <ion-navbar>
+      <ion-title>预订信息</ion-title>
+    </ion-navbar>
+  </ion-header>
 
 
 
-  <ion-content padding>
-    <ion-card>
-    <img src = "../../assets/imgs/room.png">
-    </ion-card>
-    <form nz-form [formGroup]="form" (ngSubmit)="_submitForm()">
-    <ion-list>
+    <ion-content padding>
+      <ion-card>
+      <img src = "../../assets/imgs/room.png">
+      </ion-card>
+      <form nz-form [formGroup]="form" (ngSubmit)="_submitForm()">
+      <ion-list>
 
-      <ion-item>
-          <ion-label>入住日期:</ion-label>
-          <ion-datetime displayFormat="YYYY MM DD" formControlName="start_time"  [cancelText]="'取消'" [doneText]="'确定'" [min]="minDate" [max]="maxDate"></ion-datetime>
-      </ion-item>
+        <ion-item>
+            <ion-label>入住日期:</ion-label>
+            <ion-datetime displayFormat="YYYY MM DD" formControlName="start_time"  [cancelText]="'取消'" [doneText]="'确定'" [min]="minDate" [max]="maxDate"></ion-datetime>
+        </ion-item>
 
-      <ion-item>
-        <ion-label>房间类型:</ion-label>
-        <ion-select formControlName="layout_id" [cancelText]="'取消'" [okText]="'确定'" [(ngModel)]="tabSrv.selectedId">
-          <ion-option *ngFor="let r of roomLayouts" [value]="r.id"  >{{ r.layout }}</ion-option>
-        </ion-select>
-      </ion-item>
+        <ion-item>
+          <ion-label>房间类型:</ion-label>
+          <ion-select formControlName="layout_id" [cancelText]="'取消'" [okText]="'确定'" [(ngModel)]="tabSrv.selectedId">
+            <ion-option *ngFor="let r of roomLayouts" [value]="r.id"  >{{ r.layout }}</ion-option>
+          </ion-select>
+        </ion-item>
 
 
-      <ion-item>
-        <ion-label>房间数:</ion-label>
-        <ion-select formControlName="rooms" [cancelText]="'取消'" [okText]="'确定'">
-          <ion-option value="1">1</ion-option>
-          <ion-option value="2">2</ion-option>
-          <ion-option value="3">3</ion-option>
-        </ion-select>
-      </ion-item>
+        <ion-item>
+          <ion-label>房间数:</ion-label>
+          <ion-select formControlName="rooms" [cancelText]="'取消'" [okText]="'确定'">
+            <ion-option value="1">1</ion-option>
+            <ion-option value="2">2</ion-option>
+            <ion-option value="3">3</ion-option>
+          </ion-select>
+        </ion-item>
 
-      <ion-item>
-        <ion-label>预订天数:</ion-label>
-        <ion-select formControlName="days" [cancelText]="'取消'" [okText]="'确定'">
-          <ion-option value="1">1</ion-option>
-          <ion-option value="2">2</ion-option>
-          <ion-option value="3">3</ion-option>
-        </ion-select>
-      </ion-item>
+        <ion-item>
+          <ion-label>预订天数:</ion-label>
+          <ion-select formControlName="days" [cancelText]="'取消'" [okText]="'确定'">
+            <ion-option value="1">1</ion-option>
+            <ion-option value="2">2</ion-option>
+            <ion-option value="3">3</ion-option>
+          </ion-select>
+        </ion-item>
 
-      <ion-item>
-        <button ion-button full>确定提交</button>
-      </ion-item>
-    </ion-list>
-    </form>
-  </ion-content>
+
+  <!-- formControlName="type" -->
+          <ion-list radio-group no-lines>
+              <ion-row no-padding>
+              <ion-col>
+          <ion-item>
+              <ion-label>出差</ion-label>
+              <ion-radio value="出差" item-start>出差</ion-radio> 
+          </ion-item>
+          </ion-col>
+          <ion-col>
+          <ion-item>
+              <ion-label>旅游</ion-label>
+              <ion-radio value="旅游" item-start>旅游</ion-radio>
+            </ion-item>
+            </ion-col>
+            </ion-row>
+          </ion-list>
+
+        <ion-item>
+          <button ion-button full>确定提交</button>
+        </ion-item>
+      </ion-list>
+      </form>
+    </ion-content>
 

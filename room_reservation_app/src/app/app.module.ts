@@ -7,7 +7,12 @@ import { PreviewPage } from '../pages/preview/preview';
 import { ContactPage } from '../pages/contact/contact';
 import { CarPage } from '../pages/car/car';
 import { HomePage } from '../pages/home/home';
+import { LoginPage } from '../pages/login/login';
 import { TabsPage } from '../pages/tabs/tabs';
+
+import { HotelPage } from '../pages/hotel/hotel';
+import { MinePage } from '../pages/mine/mine';
+
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -27,7 +32,10 @@ import { TabService } from '../pages/tabs/service';
     ContactPage,
     CarPage,
     HomePage,
-    TabsPage
+    TabsPage,
+    LoginPage,
+    HotelPage,
+    MinePage
   ],
   imports: [
     BrowserModule,
@@ -42,7 +50,10 @@ import { TabService } from '../pages/tabs/service';
     ContactPage,
     CarPage,
     HomePage,
-    TabsPage
+    TabsPage,
+    LoginPage,
+    HotelPage,
+    MinePage
   ],
   providers: [
     StatusBar,

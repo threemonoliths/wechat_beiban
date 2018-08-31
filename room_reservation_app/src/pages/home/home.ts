@@ -3,7 +3,7 @@ import { NavController,NavParams } from 'ionic-angular';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
 import { AlertController } from 'ionic-angular';
-
+import { TabsPage } from '../tabs/tabs';
 import { HomeService } from './service'; 
 import { getDate, getDateAfterThreeMonth } from '../../utils/datetime';
 import { TabService } from '../tabs/service';
@@ -13,6 +13,7 @@ import { TabService } from '../tabs/service';
 })
 export class HomePage implements OnInit {
   
+  public rootPage: any = TabsPage;
   private form : FormGroup;
   selected:boolean;
   //房型列表数据
@@ -76,6 +77,8 @@ export class HomePage implements OnInit {
       buttons: ['OK']
     });
     alert.present();
+    var t: Tabs = this.navCtrl.parent;
+    t.select(0);
   }
 
   ionViewDidEnter(){
