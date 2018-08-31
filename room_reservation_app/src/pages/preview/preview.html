@@ -11,7 +11,11 @@
     <ion-card>
         <ion-slides pager style="background-color: rgb(237, 242, 248)">
             <ion-slide >
+<<<<<<< HEAD
          <img [src] = "i.image_url" >
+=======
+              <img [src]="i.image_url"/>
+>>>>>>> e62cd8efd0a2654ef52574ada8f0955d8fc51d23
             </ion-slide>
             <ion-slide *ngIf="i.breakfast==true">
               <h2 style="margin-top:10px">客饭标准</h2>
@@ -30,17 +34,18 @@
           </ion-slide>
       </ion-slides>
     </ion-card>
-  <ion-item>
-      <h3 ion-text class="roomtype" style="color:darkred">{{i.layout}} · {{ i.breakfast? "含":"不含"}}早餐</h3>      
+    <ion-item>
+      <p ion-text class="roomtype" style="color:darkred">{{i.layout}} · {{ i.breakfast? "含":"不含"}}早餐</p>      
       <p padding-right="20px" *ngIf="i.price_01<i.price_02"><ion-icon name="logo-yen" item-start small></ion-icon>{{ i.price_01}} 单人入住 · 每晚</p>
       <p padding-right="20px" *ngIf="i.price_01>i.price_02"><ion-icon name="logo-yen" item-start small></ion-icon>{{ i.price_01}} 整套入住 · 每晚</p>
       <p padding-right="20px" *ngIf="i.price_01<i.price_02" ><ion-icon name="logo-yen" item-start small></ion-icon>{{ i.price_02}} 双人入住 · 每晚</p>
       <p padding-right="20px" *ngIf="i.price_01>i.price_02&&i.price_02!=Null" ><ion-icon name="logo-yen" item-start small></ion-icon>{{ i.price_02}} 单人拼房 · 每人</p>
       <button ion-button icon-start clear item-end (click)="book(i)" [navPush]="pushPage" [navParams]="params" small >
-          <ion-icon name="create"></ion-icon>
-            预订
-        </button>
-</ion-item>
+        <ion-icon name="create"></ion-icon>
+          预订
+      </button>
+    </ion-item>
+  <!-- </ion-card> -->
 </ion-list>
      
 </ion-content>
