@@ -51,7 +51,7 @@ config :phoenix, :stacktrace_depth, 20
 # Configure your database
 config :room_reservation_server, RoomReservationServer.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
+  username: "xycloud",
   password: "postgres",
   database: "room_reservation_server_dev",
   hostname: "localhost",

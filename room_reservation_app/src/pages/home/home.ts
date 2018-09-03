@@ -13,7 +13,6 @@ import { TabService } from '../tabs/service';
 })
 export class HomePage implements OnInit {
   
-  public rootPage: any = TabsPage;
   private form : FormGroup;
   selected:boolean;
   //房型列表数据
@@ -77,8 +76,7 @@ export class HomePage implements OnInit {
       buttons: ['OK']
     });
     alert.present();
-    var t: Tabs = this.navCtrl.parent;
-    t.select(0);
+     this.navCtrl.parent.select(1);
   }
 
   ionViewDidEnter(){
