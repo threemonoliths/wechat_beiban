@@ -8,6 +8,7 @@ import { ContactPage } from '../pages/contact/contact';
 import { CarPage } from '../pages/car/car';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
+import { NavigationPage } from '../pages/navigation/navigation';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -27,7 +28,8 @@ import { TabService } from '../pages/tabs/service';
     ContactPage,
     CarPage,
     HomePage,
-    TabsPage
+    TabsPage,
+    NavigationPage
   ],
   imports: [
     BrowserModule,
@@ -42,6 +44,7 @@ import { TabService } from '../pages/tabs/service';
     ContactPage,
     CarPage,
     HomePage,
+    NavigationPage,
     TabsPage
   ],
   providers: [

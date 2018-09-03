@@ -4,6 +4,7 @@ import { PreviewPage } from '../preview/preview';
 import { ContactPage } from '../contact/contact';
 import { HomePage } from '../home/home';
 import { CarPage } from '../car/car';
+import { NavigationPage } from '../navigation/navigation';
 
 import { TabService } from '../tabs/service';
 
@@ -17,6 +18,7 @@ export class TabsPage implements OnInit {
   tab2Root = PreviewPage;
   tab3Root = CarPage;
   tab4Root = ContactPage;
+  tab5Root = NavigationPage;
 
   // tabIndex=0;
 
