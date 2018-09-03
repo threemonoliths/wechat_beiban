@@ -24,6 +24,8 @@ import { CarService } from '../pages/car/service';
 import { RestApiProvider } from '../providers/rest-api/rest-api';
 import { HttpClientModule } from '@angular/common/http';
 import { TabService } from '../pages/tabs/service';
+import { MineService } from '../pages/mine/service';
+
 
 @NgModule({
   declarations: [
@@ -60,7 +62,7 @@ import { TabService } from '../pages/tabs/service';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     RoomLayoutService, HomeService,ContactService,
-    RestApiProvider,CarService,
+    RestApiProvider,CarService,MineService,
     TabService
   ]
 })

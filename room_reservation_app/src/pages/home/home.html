@@ -7,9 +7,6 @@
 
 
     <ion-content padding>
-      <ion-card>
-      <img src = "../../assets/imgs/room.png">
-      </ion-card>
       <form nz-form [formGroup]="form" (ngSubmit)="_submitForm()">
       <ion-list>
 
@@ -43,7 +40,14 @@
             <ion-option value="3">3</ion-option>
           </ion-select>
         </ion-item>
-
+<ion-item>
+    <ion-label >入住人：</ion-label>
+    <ion-input placeholder="只需填写一人姓名"></ion-input>
+  </ion-item>
+  <ion-item>
+      <ion-label >手机号：</ion-label>
+      <ion-input placeholder="用于接收短信"></ion-input>
+    </ion-item>
 
   <!-- formControlName="type" -->
           <ion-list radio-group no-lines>
@@ -62,10 +66,10 @@
             </ion-col>
             </ion-row>
           </ion-list>
-
-        <ion-item>
-          <button ion-button full>确定提交</button>
-        </ion-item>
+  
+  <ion-item>
+  <button ion-button full>确定提交</button>
+  </ion-item>
       </ion-list>
       </form>
     </ion-content>

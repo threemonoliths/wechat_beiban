@@ -13,11 +13,21 @@
 
 
 <ion-content padding>
-  <ion-item no-lines class="user">
+  <!-- <div *ngFor="let i of users"> -->
+  <ion-item no-lines class="user" >
     <ion-avatar item-start>
       <img src="../../assets/imgs/car.png" >
     </ion-avatar>
-      <h1>name</h1>
+      <h2>NAME</h2>
       <h3>Don't Know What To Do!</h3>
   </ion-item>
+<!-- </div> -->
+<ion-item no-lines>
+    <button ion-item  (click)="openorder()" >
+        <ion-icon name="ios-list-box"  item-start class="iconorder"></ion-icon>
+        全部订单
+      </button>
+</ion-item>
+
+  
 </ion-content>
