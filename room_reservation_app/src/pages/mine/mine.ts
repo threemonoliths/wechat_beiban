@@ -29,6 +29,9 @@ q: any = {             //排序按照预订日期排序
     private mineService: MineService,
   ) {
   }
+  ngOnInit() {
+    this.getUsers();
+  }
   getUsers() {  
     this.mineService.listOnePageUsers(this.q)
     .then(resp => {

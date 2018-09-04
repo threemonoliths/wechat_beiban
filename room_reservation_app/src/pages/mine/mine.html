@@ -8,21 +8,17 @@
   <ion-navbar>
     <ion-title>会员中心</ion-title>
   </ion-navbar>
-  <ion-item no-lines class="user" >
+</ion-header>
+
+<ion-content padding >
+  <ion-item  class="user" *ngFor="let i of users" >
     <ion-avatar item-start>
       <img src="../../assets/imgs/car.png" style="width:55px;height:55px">
     </ion-avatar>
-      <h2>NAME</h2>
-      <h3>Don't Know What To Do!</h3>
+      <h2>{{i.name}}</h2>
+      <p>{{i.mobile}}</p>
   </ion-item>
-</ion-header>
-
-
-<ion-content padding>
-  <!-- <div *ngFor="let i of users"> -->
-  
-<!-- </div> -->
-<ion-list>
+<ion-list style="position:absolute;top:110px">
     <button ion-item  (click)="openorder()" >
         <ion-icon name="ios-list-box"  item-start class="iconorder"></ion-icon>
         全部订单
