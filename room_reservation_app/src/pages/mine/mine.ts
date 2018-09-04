@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
+import { ContactPage } from '../contact/contact';
+import { MineService } from './service';
 /**
  * Generated class for the MinePage page.
  *
@@ -15,11 +16,38 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class MinePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+users:any[];
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad MinePage');
+q: any = {             //排序按照预订日期排序
+  page_index: 1,
+  page_size: 3,
+  sort_field: "inserted_at",
+  sort_direction: "desc",
+};
+
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+    private mineService: MineService,
+  ) {
   }
+  ngOnInit() {
+    this.getUsers();
+  }
+  getUsers() {  
+    this.mineService.listOnePageUsers(this.q)
+    .then(resp => {
+      if (resp.error) {
+        console.log(resp.error)
+      } else {
+        this.users = resp.data; 
+        console.log(this.users)
+      }
+    })
+    .catch((error) => {error => console.log(error)})
+}
+
+  openorder(){
+    this.navCtrl.push(ContactPage);
+  }
+  
 
 }

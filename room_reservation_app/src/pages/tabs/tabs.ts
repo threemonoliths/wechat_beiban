@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
 import { PreviewPage } from '../preview/preview';
-import { ContactPage } from '../contact/contact';
 import { HomePage } from '../home/home';
 import { CarPage } from '../car/car';
 import { NavigationPage } from '../navigation/navigation';

@@ -5,14 +5,156 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
   <ion-navbar>
-    <ion-title>门店详情</ion-title>
-  </ion-navbar>
-
+    <img src = "../../assets/imgs/hotel.png">
+    <ion-toolbar no-border-top mode='ios' style="height:40px"> 
+        <ion-segment [(ngModel)]="hotel">
+          <ion-segment-button value="1">
+          简介
+          </ion-segment-button>
+          <ion-segment-button value="2">
+          详情
+          </ion-segment-button>
+          <ion-segment-button value="3">
+          服务
+          </ion-segment-button>
+          <ion-segment-button value="4">
+          周边
+          </ion-segment-button>
+        </ion-segment>
+      </ion-toolbar>
+    </ion-navbar>
 </ion-header>
 
 
 <ion-content padding>
+  <div [ngSwitch]="hotel">
+  <!-- 简介 -->
+    <div *ngSwitchCase="'1'" >
+  <p>宗旨</p>
+  <ion-card>
+    <ion-card-content>
+    <div>
+      尊敬的领导、同仁：<br>
+      马钢北京办事处欢迎您来到马钢北京的家，
+      我们竭力为您提出优质的服务，为方便您的出行，
+      下面是我们提供的部分交通信息及服务内容请您参考。
+      希望能给您得到一些帮助，再次欢迎您的到来，
+      如遇到任何招待不妥之处请谅解并给我们提出宝贵意见！谢谢！</div>
+    </ion-card-content>
+  </ion-card>
+  <p>简介</p>
+  <ion-card>
+    <ion-card-content>
+    <div>
+        马钢办事处位于北京市西三环和西四环之间，风景秀丽的昆玉河西侧的玲珑花园。
+        环境幽雅、宁静安全、紧邻地铁6号10号线慈寿寺站，交通便利贯穿北京东西南北，
+        小区门口并有公共交通10余条线路。
+      <div *ngIf="showcontent">
+        马钢驻京办事处建筑面积1500平方，集住宿、餐饮、会议为一体。
+        有宽敞舒适的标准间、普通标准间、家庭套房等房型，适应接待公司各类人员前来住宿。
+        客房内有24小时热水，空调、暖气、无线网络等，并有10-30人会议室、
+        棋牌室、是举办小型会议和联谊活动的理想场所。
+        根据公司相关要求，原则上到京出差需住宿的，首选北京办事处。
+        马钢驻京办事处也本着“宾客至上、服务一流”的原则竭诚为公司来京人员提供优质服务，
+        价格优惠。欢迎公司员工来京出差、旅游入住马钢在北京的家！
+      </div>
+      <a href="#" (click)="showHideCode($event)" *ngIf="!showcontent">查看更多</a>
+     </div>
+    </ion-card-content>
+  </ion-card>
+</div>
 
+ <!-- 详情 -->
+<div *ngSwitchCase="'2'" >
+  <p>交通</p>
+  <ion-card>
+    <ion-card-content>
+    <div>
+        地址：北京市海淀区蓝靛厂南路59号玲珑花园6号楼2单元
+        <a href="#" (click)="showmap($event)" >查看地图</a>
+        <br><br>
+        邮政编码：100097
+     </div>
+    </ion-card-content>
+  </ion-card>
+  <p>电话</p>
+  <ion-card>
+    <ion-card-content>
+    <div class="call">
+        服务监督电话：010-88440838<br>
+        总服务台电话：010-88440900<br>
+        自动总机电话：010-88440902<br>
+        房间内部电话：8+房间号<br>
+        本市或者国内长途电话：9+电话号码<br>
+        如您需要长途电话或者宽带上网服务请与总台联系。
+     </div>
+    </ion-card-content>
+  </ion-card>
+</div>
+
+  
+<!-- 服务 -->
+<div *ngSwitchCase="'3'" >
+    <p>住宿</p>
+    <ion-card>
+      <ion-card-content>
+      <div>
+          住宿登记：<br>
+          请出示有效身份证在总台办理住宿登记,<br>
+          交纳押金，领取房卡。<br><br>
+          结账：<br>
+          请您在退房前在总台办理结账手续，并将房卡交回总台。<br><br>
+          订票服务：<br>
+          可以代办飞机票或者火车票。<br>
+          请提前在总台登记，并交纳订金。<br>
+       </div>
+      </ion-card-content>
+    </ion-card>
+
+  <p>用餐</p>
+  <ion-card>
+    <ion-card-content>
+    <div>
+        请提前半天在总台预定，以便为您安排就餐。<br>
+        早餐10元/位,中餐或晚餐20元/位<br>
+        用餐时间：<br>
+        早餐：7:30-8:00<br>
+        中餐：11:30-12:00<br>
+        晚餐：17:30-18:00<br>
+        用餐地点：一楼西侧餐厅<br>
+     </div>
+    </ion-card-content>
+  </ion-card>
+
+  <p>其他</p>
+  <ion-card>
+    <ion-card-content>
+    <div>
+    如请需要传真、复印、健身、用车、棋牌、<br>
+    安排会客、会议等其他服务，请与总台联系。<br><br>
+    其他收费：<br>
+    会议室：300元/2小时<br>
+    活动室：30元小时<br>
+    传真：10元/张 （ 接收5元/张 ）<br>
+    打字：10元/张 ( A4 ) <br>
+    复印：2元/张
+     </div>
+    </ion-card-content>
+  </ion-card>
+</div>
+
+  <!-- 周边 -->
+  <div *ngSwitchCase="'4'" >
+  <p></p>
+  <ion-card>
+    <ion-card-content>
+    <div>
+     </div>
+    </ion-card-content>
+  </ion-card>
+</div>
+  
+    
+</div>
 </ion-content>
