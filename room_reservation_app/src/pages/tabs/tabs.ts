@@ -19,7 +19,7 @@ export class TabsPage implements OnInit {
   tab1Root = HotelPage;
   tab2Root = PreviewPage;
   tab3Root = CarPage;
-  tab6Root = ContactPage;
+  // tab6Root = ContactPage;
   tab5Root = NavigationPage;
 
   tab4Root = MinePage;
