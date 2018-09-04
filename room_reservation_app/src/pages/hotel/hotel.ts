@@ -1,12 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Platform } from 'ionic-angular';
-/**
- * Generated class for the HotelPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -14,6 +8,10 @@ import { Platform } from 'ionic-angular';
   templateUrl: 'hotel.html',
 })
 export class HotelPage {
+
+  url: string = 'http://f.amap.com/2PcVE_0C75xkb';
+  hotel: string = "1";
+  isAndroid: boolean = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     platform: Platform
@@ -30,6 +28,10 @@ export class HotelPage {
     this.showcontent=true;
  }
 
- hotel: string = "1";
-  isAndroid: boolean = false;
+ showmap(){
+   
+ }
+ 
+
+
 }

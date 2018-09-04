@@ -4,19 +4,16 @@
         全部订单
       </ion-title>
     </ion-navbar>
-  <!-- 有效订单选项 -->
-    <ion-toolbar mode='ios'>
-      <ion-item>
-        <ion-checkbox [(ngModel)]="valid" mode='ios' item-start
-          (ionChange)="updateValid($event)" value="true" small>
-        </ion-checkbox>
-        <ion-label ><span class="validorder">有效订单</span></ion-label>
-      </ion-item>
-    </ion-toolbar>
+  
         
   <!-- 导航 -->
     <ion-toolbar no-border-top mode='ios'> 
-      <ion-segment [(ngModel)]="order">
+      <ion-segment style="height: 25px;">
+        <ion-checkbox [(ngModel)]="valid" mode='ios' 
+        (ionChange)="updateValid($event)" value="true" small></ion-checkbox>
+      <ion-label ><span class="validorder">有效订单</span></ion-label>
+      </ion-segment>
+      <ion-segment [(ngModel)]="order" style="height: 30px;">
         <ion-segment-button value="rooms">
           房间订单
         </ion-segment-button>
@@ -107,3 +104,5 @@
   </div>
 
   </ion-content>
+
+
