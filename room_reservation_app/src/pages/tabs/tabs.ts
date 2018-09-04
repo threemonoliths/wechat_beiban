@@ -6,6 +6,9 @@ import { HomePage } from '../home/home';
 import { CarPage } from '../car/car';
 import { NavigationPage } from '../navigation/navigation';
 
+import { LoginPage } from '../login/login';
+import { HotelPage } from '../hotel/hotel';
+import { MinePage } from '../mine/mine';
 import { TabService } from '../tabs/service';
 
 
@@ -14,19 +17,19 @@ import { TabService } from '../tabs/service';
 })
 export class TabsPage implements OnInit {
 
-  tab1Root = HomePage;
+  tab1Root = HotelPage;
   tab2Root = PreviewPage;
   tab3Root = CarPage;
-  tab4Root = ContactPage;
+  tab6Root = ContactPage;
   tab5Root = NavigationPage;
 
-  // tabIndex=0;
+  tab4Root = MinePage;
 
   constructor(private srv: TabService) {
 
   }
 
   ngOnInit() {
-    // this.tabIndex = this.srv.tabIndex;
+
   }
 }
