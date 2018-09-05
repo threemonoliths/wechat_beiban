@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,App,ViewController } from 'ionic-angular';
 import { Platform } from 'ionic-angular';
 import { MapPage } from '../map/map';
 @IonicPage()
@@ -13,7 +13,7 @@ export class HotelPage {
   isAndroid: boolean = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    platform: Platform
+    platform: Platform,public appCtrl:App,public viewCtrl:ViewController,
   ) {
     this.isAndroid = platform.is('android');
   }
@@ -28,7 +28,7 @@ export class HotelPage {
  }
 
  showmap(){
-  this.navCtrl.push(MapPage);
+  this.appCtrl.getRootNav().push(MapPage);
  }
  
 
