@@ -36,7 +36,8 @@ export class ContactPage implements OnInit {
     private contactService: ContactService,
     public alertCtrl: AlertController,
     platform: Platform,
-    public restApi: RestApiProvider) {
+    public restApi: RestApiProvider
+  ) {
     this.isAndroid = platform.is('android');
   }
 
@@ -55,12 +56,11 @@ export class ContactPage implements OnInit {
     }
     this.getRooms();
     this.getCars();
-    console.log(this.cars)
   }
 
   ngOnInit() {
-    this.getRooms();
-    this.getCars();
+    //this.getRooms();
+    //this.getCars();
   }
 
   //获取房间订单信息
@@ -156,6 +156,7 @@ export class ContactPage implements OnInit {
     console.log("玩命加载的页码：")
     this.q.page_index = this.q.page_index + 1;
     console.log(this.q.page_index)
+    console.log(this.totalPage)
     this.contactService.listOnePageRoom(this.q)
       .then(resp => {
         if (resp.error) {
@@ -165,12 +166,14 @@ export class ContactPage implements OnInit {
           for(let i=0; i< data.length; i++) {
             this.rooms.push(data[i]);
           }
+          
           console.log(resp)
           console.log(this.rooms);
         }
       })
-      .catch((error) => {error => console.log(error)})  
-    infiniteScroll.complete();
+      .catch((error) => {error => console.log(error)}) 
+       infiniteScroll.complete();
+
     this.contactService.listOnePageCar(this.q)
       .then(resp => {
         if (resp.error) {

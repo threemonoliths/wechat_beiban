@@ -13,7 +13,7 @@ import { NavigationPage } from '../pages/navigation/navigation';
 
 import { HotelPage } from '../pages/hotel/hotel';
 import { MinePage } from '../pages/mine/mine';
-
+import { MapPage } from '../pages/map/map';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -39,7 +39,8 @@ import { MineService } from '../pages/mine/service';
     NavigationPage,
     LoginPage,
     HotelPage,
-    MinePage
+    MinePage,
+    MapPage
   ],
   imports: [
     BrowserModule,
@@ -58,7 +59,8 @@ import { MineService } from '../pages/mine/service';
     TabsPage,
     LoginPage,
     HotelPage,
-    MinePage
+    MinePage,
+    MapPage
   ],
   providers: [
     StatusBar,

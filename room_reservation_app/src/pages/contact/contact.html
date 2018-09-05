@@ -4,15 +4,15 @@
         全部订单
       </ion-title>
     </ion-navbar>
-  
+  <ion-item style="height: 25px;" no-lines>
+    <ion-checkbox [(ngModel)]="valid" mode='ios' 
+      (ionChange)="updateValid($event)" value="true" small></ion-checkbox>
+    <ion-label ><span class="validorder">有效订单</span></ion-label>
+  </ion-item> 
         
   <!-- 导航 -->
-    <ion-toolbar no-border-top mode='ios'> 
-      <ion-segment style="height: 25px;">
-        <ion-checkbox [(ngModel)]="valid" mode='ios' 
-        (ionChange)="updateValid($event)" value="true" small></ion-checkbox>
-      <ion-label ><span class="validorder">有效订单</span></ion-label>
-      </ion-segment>
+    <ion-toolbar no-border-top mode='ios'>
+        
       <ion-segment [(ngModel)]="order" style="height: 30px;">
         <ion-segment-button value="rooms">
           房间订单
@@ -56,8 +56,8 @@
             </div>
           </ion-card>
       </div>
-      <h2 style=text-align:center>没有更多订单了</h2>
-      <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="q.page_index <= totalPage">
+      <h2 style=text-align:center *ngIf="q.page_index == totalPage&&q.page_index!=1">没有更多订单了</h2>
+      <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="q.page_index < totalPage">
           <ion-infinite-scroll-content
           loadingSpinner="bubbles"
           loadingText="正在玩命加载中...">
@@ -93,10 +93,10 @@
             </div>
           </ion-card>
     </div>
-    <h2 style=text-align:center>没有更多订单了</h2>
-    <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="q.page_index <= totalPage">
+    <h2 style=text-align:center *ngIf="q.page_index == totalPage&&q.page_index!=1">没有更多订单了</h2>
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="q.page_index < totalPage">
         <ion-infinite-scroll-content
-        loadingSpinner="bubbles"
+        loadingSpinner="circles"
         loadingText="正在玩命加载中...">
       </ion-infinite-scroll-content>
     </ion-infinite-scroll>
@@ -104,5 +104,3 @@
   </div>
 
   </ion-content>
-
-

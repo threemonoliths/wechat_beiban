@@ -11,15 +11,15 @@
 </ion-header>
 
 <ion-content padding >
-  <ion-item  class="user" *ngFor="let i of users" >
+  <ion-item  class="user" *ngFor="let i of users" no-lines >
     <ion-avatar item-start>
       <img src="../../assets/imgs/car.png" style="width:55px;height:55px">
     </ion-avatar>
       <h2>{{i.name}}</h2>
       <p>{{i.mobile}}</p>
   </ion-item>
-<ion-list style="position:absolute;top:110px">
-    <button ion-item  (click)="openorder()" >
+<ion-list style="position:absolute;top:110px;width:90%;">
+    <button ion-item  (click)="openorder()" icon-start>
         <ion-icon name="ios-list-box"  item-start class="iconorder"></ion-icon>
         全部订单
       </button>

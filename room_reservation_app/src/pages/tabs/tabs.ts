@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { PreviewPage } from '../preview/preview';
 import { HomePage } from '../home/home';
 import { CarPage } from '../car/car';
-import { NavigationPage } from '../navigation/navigation';
 
 import { LoginPage } from '../login/login';
 import { HotelPage } from '../hotel/hotel';
@@ -19,9 +18,6 @@ export class TabsPage implements OnInit {
   tab1Root = HotelPage;
   tab2Root = PreviewPage;
   tab3Root = CarPage;
-  // tab6Root = ContactPage;
-  tab5Root = NavigationPage;
-
   tab4Root = MinePage;
 
   constructor(private srv: TabService) {
