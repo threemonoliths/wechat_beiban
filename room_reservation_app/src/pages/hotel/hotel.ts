@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Platform } from 'ionic-angular';
-
+import { MapPage } from '../map/map';
 @IonicPage()
 @Component({
   selector: 'page-hotel',
@@ -9,7 +9,6 @@ import { Platform } from 'ionic-angular';
 })
 export class HotelPage {
 
-  url: string = 'http://f.amap.com/2PcVE_0C75xkb';
   hotel: string = "1";
   isAndroid: boolean = false;
 
@@ -29,7 +28,7 @@ export class HotelPage {
  }
 
  showmap(){
-   
+  this.navCtrl.push(MapPage);
  }
  
 
