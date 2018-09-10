@@ -86,8 +86,6 @@ export class MapPage {
       });
       map.addControl(geolocation);
       //geolocation.getCurrentPosition();
-
-
     });
 
  }
