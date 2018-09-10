@@ -8,7 +8,7 @@ import { Car } from '../../car/domain/car.domain';
 import { baseUrl } from '../../../shared/shared.service';
 import { getTokenOptions,getDownloadTokenOptions } from '../../passport/login/login.service';
 
-@Injectable()
+@Injectable() 
 export class CarService {
 
     constructor(private http: Http) {}

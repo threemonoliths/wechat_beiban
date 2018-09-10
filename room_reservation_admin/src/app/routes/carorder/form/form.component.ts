@@ -34,13 +34,13 @@ export class CarOrderFormComponent implements OnInit {
         if (this.srv.formOperation == 'create') {this.initCreate();}
         if (this.srv.formOperation == 'update') {this.initUpdate();}
         this.form = this.fb.group({
-            buydate : [this.car? this.car.buydate : null, Validators.required ],
-//            kind : [this.car? this.car.kind : null, Validators.required],
-            no : [this.car? this.car.no : null],
-//            orderdate : [this.car? this.car.orderdate : false, Validators.required],
+//            buydate : [this.car? this.car.buydate : null, Validators.required ],
+            kind : [this.car? this.car.kind : null, Validators.required],
+//            no : [this.car? this.car.carNo : null],
+            orderDate : [this.car? this.car.orderDate : false, Validators.required],
 //            pic : [this.car? this.car.pic : null, Validators.required],
 //            price : [this.car? this.car.price : null, Validators.required],
-//            state : [this.car? this.car.state : null, Validators.required],
+            state : [this.car? this.car.state : "t", Validators.required],
 //            usedate : [this.car? this.car.usedate : null, Validators.required],
 //            desc: [this.car? this.car.state : null]
         });
@@ -48,10 +48,10 @@ export class CarOrderFormComponent implements OnInit {
 
     setTitle() {
         if (this.srv.formOperation == "create") { 
-            this.card_title = "创建车辆信息";
+            this.card_title = "创建车辆预订信息";
         }
         if (this.srv.formOperation == "update") { 
-            this.card_title = "修改车辆信息";
+            this.card_title = "修改车辆预订信息";
         }
     }
 
@@ -66,7 +66,7 @@ export class CarOrderFormComponent implements OnInit {
             if (resp.error) { 
                 this.msg.error(resp.error);
             } else {
-                this.msg.success('车辆信息 ' + resp.data.no + ' 已创建！');
+                this.msg.success('车辆预订 ' + resp.data.no + ' 已创建！');
                 this.goBack();
             }
             }).catch(error => this.msg.error(error));
@@ -75,7 +75,7 @@ export class CarOrderFormComponent implements OnInit {
             if (resp.error) { 
                 this.msg.error(resp.error);
             } else {
-                this.msg.success('车辆信息 ' + resp.data.no + ' 已更新！');
+                this.msg.success('车辆预订 ' + resp.data.no + ' 已更新！');
                 this.goBack();
             }
             }).catch(error => this.msg.error(error));
@@ -83,7 +83,7 @@ export class CarOrderFormComponent implements OnInit {
     }
 
     goBack() {
-        this.router.navigateByUrl('/car/page');
+        this.router.navigateByUrl('/carorder/page');
     }
 
     initUpdate() {

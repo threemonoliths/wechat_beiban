@@ -2,8 +2,9 @@ export class CarOrder {
     id: number;
     buydate: Date;
     kind: string;
+    carNo: string;
     no: string;
-    orderdate: Date;
+    orderDate: Date;
     pic: string;
     price: number;
     state: string;

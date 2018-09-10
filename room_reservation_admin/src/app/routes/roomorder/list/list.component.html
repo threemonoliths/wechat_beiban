@@ -19,7 +19,7 @@
                         <i class="anticon" [class.anticon-down]="!expandForm" [class.anticon-up]="expandForm"></i>
                     </a>
                 </div>
-            </div>
+            </div> 
         </form>
 
         <div class="mb-md">
@@ -35,6 +35,9 @@
                     
                     <th nz-th>
                         <span>预订人</span>                      
+                    </th>
+                    <th nz-th>
+                        <span>手机号</span>                      
                     </th>
                     <th nz-th>
                         <span>房型</span>
@@ -62,11 +65,12 @@
                 <tr nz-tbody-tr *ngFor="let i of nzTable.data">
                     
                     <td nz-td>{{i.user.name}}</td>
+                    <td nz-td>{{i.user.phone}</td>
                     <td nz-td>{{i.layout.layout}}</td>
                     <td nz-td>{{i.start_time}}</td>
                     <td nz-td>{{i.days}}</td>
                     <td nz-td>{{i.rooms}}</td>
-                    <td nz-td>{{i.status}}</td>
+                    <td nz-td>{{i.status?'已预订':'已退订'}}</td>
                     <td nz-td>{{i.comment}}</td>
                     <td nz-td>
                         <a (click)="update(i.id)">修改</a>

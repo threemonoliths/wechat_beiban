@@ -8,7 +8,7 @@ import { RoomOrder } from '../../roomorder/domain/roomorder.domain';
 import { baseUrl } from '../../../shared/shared.service';
 import { getTokenOptions,getDownloadTokenOptions } from '../../passport/login/login.service';
 
-@Injectable()
+@Injectable() 
 export class RoomOrderService {
 
     constructor(private http: Http) {}

@@ -14,7 +14,7 @@ import { BreakfastPipe } from '../../../pipes/pipes';
 })
 export class CarListComponent implements OnInit {
 
-    q: any = {
+    q: any = { 
         page_index: 1,
         page_size: 15,
         sort_field: "no",

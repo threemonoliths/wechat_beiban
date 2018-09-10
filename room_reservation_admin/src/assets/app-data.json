@@ -39,29 +39,20 @@
                 },
                 {
                   "text": "房型管理",
-                  "icon": "icon-wrench",
+                  "icon": "icon-home",
                   "link": "/roomlayout/page"
                 },
                 {
-                  "text": "房间管理",
-                  "icon": "icon-rocket",
-                  "link": "/room/page"
-                },
-                {
                     "text": "客房预订",
-                    "icon": "icon-heart",
+                    "icon": "icon-edit",
                     "link": "/order/page"
-                  },
-                {
-                  "text": "车辆管理",
-                  "icon": "icon-present",
-                  "link": "/car/page"
-                },
+                  },      
                 {
                     "text": "车辆预订",
-                    "icon": "icon-present",
+                    "icon": "icon-car",
                     "link": "/carorder/page"
-                  }                
+                  }  
+
             ]
         }
     ]

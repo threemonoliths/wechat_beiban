@@ -4,9 +4,8 @@ import { Router } from '@angular/router';
 import { NzMessageService } from 'ng-zorro-antd';
 import { _HttpClient } from '@delon/theme';
 import { tap } from 'rxjs/operators';
-
-import { CarOrderService } from '../service/carorder.service';
 import { BreakfastPipe } from '../../../pipes/pipes';
+import { CarOrderService } from '../service/carorder.service';
 
 @Component({
     selector: 'car-list',
@@ -17,7 +16,7 @@ export class CarOrderListComponent implements OnInit {
     q: any = {
         page_index: 1,
         page_size: 15,
-        sort_field: "no",
+        sort_field: "inserted_at",
         sort_direction: "desc",
         owner_name: null,
     };
@@ -57,7 +56,8 @@ export class CarOrderListComponent implements OnInit {
                                 this.loading = false;
                              } else {
                                  console.log(resp)
-                                this.data = resp.data;this.total = resp.total_entries; 
+                                this.data = resp.data;this.total = resp.total_entries;
+                                console.log(this.data); 
                                 this.loading = false;
                              }
                          })
@@ -65,28 +65,28 @@ export class CarOrderListComponent implements OnInit {
     }
 
     remove(obj) {
-        this.confirmContent = "确定要删除车辆信息：" + obj.no + "?";
+        this.confirmContent = "确定要删除车辆预订信息：" + obj.no + "?";
         this.modalVisible = true;
         this.delObj = obj;
     }
 
     delete() {
         this.srv.delete(this.delObj.id)
-                         .then(resp => this.msg.success("车辆信息:" + resp.data.layout + "已删除！")).then(resp => this.getData() )
+                         .then(resp => this.msg.success("车辆预订信息:" + resp.data.layout + "已删除！")).then(resp => this.getData() )
                          .catch((error) => {this.msg.error(error); this.loading = false;})
     }
 
     add() {
         this.srv.formOperation = 'create';
         this.srv.isUpdate=false;
-        this.router.navigateByUrl('/car/form');
+        this.router.navigateByUrl('/carorder/form');
     }
 
     update(id) {
         this.srv.formOperation='update';
         this.srv.initUpdate(id)
             .then(result => { this.srv.car = result.data;})
-            .then(() => this.router.navigateByUrl('/car/form')).catch((error)=>
+            .then(() => this.router.navigateByUrl('/carorder/form')).catch((error)=>
             this.msg.error(error)); 
     }
     
@@ -106,6 +106,8 @@ export class CarOrderListComponent implements OnInit {
         if ((this.q.layout == null)||(this.q.layout == "")){delete this.q.layout}
 
     }
+
+  
 
     reset() {
         this.q = {
