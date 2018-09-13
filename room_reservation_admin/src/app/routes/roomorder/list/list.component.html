@@ -4,9 +4,9 @@
             <div nz-row [nzGutter]="24">
                 <div nz-col [nzSpan]="8" class="mb-md">
                     <div nz-form-item class="d-flex">
-                        <div nz-form-label><label for="name">用户ID</label></div>
+                        <div nz-form-label><label for="name">入住人手机号</label></div>
                         <div nz-form-control class="flex-1">
-                            <nz-input  [(ngModel)]="q.user_id" name="user_id" [nzSize]="'large'" [nzPlaceHolder]="'请输入客户ID'" nzId="user_id"></nz-input>
+                            <nz-input  [(ngModel)]="q.phone" name="phone" [nzSize]="'large'" [nzPlaceHolder]="'请输入入住人手机号'" nzId="phone"></nz-input>
                         </div>
                     </div>
                 </div>
@@ -34,7 +34,10 @@
                 <tr>
                     
                     <th nz-th>
-                        <span>预订人</span>                      
+                        <span>预订账户</span>                      
+                    </th>
+                    <th nz-th>
+                        <span>入住人</span>                      
                     </th>
                     <th nz-th>
                         <span>手机号</span>                      
@@ -65,7 +68,8 @@
                 <tr nz-tbody-tr *ngFor="let i of nzTable.data">
                     
                     <td nz-td>{{i.user.name}}</td>
-                    <td nz-td>{{i.user.phone}</td>
+                    <td nz-td>{{i.name}</td>
+                    <td nz-td>{{i.phone}</td>
                     <td nz-td>{{i.layout.layout}}</td>
                     <td nz-td>{{i.start_time}}</td>
                     <td nz-td>{{i.days}}</td>

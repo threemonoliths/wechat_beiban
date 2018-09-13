@@ -12,7 +12,7 @@ import { getTokenOptions,getDownloadTokenOptions } from '../../passport/login/lo
 export class CarOrderService {
 
     constructor(private http: Http) {}
-    
+     
     url = baseUrl+"car_order"
 
     listOnePage(q) {
@@ -21,6 +21,7 @@ export class CarOrderService {
     }
 
     add(v): Promise<any>{ 
+       // v.user = {open_id: v.user_id.toString()};
         let param = { car: v} 
         return this.http.post(this.url, param, getTokenOptions(null))
                    .map(response => response.json()).toPromise();
@@ -42,6 +43,7 @@ export class CarOrderService {
     }
 
     update(cid, v): Promise<any>{
+        //v.user = {open_id: v.user_id.toString()};
         let param = { car: v} 
         return this.http.put(this.url + `/${cid}`,param, getTokenOptions(null))
                 .map(response => response.json()).toPromise();

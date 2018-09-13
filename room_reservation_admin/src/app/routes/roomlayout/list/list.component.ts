@@ -6,7 +6,7 @@ import { _HttpClient } from '@delon/theme';
 import { tap } from 'rxjs/operators';
 
 import { RoomLayoutService } from '../service/roomlayout.service';
-import { BreakfastPipe } from '../../../pipes/pipes';
+import { BreakfastPipe } from '../../../pipes/pipes'; 
 
 @Component({
     selector: 'roomlayout-list',

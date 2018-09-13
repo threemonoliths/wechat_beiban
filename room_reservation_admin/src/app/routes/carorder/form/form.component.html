@@ -43,8 +43,8 @@
                         <div nz-form-label nz-col><label>状态:</label></div>
                         <div nz-form-control nz-col nzHasFeedback [nzValidateStatus]="state">
                             <nz-select nzShowSearch nzAllowClear formControlName="state" nzPlaceHolder="请选择">
-                                <nz-option nzLabel="有效" [nzValue]="t"></nz-option>
-                                <nz-option nzLabel="无效" [nzValue]="f"></nz-option>
+                                <nz-option nzLabel="有效" [nzValue]="'t'"></nz-option>
+                                <nz-option nzLabel="无效" [nzValue]="'f'"></nz-option>
                             </nz-select>
                         </div>
                     </div>

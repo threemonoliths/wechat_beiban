@@ -34,7 +34,7 @@
                 },
                 {
                     "text": "数据字典",
-                    "icon": "icon-plane",
+                    "icon": "anticon anticon-book",
                     "link": "/dict/page"
                 },
                 {
@@ -44,12 +44,12 @@
                 },
                 {
                     "text": "客房预订",
-                    "icon": "icon-edit",
+                    "icon": "anticon anticon-edit",
                     "link": "/order/page"
                   },      
                 {
                     "text": "车辆预订",
-                    "icon": "icon-car",
+                    "icon":"anticon anticon-car",
                     "link": "/carorder/page"
                   }  
 

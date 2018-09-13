@@ -10,7 +10,7 @@ import { getTokenOptions,getDownloadTokenOptions } from '../../passport/login/lo
 
 @Injectable() 
 export class RoomOrderService {
-
+ 
     constructor(private http: Http) {}
     
     url = baseUrl+"room_order_info"
@@ -43,7 +43,7 @@ export class RoomOrderService {
                 .map(response => response.json()).toPromise();
                 
     }
-
+ 
     update(cid, v): Promise<any>{
         v.user = {open_id: v.user_id.toString()};      
         v.room_layout = {id: v.layout_id};
