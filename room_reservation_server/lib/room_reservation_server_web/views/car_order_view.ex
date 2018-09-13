@@ -19,6 +19,8 @@ defmodule RoomReservationServerWeb.CarOrderView do
 
   def render("car_order.json", %{car_order: car_order}) do
     %{id: car_order.id,
+      occupant: car_order.occupant,
+      phone: car_order.phone,
       orderNo: car_order.orderNo,
       orderDate: car_order.orderDate,
       kind: car_order.kind,

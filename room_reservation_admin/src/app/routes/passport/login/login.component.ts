@@ -70,20 +70,19 @@ export class UserLoginComponent implements OnDestroy {
         if (this.username.invalid || this.password.invalid) return;
 
         this.loading = true;
-        if (this.username.value=="admin" && this.password.value == "admin123") this.router.navigate(['roomlayout/page']);
-        // this.loginService.login(this.form.value)
-        //     .subscribe(result => {
-        //         if (result) {
-        //             this.loading = false;
-        //             this.router.navigate(['roomlayout/page']);
-        //         } else{
-        //             this.loading = false;
-        //             this.invalidlogin = true;
-        //         }
-        //     }, 
-        //     err => {
-        //         this.msg.error(err);
-        //     });
+        this.loginService.login(this.form.value)
+        .subscribe(result => {
+            if (result) {
+                this.loading = false;
+                this.router.navigate(['order/page']);
+            } else{
+                this.loading = false;
+                this.invalidlogin = true;
+            }
+        }, 
+        err => {
+            this.msg.error(err);
+        });
     }
 
     onChange(){

@@ -10,6 +10,8 @@ defmodule RoomReservationServer.CarOrderContext.CarOrder do
     field :orderNo, :string
     field :state, :string, default: "t"
     field :userNo, :string
+    field :occupant, :string
+    field :phone, :string
 
     timestamps()
   end
@@ -17,7 +19,7 @@ defmodule RoomReservationServer.CarOrderContext.CarOrder do
   @doc false
   def changeset(car_order, attrs) do
     car_order
-    |> cast(attrs, [:orderNo, :orderDate, :kind, :carNo, :userNo, :state])
+    |> cast(attrs, [:orderNo, :orderDate, :kind, :carNo, :userNo, :state, :occupant, :phone])
     # |> validate_required([:orderNo])
   end
 end

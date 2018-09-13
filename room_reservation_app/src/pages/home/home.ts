@@ -34,7 +34,10 @@ export class HomePage implements OnInit {
       start_time: [null, Validators.required],
       layout_id: [null, Validators.required],
       rooms: [null, Validators.required],
-      days: [null, Validators.required]
+      days: [null, Validators.required],
+      occupant: [null, Validators.required],
+      phone: [null, Validators.required],
+      type: [null, Validators.required]
     });
     console.log(this.tabSrv.selectedId)
   
@@ -51,6 +54,7 @@ export class HomePage implements OnInit {
   }
 
   _submitForm(){
+    console.log(this.form.value)
     if (this.form.invalid) {
       this.showError();
       return

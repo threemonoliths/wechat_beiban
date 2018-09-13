@@ -18,10 +18,10 @@ defmodule RoomReservationServerWeb.RoomOrderInfoView do
   end
 
   def render("room_order_info.json", %{room_order_info: room_order_info}) do
-    IO.puts("in view######################")
-    IO.puts inspect room_order_info
     %{
       id: room_order_info.id,
+      occupant: room_order_info.occupant,
+      phone: room_order_info.phone,
       start_time: room_order_info.start_time,
       days: room_order_info.days,
       rooms: room_order_info.rooms,

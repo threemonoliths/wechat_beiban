@@ -23,7 +23,9 @@ export class CarPage {
   ) {
     this.form = this.formBuilder.group({
       orderDate: [null, Validators.required],
-      kind: [null, Validators.required]
+      kind: [null, Validators.required],
+      occupant: [null, Validators.required],
+      phone: [null, Validators.required]
     });
   }
 
@@ -36,7 +38,7 @@ export class CarPage {
     
     console.log(this.form.value)
   }
-
+ 
   _submitForm(){
     console.log(this.form);
     if (this.form.invalid) {

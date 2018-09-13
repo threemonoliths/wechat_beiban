@@ -40,32 +40,31 @@
             <ion-option value="3">3</ion-option>
           </ion-select>
         </ion-item>
-<ion-item>
-    <ion-label >入住人：</ion-label>
-    <ion-input placeholder="只需填写一人姓名"></ion-input>
-  </ion-item>
-  <ion-item>
-      <ion-label >手机号：</ion-label>
-      <ion-input placeholder="用于接收短信" type="number"></ion-input>
-    </ion-item>
+        <ion-item>
+          <ion-label >入住人：</ion-label>
+          <ion-input formControlName="occupant" placeholder="只需填写一人姓名"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label >手机号：</ion-label>
+          <ion-input placeholder="用于接收短信" formControlName="phone" type="number"></ion-input>
+        </ion-item>
 
-  <!-- formControlName="type" -->
-          <ion-list radio-group no-lines>
-              <ion-row no-padding>
-              <ion-col>
-          <ion-item>
-              <ion-label>因公</ion-label>
-              <ion-radio value="因公" item-start checked></ion-radio> 
-          </ion-item>
-          </ion-col>
-          <ion-col>
-          <ion-item>
-              <ion-label>因私</ion-label>
-              <ion-radio value="因私" item-start></ion-radio>
-            </ion-item>
+        <ion-list radio-group no-lines formControlName="type">
+          <ion-row no-padding>
+            <ion-col>
+              <ion-item>
+                <ion-label>因公</ion-label>
+                <ion-radio value="因公" item-start checked></ion-radio> 
+              </ion-item>
             </ion-col>
-            </ion-row>
-          </ion-list>
+            <ion-col>
+              <ion-item>
+                <ion-label>因私</ion-label>
+                  <ion-radio value="因私" item-start></ion-radio>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+        </ion-list>
   
   <ion-item>
   <button ion-button full>确定提交</button>

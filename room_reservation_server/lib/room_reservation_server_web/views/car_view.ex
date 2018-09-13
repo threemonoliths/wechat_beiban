@@ -19,6 +19,7 @@ defmodule RoomReservationServerWeb.CarView do
 
   def render("car.json", %{car: car}) do
     %{id: car.id,
+
       no: car.no,
       kind: car.kind,
       pic: car.pic,
