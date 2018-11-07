@@ -47,7 +47,15 @@ import { FormsModule } from '@angular/forms';
   imports: [
     BrowserModule,
     HttpModule,
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp,{},{
+      links:[
+        // { component: HotelPage, name: 'Hotel', segment: 'hotel' },  //首页
+        // { component: PreviewPage, name: 'Preview', segment: 'preview' },  //房型预览
+        // { component: CarPage, name: 'Car', segment: 'car' },  //用车
+        // { component: MinePage, name: 'Mine', segment: 'mine' }, //我的
+        { component: TabsPage, name: 'Tabs', segment: 'tabs/:tabId' }
+      ]
+    }),
     HttpClientModule,
     FormsModule,
   ],

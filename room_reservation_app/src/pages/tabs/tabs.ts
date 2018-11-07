@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-
+import { NavParams } from 'ionic-angular';
 import { PreviewPage } from '../preview/preview';
-import { HomePage } from '../home/home';
 import { CarPage } from '../car/car';
 
-import { LoginPage } from '../login/login';
 import { HotelPage } from '../hotel/hotel';
 import { MinePage } from '../mine/mine';
 import { TabService } from '../tabs/service';
@@ -15,13 +13,22 @@ import { TabService } from '../tabs/service';
 })
 export class TabsPage implements OnInit {
 
-  tab1Root = HotelPage;
-  tab2Root = PreviewPage;
-  tab3Root = CarPage;
-  tab4Root = MinePage;
-
-  constructor(private srv: TabService) {
-
+  tab1Root: any = HotelPage;
+  tab2Root: any = PreviewPage;
+  tab3Root: any = CarPage;
+  tab4Root: any = MinePage;
+  public tabId: number;
+  public selectTabIndex: number;
+  constructor(
+    // private srv: TabService,
+    public params: NavParams) {
+    this.tabId = params.get("tabId");
+    console.log(this.tabId);
+    if(this.tabId != undefined || this.tabId !=null)
+    {
+        this.selectTabIndex = this.tabId;
+        console.log(this.selectTabIndex);
+    }
   }
 
   ngOnInit() {
