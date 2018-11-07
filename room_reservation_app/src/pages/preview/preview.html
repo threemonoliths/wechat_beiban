@@ -9,25 +9,33 @@
 
 <ion-list *ngFor="let i of data" no-lines >
     <ion-card>
-        <ion-slides pager style="background-color: rgb(237, 242, 248)">
+        <ion-slides pager style="background-color: rgb(237, 242, 248)" auto-play="true">
             <ion-slide >
               <img [src]="i.image_url"/>
             </ion-slide>
+            <!-- 因公默认含早餐 显示客饭标准-->
             <ion-slide *ngIf="i.breakfast==true">
-              <h2 style="margin-top:10px">客饭标准</h2>
-              <p>早餐免费、中餐或晚餐20元/位</p>
-              <p>请提前半天在总台预定，以便食堂为您安排就餐。</p>
-            <hr>
-            <h2>用餐时间</h2>
-            <p>早餐：7:30-8:00</p>
-              <p>中餐：11:30-12:00</p>
-              <p>晚餐：17:30-18:00</p>
+              <div>
+                <h2 style="margin-top:10px">客饭标准</h2>
+                <p>早餐免费、中餐或晚餐20元/位</p>
+                <p>请提前半天在总台预定，以便食堂为您安排就餐。</p>
+                <hr>
+                <h2>用餐时间</h2>
+                <p>早餐：7:30-8:00</p>
+                <p>中餐：11:30-12:00</p>
+                <p>晚餐：17:30-18:00</p>
+              </div>
             </ion-slide>
-          <ion-slide *ngIf="i.breakfast==false">
-              <h2 style="margin-top:10px">订房须知</h2>
-              <p>房间不得增加人数</p>
-              <p>如10岁以下儿童增加40元/人</p>
-          </ion-slide>
+            <!-- 因私默认不含早餐且不可增加人数 显示以下内容-->
+            <ion-slide *ngIf="i.breakfast==false">
+              <div>
+                <h2 style="margin-top:10px">订房须知</h2>
+                <p>房间不得增加人数</p>
+                <p>如10岁以下儿童增加40元/人</p>
+                <hr>
+                
+              </div>  
+            </ion-slide>
       </ion-slides>
     </ion-card>
     <ion-item>
@@ -42,6 +50,5 @@
       </button>
     </ion-item>
   <!-- </ion-card> -->
-</ion-list>
-     
+</ion-list>     
 </ion-content>

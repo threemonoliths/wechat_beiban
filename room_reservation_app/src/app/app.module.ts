@@ -27,6 +27,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { TabService } from '../pages/tabs/service';
 import { MineService } from '../pages/mine/service';
 
+import { FormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -46,7 +48,8 @@ import { MineService } from '../pages/mine/service';
     BrowserModule,
     HttpModule,
     IonicModule.forRoot(MyApp),
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
