@@ -12,7 +12,7 @@ import { TabService } from '../tabs/service';
   templateUrl: 'tabs.html'
 })
 export class TabsPage implements OnInit {
-
+ 
   tab1Root: any = HotelPage;
   tab2Root: any = PreviewPage;
   tab3Root: any = CarPage;
