@@ -14,16 +14,11 @@ defmodule RoomReservationServerWeb.RoomOrderInfoController do
   end
 
   def create(conn, %{"room_order_info" => room_order_info_params}) do
-    IO.puts("get user and layout changeset!!!@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
     user_changeset = get_user_changeset(room_order_info_params)
-    IO.puts inspect user_changeset
     layout_changeset = get_layout_changeset(room_order_info_params)
-    IO.puts inspect layout_changeset
     info_changeset = RoomOrderInfo.changeset(%RoomOrderInfo{}, room_order_info_params)
     |> Ecto.Changeset.put_assoc(:user, user_changeset)
     |> Ecto.Changeset.put_assoc(:layout, layout_changeset)
-    IO.puts("get info changeset!!!######################################")
-    IO.puts inspect info_changeset
     with {:ok, %RoomOrderInfo{} = room_order_info} <- save_create(info_changeset) do
       conn
       |> put_status(:created)
@@ -31,12 +26,6 @@ defmodule RoomReservationServerWeb.RoomOrderInfoController do
       |> render("show.json", room_order_info: room_order_info)
     end
   end
-
-  
-  # def show(conn, %{"id" => id}) do
-  #   room_order_info = RoomOrderInfoContext.get_room_order_info!(id)
-  #   render(conn, "show.json", room_order_info: room_order_info)
-  # end
 
   def show(conn, %{"id" => id}) do
     with {:ok, room_order_info} <- get_by_id(RoomOrderInfo, id,[:layout, :user]) do
@@ -55,8 +44,6 @@ defmodule RoomReservationServerWeb.RoomOrderInfoController do
     if !is_nil(layout_changeset) do
       info_changeset = info_changeset |> Ecto.Changeset.put_assoc(:layout, layout_changeset)
     end
-    # |> Ecto.Changeset.put_assoc(:user, user_changeset)
-    # |> Ecto.Changeset.put_assoc(:layout, layout_changeset)
     with {:ok, %RoomOrderInfo{} = room_order_info} <- save_update(info_changeset) do
       render(conn, "show.json", room_order_info: room_order_info)
     end

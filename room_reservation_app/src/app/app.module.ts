@@ -27,6 +27,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { TabService } from '../pages/tabs/service';
 import { MineService } from '../pages/mine/service';
 
+import { WechatService } from '../pages/login/auth.service';
+
 import { FormsModule } from '@angular/forms';
 
 
@@ -53,7 +55,7 @@ import { FormsModule } from '@angular/forms';
         // { component: PreviewPage, name: 'Preview', segment: 'preview' },  //房型预览
         // { component: CarPage, name: 'Car', segment: 'car' },  //用车
         // { component: MinePage, name: 'Mine', segment: 'mine' }, //我的
-        { component: TabsPage, name: 'Tabs', segment: 'tabs/:tabId' }
+        { component: TabsPage, name: 'Tabs', segment: 'tabs/:id' }
       ]
     }),
     HttpClientModule,
@@ -79,6 +81,7 @@ import { FormsModule } from '@angular/forms';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     RoomLayoutService, HomeService,ContactService,
     RestApiProvider,CarService,MineService,
+    WechatService,
     TabService
   ]
 })

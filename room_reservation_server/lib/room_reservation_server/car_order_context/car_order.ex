@@ -2,6 +2,8 @@ defmodule RoomReservationServer.CarOrderContext.CarOrder do
   use Ecto.Schema
   import Ecto.Changeset
 
+  alias RoomReservationServer.Accounts.User
+
 
   schema "car_orders" do
     field :carNo, :string
@@ -12,6 +14,8 @@ defmodule RoomReservationServer.CarOrderContext.CarOrder do
     field :userNo, :string
     field :occupant, :string
     field :phone, :string
+
+    belongs_to :user, User, on_replace: :nilify
 
     timestamps()
   end

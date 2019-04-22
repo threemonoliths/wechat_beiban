@@ -3,6 +3,7 @@ defmodule RoomReservationServer.CarOrderContext do
   alias RoomReservationServer.Repo
 
   alias RoomReservationServer.CarOrderContext.CarOrder
+  alias RoomReservationServer.Accounts.User
 
 
   use RoomReservationServer.BaseContext
@@ -14,6 +15,17 @@ defmodule RoomReservationServer.CarOrderContext do
       alias RoomReservationServer.CarOrderContext.CarOrder
     end
   end
+
+   # 手机端调用时会传递open_id的值，此时执行这个page函数
+   def page(%{"open_id" => open_id} = params) do
+    user = User
+    |> get_by_name(open_id: open_id)
+    RoomOrderInfo
+    |> query_equal(%{user_id: user.id}, "user_id")
+    |> query_preload([:user])
+    |> get_pagination(params)
+  end
+
 
   def page(params) do 
     CarOrder

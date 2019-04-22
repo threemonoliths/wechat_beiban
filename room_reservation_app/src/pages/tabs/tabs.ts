@@ -22,8 +22,8 @@ export class TabsPage implements OnInit {
   constructor(
     // private srv: TabService,
     public params: NavParams) {
-    this.tabId = params.get("tabId");
-    console.log(this.tabId);
+    this.tabId = this.params.get("tabId");
+    console.log(this.params);
     if(this.tabId != undefined || this.tabId !=null)
     {
         this.selectTabIndex = this.tabId;

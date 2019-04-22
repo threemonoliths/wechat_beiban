@@ -2,6 +2,7 @@ defmodule RoomReservationServerWeb.CarOrderController do
   use RoomReservationServerWeb, :controller
   
   use RoomReservationServer.CarOrderContext
+  alias RoomReservationServer.Accounts.User
   alias RoomReservationServer.CarOrderContext
   alias RoomReservationServer.CarOrderContext.CarOrder
 
@@ -13,15 +14,19 @@ defmodule RoomReservationServerWeb.CarOrderController do
   end
 
   def create(conn, %{"car_order" => car_order_params}) do
-    layout_changeset = CarOrder.changeset(%CarOrder{}, car_order_params)
-    with {:ok, %CarOrder{} = layout} <- save_create(layout_changeset) do
+    user_changeset = get_user_changeset(car_order_params)
+    info_changeset = CarOrder.changeset(%CarOrder{}, car_order_params)
+    if !is_nil(user_changeset) do
+      info_changeset = info_changeset |> Ecto.Changeset.put_assoc(:user, user_changeset)
+    end
+    with {:ok, %CarOrder{} = car_order} <- save_create(info_changeset) do
       conn
-      |> render("show.json", car_order: layout)
+      |> render("show.json", car_order: car_order)
     end   
   end
 
   def show(conn, %{"id" => id}) do
-    with {:ok, layout} <- get_by_id(CarOrder, id) do
+    with {:ok, layout} <- get_by_id(CarOrder, id, [:user]) do
       render(conn, "show.json", car_order: layout)
     end
   end
@@ -41,5 +46,20 @@ defmodule RoomReservationServerWeb.CarOrderController do
       render(conn, "show.json", car_order: layout)
     end
   end
+
+  defp get_user_changeset(params) do
+    params
+    |> Map.get("user", %{})
+    |> Map.get("open_id")
+    |> case do
+      nil -> nil
+      open_id ->
+        case get_by_name(User, open_id: open_id) do
+          {:error, _} -> nil
+          {:ok, user} -> change(User, user)
+        end
+    end
+  end
+
 end
 

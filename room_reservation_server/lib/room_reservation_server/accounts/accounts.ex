@@ -24,4 +24,26 @@ defmodule RoomReservationServer.Accounts do
     |> query_order_desc_by(params, "inserted_at")
     |> get_pagination(params)
   end
+
+  # 根据open_id判断用户是否存在
+  def get_by_open_id(open_id) do
+    case get_by_name(User, open_id: open_id) do
+      {:ok, user} ->
+        user
+      {_, _} ->
+        nil
+    end
+  end
+
+  # 根据open_id创建新用户
+  def insert_by_open_id(open_id) do
+    case get_by_open_id(open_id) do
+      nil ->
+        %User{}
+        |> User.changeset(%{open_id: open_id})
+        |> Repo.insert()
+      _ ->
+        {:error, "already exist"}
+    end
+  end
 end

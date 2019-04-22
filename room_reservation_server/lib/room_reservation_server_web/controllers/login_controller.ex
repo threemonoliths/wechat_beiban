@@ -4,8 +4,12 @@ defmodule RoomReservationServerWeb.LoginController do
   alias RoomReservationServerWeb.{Guardian}
   use Ecto.Schema
 
+  use RoomReservationServer.Accounts
+
   alias RoomReservationServer.AdminUserContext.AdminUser
   alias RoomReservationServer.Repo
+  alias RoomReservationServer.Accounts.User
+  
     
   # 后台管理用户登录
   def login(conn, %{"password" => pw, "username" => m} = params) do
@@ -18,6 +22,11 @@ defmodule RoomReservationServerWeb.LoginController do
         |> put_status(200)
         |> json(%{error: "Invalid mobile or password!"})
     end
+  end
+
+  # 手机端访问验证open_id，如果不存在则自动创建
+  def auto_login(conn, %{"open_id" => open_id} = params) do
+    insert_by_open_id(open_id)
   end
 
   defp get_user_map(user) do

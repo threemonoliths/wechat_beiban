@@ -18,7 +18,8 @@ defmodule RoomReservationServerWeb.CarOrderView do
   end
 
   def render("car_order.json", %{car_order: car_order}) do
-    %{id: car_order.id,
+    %{
+      id: car_order.id,
       occupant: car_order.occupant,
       phone: car_order.phone,
       orderNo: car_order.orderNo,
@@ -27,6 +28,8 @@ defmodule RoomReservationServerWeb.CarOrderView do
       carNo: car_order.carNo,
       userNo: car_order.userNo,
       inserted_at: car_order.inserted_at |> DateHandler.get_date_str,
-      state: car_order.state}
+      state: car_order.state,
+      user: %{id: car_order.user.id, open_id: car_order.user.open_id, name: car_order.user.name}
+    }
   end
 end
