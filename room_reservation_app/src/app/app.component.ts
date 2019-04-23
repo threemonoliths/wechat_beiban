@@ -23,7 +23,7 @@ import { getUrlParam } from '../utils/weixinauth';
 })
 export class MyApp {
   rootPage:any = TabsPage;
-  open_id = '';
+  open_id = '1234';
 
   constructor(@Inject(DOCUMENT) private document: any, platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, wechat: WechatService) {
     // //重定向测试
@@ -41,6 +41,6 @@ export class MyApp {
     console.log("in app init..........");
     let code = getUrlParam("code");
     console.log("print end........")
-    // wechat.getOpenId(code).then(resp => {this.open_id = resp.openid})
+    wechat.getOpenId(code).then(resp => {this.open_id = resp.openid})
   }
 }
