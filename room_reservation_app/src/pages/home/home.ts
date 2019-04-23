@@ -56,7 +56,7 @@ export class HomePage implements OnInit {
   _submitForm(){
     console.log(this.form.value)
     if (this.form.invalid) {
-      this.showError();
+      this.srv.getOpenId().then(resp => this.showError());
       return
     }
     this.srv.createOrderInfo(this.form.value).then(resp => {
@@ -67,11 +67,12 @@ export class HomePage implements OnInit {
   showError() {
     const alert = this.alertCtrl.create({
       title: '无法预订',
-      // subTitle: '请将预订信息补充完整 ^-^',
-      subTitle: localStorage.getItem("code"),
+      subTitle: '请将预订信息补充完整 ^-^',
+      // subTitle: localStorage.getItem("code"),
       buttons: ['OK']
     });
     alert.present();
+    
   }
 
   showOK() {
