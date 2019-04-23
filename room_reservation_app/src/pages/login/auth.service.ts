@@ -1,12 +1,14 @@
 import { Component,Injectable } from '@angular/core';
 import { Http, URLSearchParams, RequestOptions, Headers, ResponseContentType } from '@angular/http';
-import { App, LoadingController, Nav, IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+// import { App, LoadingController, Nav, IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class WechatService {
     constructor(
-        private http: Http,
-        public loadingCtrl :LoadingController,
+        private http: Http
+        // public loadingCtrl :LoadingController,
         // private us: URLService,
         // private cs: Service,
     ) { }
@@ -19,7 +21,7 @@ export class WechatService {
         let test = "https://www.baidu.com"
         let url = `https://api.weixin.qq.com/sns/oauth2/access_token?appid=wx2f96d17009ae641b&secret=570467ff0c7bfa03379be800311cf6e2&code=${code}&grant_type=authorization_code`
         alert("url is:" + url)
-        return this.http.get(test)
+        return this.http.get(url)
             .toPromise().then(res => {return res})
 
     }

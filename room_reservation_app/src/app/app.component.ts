@@ -42,6 +42,6 @@ export class MyApp {
     let code = getUrlParam("code");
 
     alert("code is:"+code);
-    this.wechat.getOpenId(code).then(resp => {alert("resp is: from baidu!");})
+    this.wechat.getOpenId(code).then(resp => {alert("resp is: from baidu!"+resp);})
   }
 }
