@@ -29,8 +29,9 @@ export class MyApp{
     let code = getUrlParam("code");
     localStorage.setItem("code",code);
 
-    alert("code is:"+code);
-    this.wechat.getOpenId(code).then(resp => {alert("resp is: from baidu!"+resp);})
-    alert("await......")
+    // alert("code is:"+code);
+    // this.wechat.getOpenId(code).then(resp => {alert("resp is: from baidu!"+resp);})
+    // alert("await......")
+    this.wechat.listOnePage(null).then(resp=>{alert("resp")})
   }
 }

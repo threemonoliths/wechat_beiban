@@ -51,8 +51,6 @@ export class HomePage implements OnInit {
       .then(resp => {
         this.roomLayouts = resp.data;
       });
-    alert("in layout...")
-    this.srv.getOpenId().then(resp => {alert("resp is ok")})
   }
 
   _submitForm(){

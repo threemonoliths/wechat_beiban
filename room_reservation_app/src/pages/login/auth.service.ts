@@ -4,9 +4,12 @@ import { Http, URLSearchParams, RequestOptions, Headers, ResponseContentType } f
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 
+import { baseUrl, getTokenOptions } from '../../shared/shared';
+import { userId } from '../../shared/shared';
+
 @Injectable()
 export class WechatService {
-    
+
     constructor(private http: Http) {}
 
     // 微信公众号应用相关信息
@@ -18,5 +21,13 @@ export class WechatService {
         alert("url is:" + url)
         return this.http.get(url)
             .toPromise().then(res => {return res.json()})   
+    }
+
+    url = baseUrl + "room_order_info";
+    layout_url = baseUrl + "room_layouts";
+  
+    listOnePage(q) {
+      return this.http.get(this.url, getTokenOptions(q))
+        .toPromise().then(res => {return res.json()})           
     }
 }
