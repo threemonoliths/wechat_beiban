@@ -30,7 +30,7 @@ export class MyApp{
     localStorage.setItem("code",code);
 
     // alert("code is:"+code);
-    this.wechat.getOpenId(code).then(resp => {localStorage.setItem("resp",resp)})
+    // this.wechat.getOpenId(code).then(resp => {localStorage.setItem("resp",resp)})
     // alert("await......")
   }
 }
