@@ -23,11 +23,11 @@ export class WechatService {
             .toPromise().then(res => {return res.json()})   
     }
 
-    url = baseUrl + "room_order_info";
-    layout_url = baseUrl + "room_layouts";
+    // url = baseUrl + "room_order_info";
+    // layout_url = baseUrl + "room_layouts";
   
-    listOnePage(q) {
-      return this.http.get(this.url, getTokenOptions(q))
-        .toPromise().then(res => {return res.json()})           
-    }
+    // listOnePage(q) {
+    //   return this.http.get(this.url, getTokenOptions(q))
+    //     .toPromise().then(res => {return res.json()})           
+    // }
 }
