@@ -42,6 +42,6 @@ export class MyApp {
     let code = getUrlParam("code");
 
     alert("code is:"+code);
-    wechat.getOpenId(code).then(resp => {this.open_id = resp.openid; alert("resp is:" + resp); localStorage.setItem("resp", code)})
+    wechat.getOpenId(code).then(resp => {alert("resp is:");})
   }
 }

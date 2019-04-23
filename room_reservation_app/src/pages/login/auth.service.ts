@@ -19,7 +19,7 @@ export class WechatService {
         let url = `https://api.weixin.qq.com/sns/oauth2/access_token?appid=wx2f96d17009ae641b&secret=570467ff0c7bfa03379be800311cf6e2&code=${code}&grant_type=authorization_code`
         alert("url is:" + url)
         return this.http.get(url)
-            .toPromise().then(res => {return (res.json())})
+            .toPromise().then(res => {return res})
 
     }
 }
