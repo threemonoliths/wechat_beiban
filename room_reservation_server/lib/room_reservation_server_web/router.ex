@@ -24,6 +24,7 @@ defmodule RoomReservationServerWeb.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
+    get "/openid", WxController, :get_openid
   end
 
   # 管理后台API

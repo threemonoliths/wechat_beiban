@@ -3,6 +3,7 @@ import { Http, Headers, Response, RequestOptions, ResponseContentType } from '@a
 // export const baseUrl = "http://172.27.37.71:4000/admin_api/v1/"
 //export const baseUrl = "http://localhost:4000/admin_api/v1/"
 export const baseUrl = "http://112.132.249.108:4000/admin_api/v1/"
+export const baseUrlRaw = "http://112.132.249.108:4000/"
 // export const baseUrl = "http://112.132.249.149:4000/admin_api/v1/"
 
 export const userId = "weixin000001";

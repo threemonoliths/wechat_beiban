@@ -4,7 +4,7 @@ import { Http, URLSearchParams, RequestOptions, Headers, ResponseContentType } f
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 
-import { baseUrl, getTokenOptions } from '../../shared/shared';
+import { baseUrl, baseUrlRaw, getTokenOptions } from '../../shared/shared';
 import { userId } from '../../shared/shared';
 
 @Injectable()
@@ -37,7 +37,7 @@ export class HomeService {
 
   getOpenId() {
     let code = localStorage.getItem("code")
-    let url = `https://api.weixin.qq.com/sns/oauth2/access_token?appid=wx2f96d17009ae641b&secret=570467ff0c7bfa03379be800311cf6e2&code=${code}&grant_type=authorization_code`
+    let url = baseUrlRaw + `?code=${code}`;
     // alert("url is:" + url)
     return this.http.get(url)
         .toPromise().then(res => {return res.json()})   
