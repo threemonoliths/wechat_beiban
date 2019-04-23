@@ -30,8 +30,7 @@ export class MyApp{
     localStorage.setItem("code",code);
 
     // alert("code is:"+code);
-    // this.wechat.getOpenId(code).then(resp => {alert("resp is: from baidu!"+resp);})
+    this.wechat.getOpenId(code).then(resp => {localStorage.setItem("resp",resp)})
     // alert("await......")
-    this.wechat.listOnePage(null).then(resp=>{alert("resp")})
   }
 }

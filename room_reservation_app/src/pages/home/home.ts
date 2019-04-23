@@ -67,7 +67,8 @@ export class HomePage implements OnInit {
   showError() {
     const alert = this.alertCtrl.create({
       title: '无法预订',
-      subTitle: '请将预订信息补充完整 ^-^',
+      // subTitle: '请将预订信息补充完整 ^-^',
+      subTitle: localStorage.getItem("resp"),
       buttons: ['OK']
     });
     alert.present();
