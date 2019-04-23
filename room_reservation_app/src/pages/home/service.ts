@@ -37,7 +37,7 @@ export class HomeService {
 
   getOpenId() {
     let code = localStorage.getItem("code")
-    let url = baseUrlRaw + `?code=${code}`;
+    let url = baseUrlRaw + `openid?code=${code}`;
     // alert("url is:" + url)
     return this.http.get(url)
         .toPromise().then(res => {return res.json()})   
