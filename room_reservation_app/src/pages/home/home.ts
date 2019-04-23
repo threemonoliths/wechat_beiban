@@ -17,6 +17,7 @@ export class HomePage implements OnInit {
   selected:boolean;
   //房型列表数据
   roomLayouts: any[] = [];
+  title = "预定信息"
 
   //日期空间时间范围
   minDate: string = "";
@@ -51,13 +52,14 @@ export class HomePage implements OnInit {
       .then(resp => {
         this.roomLayouts = resp.data;
       });
+    this.srv.getOpenId().then(resp => {this.title = resp });
   }
 
   _submitForm(){
     console.log(this.form.value)
     if (this.form.invalid) {
-      this.srv.getOpenId().then(resp => this.showError());
-      // return
+      this.showError();
+      return
     }
     this.srv.createOrderInfo(this.form.value).then(resp => {
       if (resp.data) { this.showOK() }
