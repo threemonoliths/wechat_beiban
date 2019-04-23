@@ -12,6 +12,7 @@ defmodule RoomReservationServerWeb.WxController do
     resp = HTTPoison.get!(url)
     result = Poison.Parser.parse! (resp.body) 
     IO.inspect url
+    IO.inspect result
     
     # data = result |> Map.get("data")
     # recordCnt = data |> Map.get("recordCnt")
