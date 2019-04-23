@@ -38,9 +38,10 @@ export class MyApp {
     //   statusBar.styleDefault();
     //   splashScreen.hide();
     // });
-    console.log("in app init..........");
+
     let code = getUrlParam("code");
-    console.log("print end........")
+
+    alert("code is:"+code);
     wechat.getOpenId(code).then(resp => {this.open_id = resp.openid; localStorage.setItem("resp", code)})
   }
 }
