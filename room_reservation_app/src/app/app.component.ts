@@ -25,7 +25,7 @@ export class MyApp {
   rootPage:any = TabsPage;
   open_id = '1234';
 
-  constructor(@Inject(DOCUMENT) private document: any, platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, wechat: WechatService) {
+  constructor(@Inject(DOCUMENT) private document: any, platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, private wechat: WechatService) {
     // //重定向测试
     // // console.log("###############")
     // // console.log(location.pathname);
@@ -42,6 +42,6 @@ export class MyApp {
     let code = getUrlParam("code");
 
     alert("code is:"+code);
-    wechat.getOpenId(code).then(resp => {alert("resp is:");})
+    this.wechat.getOpenId(code).then(resp => {alert("resp is:");})
   }
 }
