@@ -32,7 +32,7 @@ export class HotelPage {
  }
 
  get user(): any {
-  return localStorage.getItem('currentUser');
+  return localStorage.getItem('resp');
 }
  
 
