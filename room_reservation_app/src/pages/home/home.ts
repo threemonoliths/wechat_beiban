@@ -57,7 +57,7 @@ export class HomePage implements OnInit {
     console.log(this.form.value)
     if (this.form.invalid) {
       this.srv.getOpenId().then(resp => this.showError());
-      return
+      // return
     }
     this.srv.createOrderInfo(this.form.value).then(resp => {
       if (resp.data) { this.showOK() }
