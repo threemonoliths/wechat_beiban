@@ -21,27 +21,16 @@ import { getUrlParam } from '../utils/weixinauth';
 @Component({
   templateUrl: 'app.html'
 })
-export class MyApp {
+export class MyApp{
   rootPage:any = TabsPage;
-  open_id = '1234';
 
   constructor(@Inject(DOCUMENT) private document: any, platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, private wechat: WechatService) {
-    // //重定向测试
-    // // console.log("###############")
-    // // console.log(location.pathname);
-    // // this.document.location.href = 'https://stackoverflow.com';
-    // wechat.weChatAuth().then(resp => console.log(resp));
-    // console.log(window)
-    // platform.ready().then(() => {
-    //   // Okay, so the platform is ready and our plugins are available.
-    //   // Here you can do any higher level native things you might need.
-    //   statusBar.styleDefault();
-    //   splashScreen.hide();
-    // });
 
     let code = getUrlParam("code");
+    localStorage.setItem("code",code);
 
     alert("code is:"+code);
     this.wechat.getOpenId(code).then(resp => {alert("resp is: from baidu!"+resp);})
+    alert("await......")
   }
 }

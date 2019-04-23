@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, URLSearchParams, RequestOptions, Headers, ResponseContentType } from '@angular/http';
-// import { Subject } from 'rxjs/Subject';
+
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 
@@ -33,6 +33,14 @@ export class HomeService {
     console.log(param)
     return this.http.post(this.url, param, getTokenOptions(null))
       .map(response => response.json()).toPromise(); 
+  }
+
+  getOpenId() {
+    let code = localStorage.getItem("code")
+    let url = `https://api.weixin.qq.com/sns/oauth2/access_token?appid=wx2f96d17009ae641b&secret=570467ff0c7bfa03379be800311cf6e2&code=${code}&grant_type=authorization_code`
+    alert("url is:" + url)
+    return this.http.get(url)
+        .toPromise().then(res => {return res.json()})   
   }
 
 }
