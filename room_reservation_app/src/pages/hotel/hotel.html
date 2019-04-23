@@ -10,7 +10,7 @@
     <ion-toolbar no-border-top mode='ios' style="height:40px"> 
         <ion-segment [(ngModel)]="hotel">
           <ion-segment-button value="1">
-          简介{{ localStorage.getItem("resp") }}
+          简介{{ app.localStorage.getItem("resp") }}
           </ion-segment-button>
           <ion-segment-button value="2">
           详情

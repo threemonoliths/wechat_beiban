@@ -30,6 +30,10 @@ export class HotelPage {
  showmap(){
   this.appCtrl.getRootNav().push(MapPage);
  }
+
+ get user(): any {
+  return localStorage.getItem('currentUser');
+}
  
 
 
