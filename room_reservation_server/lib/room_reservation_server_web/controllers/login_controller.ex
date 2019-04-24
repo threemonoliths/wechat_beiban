@@ -26,7 +26,17 @@ defmodule RoomReservationServerWeb.LoginController do
 
   # 手机端访问验证open_id，如果不存在则自动创建
   def auto_login(conn, %{"open_id" => open_id} = params) do
-    insert_by_open_id(open_id)
+    case check_openid(open_id) do
+      {:ok, user} ->
+        {:ok, token, claims} = Guardian.encode_and_sign(user)
+        IO.inspect %{user: get_wxuser_map(user), jwt: token}
+        json conn, %{user: get_wxuser_map(user), jwt: token}
+      {:error, _} ->
+        conn
+        |> put_status(200)
+        |> json(%{error: "Create user failed!"})
+
+    end
   end
 
   defp get_user_map(user) do
@@ -40,7 +50,18 @@ defmodule RoomReservationServerWeb.LoginController do
     end
   end
 
-  # 用户名密码登陆验证
+  defp get_wxuser_map(user) do
+    case user do
+      nil -> nil
+      user ->
+        %{
+          id: user.id,
+          open_id: user.open_id
+        }
+    end
+  end
+
+  # 管理员用户名密码登陆验证
   defp checkPassword(username, password) do
     user = AdminUser
     |> Repo.get_by(%{ name: username })
@@ -49,6 +70,18 @@ defmodule RoomReservationServerWeb.LoginController do
         {:ok, user}
       true ->
         {:error, nil}
+    end
+  end
+
+  # 微信用户验证
+  defp check_openid(open_id) do
+    user = User
+    |> Repo.get_by(%{ open_id: open_id })
+    cond do
+      !is_nil(user) ->
+        {:ok, user}
+      true ->
+        insert_by_open_id(open_id)
     end
   end
   

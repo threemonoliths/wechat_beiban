@@ -21,9 +21,7 @@ export class CarService {
 
 
   createOrderInfo(v) {
-    let param = { car_order: v} 
-    console.log("in createorderinfo")
-    console.log(param)
+    let param = { car_order: v, user: {open_id: localStorage.getItem("openid")}} 
     return this.http.post(this.url, param, getTokenOptions(null))
       .map(response => response.json()).toPromise(); 
   }

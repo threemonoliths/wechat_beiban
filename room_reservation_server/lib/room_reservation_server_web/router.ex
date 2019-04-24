@@ -5,7 +5,7 @@ defmodule RoomReservationServerWeb.Router do
     plug :accepts, ["html"]
     plug :fetch_session
     plug :fetch_flash
-    plug :protect_from_forgery
+    # plug :protect_from_forgery
     plug :put_secure_browser_headers
   end
 
@@ -25,6 +25,7 @@ defmodule RoomReservationServerWeb.Router do
 
     get "/", PageController, :index
     get "/openid", WxController, :get_userinfo
+    post "/auto_login", LoginController, :auto_login
   end
 
   # 管理后台API

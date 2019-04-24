@@ -29,8 +29,7 @@ defmodule RoomReservationServerWeb.RoomOrderInfoView do
       comment: room_order_info.comment,  
       inserted_at: room_order_info.inserted_at |> DateHandler.get_date_str,  
       layout: %{id: room_order_info.layout.id, layout: room_order_info.layout.layout},
-      user: %{id: room_order_info.user.id, open_id: room_order_info.user.open_id, name: room_order_info.user.name}
-
+      # user: %{id: room_order_info.user.id, open_id: room_order_info.user.open_id, name: room_order_info.user.name}
     }
   end
 end

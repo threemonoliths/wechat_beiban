@@ -28,13 +28,13 @@ export class MyApp{
 
     let code = getUrlParam("code");
     localStorage.setItem("code",code);
+    //仅测试用
+    let testopenid = "testopenid01";
 
-    alert("code is:"+code);
     this.wechat.getOpenId().then(resp => {
       localStorage.setItem("openid",resp.openid);
       localStorage.setItem("nickname",resp.nickname);
       localStorage.setItem("headimgurl",resp.headimgurl);
-    })
-    // alert("await......")
+    }).then(resp => this.wechat.auto_login(localStorage.getItem("openid")).then(resp => alert(resp)))
   }
 }

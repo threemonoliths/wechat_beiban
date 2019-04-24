@@ -14,12 +14,14 @@ export class ContactService {
   car_url = baseUrl + "car_order";
 
   listOnePageRoom(q) {
+    q.openid = localStorage.getItem("openid");
     return this.http.get(this.room_url, getTokenOptions(q))
     .toPromise().then(res => {return res.json()})           
   }
 
 
   listOnePageCar(q) {
+    q.openid = localStorage.getItem("openid");
     return this.http.get(this.car_url, getTokenOptions(q))
      .toPromise().then(res => {return res.json()})           
   }

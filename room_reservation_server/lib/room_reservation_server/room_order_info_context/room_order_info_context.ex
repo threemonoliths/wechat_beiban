@@ -20,11 +20,13 @@ defmodule RoomReservationServer.RoomOrderInfoContext do
   end
 
   # 手机端调用时会传递open_id的值，此时执行这个page函数
-  def page(%{"open_id" => open_id} = params) do
-    user = User
+  def page(%{"openid" => open_id} = params) do
+    {:ok, user} = User
     |> get_by_name(open_id: open_id)
+    IO.puts inspect "user is (roomlayoutorder!!!!!):"
+    IO.puts inspect user
     RoomOrderInfo
-    |> query_equal(%{user_id: user.id}, "user_id")
+    |> query_equal(%{"user_id" => user.id}, "user_id")
     |> query_preload([:layout, :user])
     |> get_pagination(params)
   end

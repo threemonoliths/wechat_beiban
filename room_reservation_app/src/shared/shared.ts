@@ -1,10 +1,12 @@
 import { Http, Headers, Response, RequestOptions, ResponseContentType } from '@angular/http';
 
-// export const baseUrl = "http://172.27.37.71:4000/admin_api/v1/"
-//export const baseUrl = "http://localhost:4000/admin_api/v1/"
+//本地调试url
+// export const baseUrl = "http://localhost:4000/admin_api/v1/"
+// export const baseUrlRaw = "http://localhost:4000/"
+
+//部署url
 export const baseUrl = "http://112.132.249.108:4000/admin_api/v1/"
 export const baseUrlRaw = "http://112.132.249.108:4000/"
-// export const baseUrl = "http://112.132.249.149:4000/admin_api/v1/"
 
 export const userId = "weixin000001";
 

@@ -26,11 +26,9 @@ export class HomeService {
   }
 
   createOrderInfo(v) {
-    v.user = {open_id: userId}
+    v.user = {open_id: localStorage.getItem("openid")}
     v.room_layout = {id: v.layout_id}
     let param = { room_order_info: v} 
-    console.log("in createorderinfo")
-    console.log(param)
     return this.http.post(this.url, param, getTokenOptions(null))
       .map(response => response.json()).toPromise(); 
   }

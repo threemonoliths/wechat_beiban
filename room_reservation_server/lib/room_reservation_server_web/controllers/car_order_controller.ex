@@ -13,12 +13,10 @@ defmodule RoomReservationServerWeb.CarOrderController do
     render(conn, "index.json", page: page)
   end
 
-  def create(conn, %{"car_order" => car_order_params}) do
-    user_changeset = get_user_changeset(car_order_params)
+  def create(conn, %{"car_order" => car_order_params} = params) do
+    user_changeset = get_user_changeset(params)
     info_changeset = CarOrder.changeset(%CarOrder{}, car_order_params)
-    if !is_nil(user_changeset) do
-      info_changeset = info_changeset |> Ecto.Changeset.put_assoc(:user, user_changeset)
-    end
+    |> Ecto.Changeset.put_assoc(:user, user_changeset)
     with {:ok, %CarOrder{} = car_order} <- save_create(info_changeset) do
       conn
       |> render("show.json", car_order: car_order)
@@ -56,7 +54,9 @@ defmodule RoomReservationServerWeb.CarOrderController do
       open_id ->
         case get_by_name(User, open_id: open_id) do
           {:error, _} -> nil
-          {:ok, user} -> change(User, user)
+          {:ok, user} -> 
+            IO.puts inspect user
+            change(User, user)
         end
     end
   end

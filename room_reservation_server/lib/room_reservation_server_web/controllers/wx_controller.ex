@@ -9,7 +9,7 @@ defmodule RoomReservationServerWeb.WxController do
     result = Poison.Parser.parse! (resp.body) 
 
     access_token = Map.get(result, "access_token")
-    open_id = Map.get(result, "open_id")
+    open_id = Map.get(result, "openid")
     get_userinfo_url = "https://api.weixin.qq.com/sns/userinfo?access_token=#{access_token}&openid=#{open_id}&lang=zh_CN"
     resp = HTTPoison.get!(get_userinfo_url)
     result_userinfo = Poison.Parser.parse! (resp.body) 

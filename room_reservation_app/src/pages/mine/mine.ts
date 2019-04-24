@@ -17,7 +17,7 @@ import { MineService } from './service';
 export class MinePage {
 
 users:any[];
-userinfo: any;
+userinfo = {nickname: "匿名用户", imgurl: ""};
 
 q: any = {             //排序按照预订日期排序
   page_index: 1,

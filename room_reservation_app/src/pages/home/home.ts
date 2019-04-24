@@ -38,7 +38,7 @@ export class HomePage implements OnInit {
       days: [null, Validators.required],
       occupant: [null, Validators.required],
       phone: [null, Validators.required],
-      type: [null, Validators.required]
+      type: ["因公", Validators.required]
     });
     console.log(this.tabSrv.selectedId)
   

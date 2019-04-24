@@ -6,7 +6,7 @@ defmodule RoomReservationServer.Accounts.User do
   schema "users" do
     field :open_id, :string
     field :name, :string
-    field :mobile, :string
+    field :mobile, :string, default: ""
     field :company, :string
     timestamps()
   end
