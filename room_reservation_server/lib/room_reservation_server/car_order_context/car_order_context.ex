@@ -25,6 +25,7 @@ defmodule RoomReservationServer.CarOrderContext do
     IO.puts inspect id
     CarOrder
     |> query_equal(%{"user_id"=> id}, "user_id")
+    |> query_equal(params, "state")
     |> query_preload([:user])
     |> get_pagination(params)
   end

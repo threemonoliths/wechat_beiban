@@ -35,6 +35,6 @@ export class MyApp{
       localStorage.setItem("openid",resp.openid);
       localStorage.setItem("nickname",resp.nickname);
       localStorage.setItem("headimgurl",resp.headimgurl);
-    }).then(resp => this.wechat.auto_login(localStorage.getItem("openid")).then(resp => alert(resp)))
+    }).then(resp => this.wechat.auto_login(localStorage.getItem("openid")).then(resp => console.log(resp)))
   }
 }

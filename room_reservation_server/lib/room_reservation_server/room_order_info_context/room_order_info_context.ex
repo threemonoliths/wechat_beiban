@@ -27,6 +27,7 @@ defmodule RoomReservationServer.RoomOrderInfoContext do
     IO.puts inspect user
     RoomOrderInfo
     |> query_equal(%{"user_id" => user.id}, "user_id")
+    |> query_equal(params, "status")
     |> query_preload([:layout, :user])
     |> get_pagination(params)
   end
