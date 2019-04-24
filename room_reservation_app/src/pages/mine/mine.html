@@ -11,12 +11,12 @@
 </ion-header>
 
 <ion-content padding >
-  <ion-item  class="user" *ngFor="let i of users" no-lines >
+  <ion-item  class="user" no-lines >
     <ion-avatar item-start>
-      <img src="../../assets/imgs/car.png" style="width:55px;height:55px">
+      <img [src]="userinfo.imgurl" style="width:55px;height:55px">
     </ion-avatar>
-      <h2>{{i.name}}</h2>
-      <p>{{i.mobile}}</p>
+      <h2>{{userinfo.nickname}}</h2>
+      <!-- <p>{{i.mobile}}</p> -->
   </ion-item>
 <ion-list style="position:absolute;top:110px;width:90%;">
     <button ion-item  (click)="openorder()" icon-start>

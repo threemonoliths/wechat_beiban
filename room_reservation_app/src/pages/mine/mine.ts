@@ -17,6 +17,7 @@ import { MineService } from './service';
 export class MinePage {
 
 users:any[];
+userinfo: any;
 
 q: any = {             //排序按照预订日期排序
   page_index: 1,
@@ -30,7 +31,9 @@ q: any = {             //排序按照预订日期排序
   ) {
   }
   ngOnInit() {
-    this.getUsers();
+    // this.getUsers();
+    this.userinfo.nickname = localStorage.getItem("nickname");
+    this.userinfo.imgurl = localStorage.getItem("headimgurl");
   }
   getUsers() {  
     this.mineService.listOnePageUsers(this.q)
