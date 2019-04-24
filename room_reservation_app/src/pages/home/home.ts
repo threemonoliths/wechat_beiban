@@ -52,7 +52,7 @@ export class HomePage implements OnInit {
       .then(resp => {
         this.roomLayouts = resp.data;
       });
-    this.srv.getOpenId().then(resp => {this.title = resp });
+    // this.srv.getOpenId().then(resp => {this.title = resp });
   }
 
   _submitForm(){

@@ -4,7 +4,7 @@ import { Http, URLSearchParams, RequestOptions, Headers, ResponseContentType } f
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 
-import { baseUrl, getTokenOptions } from '../../shared/shared';
+import { baseUrl, baseUrlRaw, getTokenOptions } from '../../shared/shared';
 import { userId } from '../../shared/shared';
 
 @Injectable()
@@ -12,22 +12,11 @@ export class WechatService {
 
     constructor(private http: Http) {}
 
-    // 微信公众号应用相关信息
-    app_secret = "570467ff0c7bfa03379be800311cf6e2";
-    app_id = "wx2f96d17009ae641b";
-
-    getOpenId(code) {
-        let url = `https://api.weixin.qq.com/sns/oauth2/access_token?appid=wx2f96d17009ae641b&secret=570467ff0c7bfa03379be800311cf6e2&code=${code}&grant_type=authorization_code`
-        alert("url is:" + url)
+    getOpenId() {
+        let code = localStorage.getItem("code")
+        let url = baseUrlRaw + `openid?code=${code}`;
+        // alert("url is:" + url)
         return this.http.get(url)
             .toPromise().then(res => {return res.json()})   
     }
-
-    // url = baseUrl + "room_order_info";
-    // layout_url = baseUrl + "room_layouts";
-  
-    // listOnePage(q) {
-    //   return this.http.get(this.url, getTokenOptions(q))
-    //     .toPromise().then(res => {return res.json()})           
-    // }
 }

@@ -35,12 +35,12 @@ export class HomeService {
       .map(response => response.json()).toPromise(); 
   }
 
-  getOpenId() {
-    let code = localStorage.getItem("code")
-    let url = baseUrlRaw + `openid?code=${code}`;
-    // alert("url is:" + url)
-    return this.http.get(url)
-        .toPromise().then(res => {return res.json()})   
-  }
+  // getOpenId() {
+  //   let code = localStorage.getItem("code")
+  //   let url = baseUrlRaw + `openid?code=${code}`;
+  //   // alert("url is:" + url)
+  //   return this.http.get(url)
+  //       .toPromise().then(res => {return res.json()})   
+  // }
 
 }
