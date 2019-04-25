@@ -8,6 +8,7 @@ defmodule RoomReservationServer.LayoutPic do
   
 
   @versions [:original]
+  @extension_whitelist ~w(.jpg .jpeg .gif .png)
 
   # To add a thumbnail version:
   # @versions [:original, :thumb]
@@ -15,7 +16,9 @@ defmodule RoomReservationServer.LayoutPic do
 
   # Whitelist file extensions:
   def validate({file, _}) do
-    ~w(.jpg .jpeg .gif .png) |> Enum.member?(Path.extname(file.file_name))
+  file_extension = file.file_name |> Path.extname |> String.downcase
+    Enum.member?(@extension_whitelist, file_extension)
+    # ~w(.jpg .jpeg .gif .png) |> Enum.member?(Path.extname(file.file_name))
   end
 
   # def transform(:original, _) do
