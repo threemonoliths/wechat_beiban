@@ -60,6 +60,8 @@ export class RoomLayoutService {
     update_with_file(cid, v, file): Promise<any>{
         const formData = new FormData();
         formData.append("layout_pic", file);
+        console.log("formdata is：")
+        console.log(formData);
         return this.http.put(this.url + `/${cid}` + `?layout=${v.layout}&price_01=${v.price_01}&book_price=${v.book_price}&breakfast=${v.breakfast}`, formData)
                 .map(response => response.json()).toPromise();
     }

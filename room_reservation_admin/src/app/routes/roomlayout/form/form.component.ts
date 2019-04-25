@@ -69,7 +69,7 @@ export class RoomLayoutFormComponent implements OnInit {
                 this.goBack();
             }
             }).catch(error => this.msg.error(error));
-        if (op == 'update') this.srv.update(this.roomlayout.id, this.form.value).then(resp => {
+        if (op == 'update') this.srv.update_with_file(this.roomlayout.id, this.form.value, this.file).then(resp => {
             if (resp.error) { 
                 this.msg.error(resp.error);
             } else {
