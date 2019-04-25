@@ -32,7 +32,7 @@ defmodule RoomReservationServerWeb.RoomLayoutController do
     end
   end
 
-  def update(conn, %{"id" => id} = layout_params}) do
+  def update(conn, %{"id" => id} = layout_params) do
     with {:ok, layout} <- get_by_id(RoomLayout, id) do
       layout_changeset = RoomLayout.changeset(layout, layout_params)
       with {:ok, %RoomLayout{} = layout} <- save_update(layout_changeset) do
