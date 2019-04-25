@@ -18,9 +18,9 @@ defmodule RoomReservationServer.LayoutPic do
     ~w(.jpg .jpeg .gif .png) |> Enum.member?(Path.extname(file.file_name))
   end
 
-  def transform(:original, _) do
-    Base.decode64!(:original)
-  end
+  # def transform(:original, _) do
+  #   Base.decode64!(:original)
+  # end
 
   # Define a thumbnail transformation:
   # def transform(:thumb, _) do
