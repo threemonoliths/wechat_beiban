@@ -29,7 +29,7 @@ export class MyApp{
     let code = getUrlParam("code");
     localStorage.setItem("code",code);
     localStorage.setItem("index", getUrlParam("index"));
-    alert(localStorage.getItem("index"));
+    // alert(localStorage.getItem("index"));
 
     this.wechat.getOpenId().then(resp => {
       localStorage.setItem("openid",resp.openid);
