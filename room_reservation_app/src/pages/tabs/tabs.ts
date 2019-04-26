@@ -5,7 +5,8 @@ import { CarPage } from '../car/car';
 
 import { HotelPage } from '../hotel/hotel';
 import { MinePage } from '../mine/mine';
-import { TabService } from '../tabs/service';
+
+import { NavController } from 'ionic-angular';
 
 
 @Component({
@@ -17,21 +18,20 @@ export class TabsPage implements OnInit {
   tab2Root: any = PreviewPage;
   tab3Root: any = CarPage;
   tab4Root: any = MinePage;
-  public tabId: number;
+
   public selectTabIndex: number;
   constructor(
-    // private srv: TabService,
-    public params: NavParams) {
-    this.tabId = this.params.get("tabId");
-    console.log(this.params);
-    if(this.tabId != undefined || this.tabId !=null)
-    {
-        this.selectTabIndex = this.tabId;
-        console.log(this.selectTabIndex);
-    }
+    private navCtrl: NavController) {
   }
 
   ngOnInit() {
-
+    // 根据url中的参数导航到不同的tab
+    let nav : any;
+    let index = localStorage.getItem("index")
+    if (index == "1") { nav = HotelPage }; 
+    if (index == "2") { nav = PreviewPage };
+    if (index == "3") { nav = CarPage };
+    if (index == "4") { nav = MinePage };
+    if (index != null) {this.navCtrl.push(nav)};
   }
 }
